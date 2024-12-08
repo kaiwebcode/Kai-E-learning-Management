@@ -29,13 +29,11 @@ const Signup: FC<Props> = ({ setRoute }) => {
       toast.success(message);
       setRoute("Verification");
     }
-    if (error) {
-      if ("data" in error) {
-        const errorData = error as any;
-        toast.error(errorData.data.message);
-      }
+    if (error && "data" in error) {
+      const errorData = error as { data: { message: string } }; // Strongly typed error
+      toast.error(errorData.data.message);
     }
-  }, [isSuccess, error]);
+  }, [isSuccess, error, data?.message, setRoute]); // Added missing dependencies
 
   const formik = useFormik({
     initialValues: { name: "", email: "", password: "" },

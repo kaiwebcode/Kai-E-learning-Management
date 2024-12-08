@@ -1,7 +1,9 @@
 import Image from "next/image";
 import { FC } from "react";
 
-type Props = {};
+
+type Props = Record<string, never>; // Explicitly define an empty object type
+
 
 const Hero: FC<Props> = () => {
   return (

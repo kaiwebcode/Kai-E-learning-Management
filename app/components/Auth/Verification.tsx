@@ -26,16 +26,12 @@ const Verification: FC<Props> = ({ setRoute }) => {
       toast.success("Account activated successfully");
       setRoute("Login");
     }
-    if (error) {
-      if ("data" in error) {
-        const errorData = error as any;
-        toast.error(errorData.data.message);
-        setInvalidError(true);
-      } else {
-        console.log("An error occured:", error);
-      }
+    if (error && "data" in error) {
+      const errorData = error as { data: { message: string } }; // Strongly typed error
+      toast.error(errorData.data.message);
+      setInvalidError(true);
     }
-  }, [isSuccess, error]);
+  }, [isSuccess, error, setRoute]); // Added missing dependency `setRoute`
 
   const inputRefs = [
     useRef<HTMLInputElement>(null),

@@ -9,7 +9,7 @@ interface Props {
 
 }
 
-const Home: FC<Props> = (props) => {
+const Home: FC<Props> = () => {
   const [open, setOpen] = useState(false);
   const [activeItem, setActiveItem] = useState(0);
   const [route, setRoute] = useState("Login");
