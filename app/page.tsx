@@ -1,17 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { FC, useState } from "react";
 import Heading from "./utils/Heading";
 import Header from "./components/Header";
 import Hero from "./components/Route/Hero";
 
-// interface Props {
+interface Props {
 
-// }
+}
 
-const Home = () => {
+const Home: FC<Props> = (props) => {
   const [open, setOpen] = useState(false);
-  const [activeItem] = useState(0);
+  const [activeItem, setActiveItem] = useState(0);
   const [route, setRoute] = useState("Login");
   // const { user } = useSelector((state: any) => state.auth);
 

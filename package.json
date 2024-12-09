@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "concurrently -n \"client,server\" -c \"bgBlue,bgYellow\" \"npm run dev:client\" \"npm run dev:server\" ",
+    "dev:client": "next dev",
+    "dev:server": "cd server && npm run dev", 
+    "build": "next build",  
+    "start": "next start",  
+    "server": "cd server && npm run dev"  
   },
   "dependencies": {
     "@emotion/react": "^11.13.5",

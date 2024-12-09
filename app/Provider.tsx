@@ -1,12 +1,12 @@
 "use client";
-import React from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Provider } from "react-redux";
 import { store } from "../redux/store";
 // import { useLoadUserQuery } from "@/redux/features/api/apiSlice";
 // import Loader from "./components/Loader/Loader";
 // import socketIO from "socket.io-client";
 // import { SessionProvider } from "next-auth/react";
-// import { redirect } from "next/navigation";
+import { redirect } from "next/navigation";
 // const ENDPOINT = process.env.NEXT_PUBLIC_SOCKET_SERVER_URI || "";
 // const socketId = socketIO(ENDPOINT, { transports: ["websocket"] });
 
