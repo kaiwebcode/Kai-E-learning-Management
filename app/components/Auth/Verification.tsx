@@ -1,9 +1,10 @@
 import { styles } from "@/app/styles/style";
 import { useActivationMutation } from "@/redux/features/auth/authApi";
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { FC, useEffect, useRef, useState, useCallback } from "react";
 import { toast } from "react-hot-toast";
 import { VscWorkspaceTrusted } from "react-icons/vsc";
 import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 
 type Props = {
   setRoute: (route: string) => void;
@@ -16,8 +17,14 @@ type VerifyNumber = {
   "3": string;
 };
 
+type ActivationError = {
+  data?: {
+    message: string;
+  };
+};
+
 const Verification: FC<Props> = ({ setRoute }) => {
-  const { token } = useSelector((state: any) => state.auth);
+  const { token } = useSelector((state: RootState) => state.auth);
   const [activation, { isSuccess, error }] = useActivationMutation();
   const [invalidError, setInvalidError] = useState<boolean>(false);
 
@@ -27,15 +34,15 @@ const Verification: FC<Props> = ({ setRoute }) => {
       setRoute("Login");
     }
     if (error) {
-      if ("data" in error) {
-        const errorData = error as any;
+      const errorData = error as ActivationError;
+      if (errorData.data) {
         toast.error(errorData.data.message);
         setInvalidError(true);
       } else {
-        console.log("An error occured:", error);
+        console.log("An error occurred:", error);
       }
     }
-  }, [isSuccess, error]);
+  }, [isSuccess, error, setRoute]);
 
   const inputRefs = [
     useRef<HTMLInputElement>(null),
@@ -52,7 +59,6 @@ const Verification: FC<Props> = ({ setRoute }) => {
   });
 
   const verificationHandler = async () => {
-    // setInvalidError(true);
     const verificationNumber = Object.values(verifyNumber).join("");
     if (verificationNumber.length !== 4) {
       setInvalidError(true);
@@ -90,7 +96,7 @@ const Verification: FC<Props> = ({ setRoute }) => {
       <div className="m-auto flex items-center justify-around">
         {Object.keys(verifyNumber).map((key, index) => (
           <input
-            type="number"
+            type="text"
             key={key}
             ref={inputRefs[index]}
             className={`w-[65px] h-[65px] bg-transparent border-[3px] rounded-[10px] flex items-center text-black dark:text-white justify-center text-[18px] font-Poppins outline-none text-center ${
@@ -98,10 +104,10 @@ const Verification: FC<Props> = ({ setRoute }) => {
                 ? "shake border-red-500"
                 : "dark:border-white border-[#0000004a]"
             }`}
-            placeholder=""
-            maxLength={1}
             value={verifyNumber[key as keyof VerifyNumber]}
-            onChange={(e) => handleInputChange(index, e.target.value)}
+            onChange={(e) =>
+              handleInputChange(index, e.target.value.slice(0, 1))
+            }
           />
         ))}
       </div>

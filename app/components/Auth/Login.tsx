@@ -1,5 +1,5 @@
 "use client";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import {
@@ -9,8 +9,8 @@ import {
 } from "react-icons/ai";
 import { styles } from "../../../app/styles/style";
 import { useLoginMutation } from "@/redux/features/auth/authApi";
-import { toast } from "react-hot-toast";
-import { redirect } from "next/navigation";
+// import { toast } from "react-hot-toast";
+// import { redirect } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
 import { signIn } from "next-auth/react";
 
@@ -27,9 +27,9 @@ const schema = Yup.object().shape({
   password: Yup.string().required("Please enter your password!").min(6),
 });
 
-const Login: FC<Props> = ({ setRoute, setOpen, refetch }) => {
+const Login: FC<Props> = ({ setRoute }) => {
   const [show, setShow] = useState(false);
-  const [login, { isSuccess, error }] = useLoginMutation();
+  const [login] = useLoginMutation();
   const formik = useFormik({
     initialValues: { email: "", password: "" },
     validationSchema: schema,

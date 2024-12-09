@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import NavItems from "../utils/NavItems";
 import Login from ".././components/Auth/Login";
 import { ThemeSwitcher } from "../utils/ThemeSwitcher";
@@ -12,7 +12,7 @@ import Image from "next/image";
 import avatar from "../../public/avatar.png";
 import { useSession } from "next-auth/react";
 import { useSocialAuthMutation } from "@/redux/features/auth/authApi";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 
 type Props = {
   open: boolean;
@@ -27,7 +27,7 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
   const [openSidebar, setOpenSidebar] = useState(false);
   const { user } = useSelector((state: any) => state.auth);
   const { data } = useSession();
-  const [socialAuth, { isSuccess, error }] = useSocialAuthMutation();
+  // const [socialAuth, { isSuccess, error }] = useSocialAuthMutation();
 
   // console.log(data);
 
