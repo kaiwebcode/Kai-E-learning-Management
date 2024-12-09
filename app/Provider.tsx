@@ -1,5 +1,5 @@
 "use client";
-import React, { FC, ReactNode, useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Provider } from "react-redux";
 import { store } from "../redux/store";
 // import { useLoadUserQuery } from "@/redux/features/api/apiSlice";
@@ -11,7 +11,7 @@ import { redirect } from "next/navigation";
 // const socketId = socketIO(ENDPOINT, { transports: ["websocket"] });
 
 interface ProvidersProps {
-  children: React.ReactNode;
+  children: any;
 }
 
 export function Providers({ children }: ProvidersProps) {

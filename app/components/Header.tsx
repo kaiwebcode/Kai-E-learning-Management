@@ -1,96 +1,84 @@
-// Header.tsx
-import Link from 'next/link';
-import { FC, useEffect, useState } from 'react';
-import NavItems from '../utils/NavItems';
-import Login from '../components/Auth/Login';
-import { ThemeSwitcher } from '../utils/ThemeSwitcher';
-import CustomModal from '../utils/CustomModal';
-import { HiOutlineMenu, HiOutlineUserCircle } from 'react-icons/hi';
-import Signup from './Auth/SignUp';
-import Verification from './Auth/Verification';
-import { useSelector } from 'react-redux';
-import Image from 'next/image';
-import avatar from '../../public/avatar.png';
-import { useSession } from 'next-auth/react';
-import { useSocialAuthMutation } from '@/redux/features/auth/authApi';
-import toast from 'react-hot-toast';
+import Link from "next/link";
+import { FC, useEffect, useState } from "react";
+import NavItems from "../utils/NavItems";
+import Login from ".././components/Auth/Login";
+import { ThemeSwitcher } from "../utils/ThemeSwitcher";
+import CustomModal from "../utils/CustomModal";
+import { HiOutlineMenu, HiOutlineUserCircle } from "react-icons/hi";
+import Signup from "./Auth/SignUp";
+import Verification from "./Auth/Verification";
+import { useSelector } from "react-redux";
+import Image from "next/image";
+import avatar from "../../public/avatar.png";
+import { useSession } from "next-auth/react";
+import { useSocialAuthMutation } from "@/redux/features/auth/authApi";
+import toast from "react-hot-toast";
 
 type Props = {
   open: boolean;
   setOpen: (open: boolean) => void;
   activeItem: number;
   route: string;
-  setRoute?: (route: string) => void;  // setRoute is now optional
-};
-
-type AuthState = {
-  auth: {
-    user: {
-      avatar?: string;
-    } | null;
-  };
-};
-
-type SessionData = {
-  user: {
-    email: string;
-    name: string;
-    image: string;
-  };
+  setRoute: (route: string) => void;
 };
 
 const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
   const [active, setActive] = useState(false);
   const [openSidebar, setOpenSidebar] = useState(false);
-  const { user } = useSelector((state: AuthState) => state.auth);
-  const { data } = useSession() as { data: SessionData | null };
+  const { user } = useSelector((state: any) => state.auth);
+  const { data } = useSession();
   const [socialAuth, { isSuccess, error }] = useSocialAuthMutation();
 
-  useEffect(() => {
-    // Perform social login if the user is not logged in but session data exists
-    if (!user && data?.user) {
-      socialAuth({
-        email: data.user.email,
-        name: data.user.name,
-        avatar: data.user.image,
-      });
-    }
-  }, [data, user, socialAuth]);
+  // console.log(data);
 
-  useEffect(() => {
-    // Display toast after successful social login
-    if (isSuccess) {
-      toast.success('Login Successfully');
-    }
-    if (error) {
-      toast.error('An error occurred during login');
-    }
-  }, [isSuccess, error]);
+  // useEffect(() => {
+  //   // Perform social login if the user is not logged in but session data exists
+  //   if (!user && data) {
+  //     socialAuth({
+  //       email: data?.user?.email,
+  //       name: data?.user?.name,
+  //       avatar: data.user?.image,
+  //     });
+  //   }
+  // }, [data, user, socialAuth]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setActive(window.scrollY > 80);
-    };
+  // useEffect(() => {
+  //   // Display toast after successful social login
+  //   if (isSuccess) {
+  //     toast.success("Login Successfully");
+  //   }
+  //   if (error) {
+  //     toast.error("An error occurred during login");
+  //   }
+  // }, [isSuccess, error]);
 
-    if (typeof window !== 'undefined') {
-      window.addEventListener('scroll', handleScroll);
-      return () => window.removeEventListener('scroll', handleScroll);
-    }
-  }, []);
+  if (typeof window !== "undefined") {
+    window.addEventListener("scroll", () => {
+      if (window.screenY > 80) {
+        setActive(true);
+      } else {
+        setActive(false);
+      }
+    });
+  }
 
-  const handleClose = (e: React.MouseEvent<HTMLDivElement>) => {
-    if ((e.target as HTMLElement).id === 'screen') {
-      setOpenSidebar(false);
+  const handleClose = (e: any) => {
+    if (e.target.id === "screen") {
+      {
+        setOpenSidebar(false);
+      }
     }
   };
+
+  // console.log(user);
 
   return (
     <div className="w-full relative">
       <div
         className={`${
           active
-            ? 'dark:bg-opacity-50 dark:bg-gradient-to-b dark:from-gray-900 dark:to-black fixed top-0 left-0 w-full h-[80px] z-[80] border-b dark:border-[#ffffff1c] shadow-xl transition-500 duration-500'
-            : 'w-full border-b dark:border-[#ffffff1c] h-[80px] z-[80] dark:shadow'
+            ? "dark:bg-opacity-50 dark:bg-gradient-to-b dark:from-gray-900 dark:to-black fixed top-0 left-0 w-full h-[80px] z-[80] border-b dark:border-[#ffffff1c] shadow-xl transition-500 duration-500"
+            : "w-full border-b dark:border-[#ffffff1c] h-[80px] z-[80] dark:shadow"
         }`}
       >
         <div className="w-[95%] 800px:w-[92%] m-auto py-2 h-full">
@@ -106,7 +94,7 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
             <div className="flex items-center">
               <NavItems activeItem={activeItem} isMobile={false} />
               <ThemeSwitcher />
-              {/* Only for mobile */}
+              {/* only for mobile */}
               <div className="800px:hidden">
                 <HiOutlineMenu
                   size={25}
@@ -134,7 +122,7 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
             </div>
           </div>
         </div>
-        {/* Mobile sidebar */}
+        {/* mobile sidebar */}
         {openSidebar && (
           <div
             className="fixed w-full h-screen top-0 left-0 z-[99999] dark:bg-[unset] bg-[#00000024]"
@@ -157,32 +145,44 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
           </div>
         )}
       </div>
-      {route === "Login" && open && (
-        <CustomModal
-          open={open}
-          setOpen={setOpen}
-          setRoute={setRoute}  // passing setRoute as optional
-          activeItem={activeItem}
-          component={Login}
-        />
+      {route === "Login" && (
+        <>
+          {open && (
+            <CustomModal
+              open={open}
+              setOpen={setOpen}
+              setRoute={setRoute}
+              activeItem={activeItem}
+              component={Login}
+            />
+          )}
+        </>
       )}
-      {route === "Sign-up" && open && (
-        <CustomModal
-          open={open}
-          setOpen={setOpen}
-          setRoute={setRoute}  // passing setRoute as optional
-          activeItem={activeItem}
-          component={Signup}
-        />
+      {route === "Sign-up" && (
+        <>
+          {open && (
+            <CustomModal
+              open={open}
+              setOpen={setOpen}
+              setRoute={setRoute}
+              activeItem={activeItem}
+              component={Signup}
+            />
+          )}
+        </>
       )}
-      {route === "Verification" && open && (
-        <CustomModal
-          open={open}
-          setOpen={setOpen}
-          setRoute={setRoute}  // passing setRoute as optional
-          activeItem={activeItem}
-          component={Verification}
-        />
+      {route === "Verification" && (
+        <>
+          {open && (
+            <CustomModal
+              open={open}
+              setOpen={setOpen}
+              setRoute={setRoute}
+              activeItem={activeItem}
+              component={Verification}
+            />
+          )}
+        </>
       )}
     </div>
   );

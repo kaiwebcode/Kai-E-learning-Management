@@ -5,11 +5,11 @@ import Heading from "./utils/Heading";
 import Header from "./components/Header";
 import Hero from "./components/Route/Hero";
 
-interface Props {
+// interface Props {
 
-}
+// }
 
-const Home: FC<Props> = () => {
+const Home = () => {
   const [open, setOpen] = useState(false);
   const [activeItem, setActiveItem] = useState(0);
   const [route, setRoute] = useState("Login");

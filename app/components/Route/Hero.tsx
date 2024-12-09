@@ -1,11 +1,9 @@
 import Image from "next/image";
 import { FC } from "react";
 
+// type Props = {};
 
-type Props = Record<string, never>; // Explicitly define an empty object type
-
-
-const Hero: FC<Props> = () => {
+const Hero = () => {
   return (
     <div className="flex flex-col 1000px:flex-row items-center justify-between h-screen px-6 1000px:px-10 relative overflow-hidden py-16">
       {/* Left Side: Image with Animated Circle */}

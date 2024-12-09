@@ -17,7 +17,7 @@ import { signIn } from "next-auth/react";
 type Props = {
   setRoute: (route: string) => void;
   setOpen: (open: boolean) => void;
-  refetch?: () => void;
+  refetch?: any;
 };
 
 const schema = Yup.object().shape({
@@ -30,26 +30,27 @@ const schema = Yup.object().shape({
 const Login: FC<Props> = ({ setRoute, setOpen, refetch }) => {
   const [show, setShow] = useState(false);
   const [login, { isSuccess, error }] = useLoginMutation();
-
   const formik = useFormik({
     initialValues: { email: "", password: "" },
     validationSchema: schema,
     onSubmit: async ({ email, password }) => {
       await login({ email, password });
-      if (refetch) refetch(); // Call `refetch` if it exists
     },
   });
 
-  useEffect(() => {
-    if (isSuccess) {
-      toast.success("Login Successfully!");
-      setOpen(false); // `setOpen` is used, so it should be a dependency
-    }
-    if (error && "data" in error) {
-      const errorData = error as { data: { message: string } }; // Strongly type `error`
-      toast.error(errorData.data.message);
-    }
-  }, [isSuccess, error, setOpen]); // Added `setOpen` as a dependency
+  // useEffect(() => {
+  //   if (isSuccess) {
+  //     toast.success("Login Successfully!");
+  //     setOpen(false);
+  //     // redirect("/admin");
+  //   }
+  //   if (error) {
+  //     if ("data" in error) {
+  //       const errorData = error as any;
+  //       toast.error(errorData.data.message);
+  //     }
+  //   }
+  // }, [isSuccess, error]);
 
   const { errors, touched, values, handleChange, handleSubmit } = formik;
 
