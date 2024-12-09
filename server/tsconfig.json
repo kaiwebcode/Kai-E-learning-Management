@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "./app.ts",  // Specifies where transpiled JS files will be placed
+    "outDir": "./dist",  // Specifies where transpiled JS files will be placed
     "esModuleInterop": true,
     "moduleResolution": "node",  // Helps with module resolution for Node.js
     "strict": true,
