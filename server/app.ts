@@ -23,7 +23,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:3000",
-      "https://kai-learning-management.vercel.app",
+      "https://kai-e-learning-management.vercel.app",
     ],
     credentials: true,
   })
