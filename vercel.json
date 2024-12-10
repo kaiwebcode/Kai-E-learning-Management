@@ -1,0 +1,9 @@
+{
+    "env": {
+      "NEXT_PUBLIC_API_URL": "https://kai-e-learning-management-backend.onrender.com/api/v1"
+    },
+    "buildCommand": "npm run build",
+    "outputDirectory": ".next",
+    "ignoreCommand": "rm -rf server"
+}
+  
