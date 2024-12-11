@@ -1,9 +1,6 @@
 {
-    "build": {
-      "ignoreCommand": "rm -rf server"
-    },
-    "env": {
-      "NEXT_PUBLIC_API_URL": "https://kai-e-learning-management-backend.onrender.com"
-    }
+  "ignore": ["server/"],
+  "env": {
+    "NEXT_PUBLIC_API_URL": "https://kai-e-learning-management-backend.onrender.com"
   }
-  
+}
