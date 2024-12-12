@@ -29,7 +29,7 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
   const { data } = useSession();
   const [socialAuth, { isSuccess, error }] = useSocialAuthMutation();
 
-  console.log(data); 
+  // console.log(data); 
 
   useEffect(() => {
     // Perform social login if the user is not logged in but session data exists

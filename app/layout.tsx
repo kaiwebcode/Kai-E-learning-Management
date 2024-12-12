@@ -3,7 +3,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "./utils/theme-provider";
-import { Providers } from "./Provider";
+import { Custom, Providers } from "./Provider";
 import { Toaster } from "react-hot-toast";
 import { SessionProvider } from "next-auth/react";
 
@@ -36,7 +36,9 @@ export default function RootLayout({
         <Providers>
           <SessionProvider>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-              {children}
+              <Custom>
+                <div>{children}</div>
+              </Custom>
               <Toaster position="top-center" reverseOrder={false} />
             </ThemeProvider>
           </SessionProvider>
