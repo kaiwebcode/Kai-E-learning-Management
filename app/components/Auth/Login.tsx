@@ -10,7 +10,6 @@ import {
 import { styles } from "../../../app/styles/style";
 import { useLoginMutation } from "@/redux/features/auth/authApi";
 import { toast } from "react-hot-toast";
-import { redirect } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
 import { signIn } from "next-auth/react";
 
@@ -38,19 +37,19 @@ const Login: FC<Props> = ({ setRoute, setOpen, refetch }) => {
     },
   });
 
-  // useEffect(() => {
-  //   if (isSuccess) {
-  //     toast.success("Login Successfully!");
-  //     setOpen(false);
-  //     // redirect("/admin");
-  //   }
-  //   if (error) {
-  //     if ("data" in error) {
-  //       const errorData = error as any;
-  //       toast.error(errorData.data.message);
-  //     }
-  //   }
-  // }, [isSuccess, error]);
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("Login Successfully!");
+      setOpen(false);
+      // redirect("/admin");
+    }
+    if (error) {
+      if ("data" in error) {
+        const errorData = error as any;
+        toast.error(errorData.data.message);
+      }
+    }
+  }, [isSuccess, error]);
 
   const { errors, touched, values, handleChange, handleSubmit } = formik;
 

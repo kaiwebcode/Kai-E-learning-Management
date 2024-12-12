@@ -29,18 +29,18 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
   const { data } = useSession();
   const [socialAuth, { isSuccess, error }] = useSocialAuthMutation();
 
-  // console.log(data);
+  console.log(data); 
 
-  // useEffect(() => {
-  //   // Perform social login if the user is not logged in but session data exists
-  //   if (!user && data) {
-  //     socialAuth({
-  //       email: data?.user?.email,
-  //       name: data?.user?.name,
-  //       avatar: data.user?.image,
-  //     });
-  //   }
-  // }, [data, user, socialAuth]);
+  useEffect(() => {
+    // Perform social login if the user is not logged in but session data exists
+    if (!user && data) {
+      socialAuth({
+        email: data?.user?.email,
+        name: data?.user?.name,
+        avatar: data?.user?.image,
+      });
+    }
+  }, [data, user, socialAuth]);
 
   useEffect(() => {
     // Display toast after successful social login
@@ -105,7 +105,7 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
               {user ? (
                 <Link href="/profile">
                   <Image
-                    src={avatar || user.avatar}
+                    src={user.avatar ? user.avatar : avatar}
                     alt="user image"
                     className="w-[30px] h-[30px] rounded-full cursor-pointer"
                     width={30}
