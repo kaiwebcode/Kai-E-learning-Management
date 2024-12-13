@@ -47,25 +47,33 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
         avatar: data?.user?.image,
       });
       if (data === null) {
-        setLogout(true);
+        if (isSuccess) {
+          toast.success("Login Successfully");
+        }
+        if (data === null) {
+          setLogout(true);
+        }
+      }
+      if (error) {
+        toast.error("An error occurred during login");
       }
     }
   }, [data, user, socialAuth]);
 
-  useEffect(() => {
-    // Display toast after successful social login
-    if (data === null) {
-      if (isSuccess) {
-        toast.success("Login Successfully");
-      }
-      // if (data === null) {
-      //   setLogout(true);
-      // }
-    }
-    if (error) {
-      toast.error("An error occurred during login");
-    }
-  }, [isSuccess, error]);
+  // useEffect(() => {
+  //   // Display toast after successful social login
+  //   if (data === null) {
+  //     if (isSuccess) {
+  //       toast.success("Login Successfully");
+  //     }
+  //     // if (data === null) {
+  //     //   setLogout(true);
+  //     // }
+  //   }
+  //   if (error) {
+  //     toast.error("An error occurred during login");
+  //   }
+  // }, [isSuccess, error]);
 
   if (typeof window !== "undefined") {
     window.addEventListener("scroll", () => {
