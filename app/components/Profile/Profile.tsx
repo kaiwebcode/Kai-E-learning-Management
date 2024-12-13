@@ -9,6 +9,13 @@ type Props = {
 
 const Profile: FC<Props> = ({ user }) => {
   const [scroll, setScroll] = useState(false);
+  const [avatar, setAvatar] = useState(null);
+
+  const [active, setActive] = useState(1);
+
+  const logOutHandler = async () => {
+    console.log('ffff')
+  };
 
   if (typeof window !== "undefined") {
     window.addEventListener("scroll", () => {
@@ -23,13 +30,16 @@ const Profile: FC<Props> = ({ user }) => {
   return (
     <div className="w-[85%] flex mx-auto h-screen">
       <div
-        className={`w-[60px] 800px:w-[310px] h-[450px] bg-slate-900 bg-opacity-90 border border-[#ffffff1d] rounded-[5px] shadow-sm mt-[80px] mb-[80px] sticky ${
+        className={`w-[60px] 800px:w-[310px] h-[450px] dark:bg-slate-900 bg-opacity-90 bg-white border dark:border-[#ffffff1d] border-[#00000037] rounded-[5px] shadow-sm dark:shadow-sm mt-[80px] mb-[80px] sticky ${
           scroll ? "top-[120px]" : "top-[30px]"
         }`}
       >
         <SideBarProfile
           user={user}
-          // active={active} avatar={avatar} setActive={setActive} logoutHandler={logoutHandler}
+          active={active}
+          avatar={avatar}
+          setActive={setActive}
+          logOutHandler={logOutHandler}
         />
       </div>
     </div>
