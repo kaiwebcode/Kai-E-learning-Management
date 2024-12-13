@@ -23,7 +23,7 @@ const Profile: FC<Props> = ({ user }) => {
     // console.log("");
     setLogout(true);
     await signOut();
-    redirect("/");
+    // redirect("/");
   };
 
   if (typeof window !== "undefined") {
