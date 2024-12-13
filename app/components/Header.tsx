@@ -46,16 +46,21 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
         name: data?.user?.name,
         avatar: data?.user?.image,
       });
+      if (data === null) {
+        setLogout(true);
+      }
     }
   }, [data, user, socialAuth]);
 
   useEffect(() => {
     // Display toast after successful social login
     if (data === null) {
-      toast.success("Login Successfully");
-    }
-    if (data === null) {
-      setLogout(true);
+      if (isSuccess) {
+        toast.success("Login Successfully");
+      }
+      // if (data === null) {
+      //   setLogout(true);
+      // }
     }
     if (error) {
       toast.error("An error occurred during login");
