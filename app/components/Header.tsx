@@ -31,51 +31,42 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
   const { user } = useSelector((state: any) => state.auth);
   const { data } = useSession();
   const [socialAuth, { isSuccess, error }] = useSocialAuthMutation();
-  const [logout, setLogout] = useState(false);
-  const {} = useLogOutQuery(undefined, {
-    skip: !logout ? true : false,
-  });
+  // const [logout, setLogout] = useState(false);
+  // const {} = useLogOutQuery(undefined, {
+  //   skip: !logout ? true : false,
+  // });
 
   // console.log(data);
 
   useEffect(() => {
     // Perform social login if the user is not logged in but session data exists
-    if (!user) {
-      if (data) {
-        socialAuth({
-          email: data?.user?.email,
-          name: data?.user?.name,
-          avatar: data?.user?.image,
-        });
-      }
+    if (!user && data) {
+      socialAuth({
+        email: data?.user?.email,
+        name: data?.user?.name,
+        avatar: data?.user?.image,
+      });
     }
-    if (data === null) {
+    // if (data === null) {
+    //     setLogout(true);
+    //   }
+
+  }, [data, user, socialAuth]);
+
+  useEffect(() => {
+    // Display toast after successful social login
+    // if (data === null) {
       if (isSuccess) {
         toast.success("Login Successfully");
       }
-    }
-    if (data === null) {
-      setLogout(true);
-    }
-    // if (error) {
-    //   toast.error("An error occurred during login");
+      // if (data === null) {
+      //   setLogout(true);
+      // }
     // }
-  }, [data, user, socialAuth]);
-
-  // useEffect(() => {
-  //   // Display toast after successful social login
-  //   if (data === null) {
-  //     if (isSuccess) {
-  //       toast.success("Login Successfully");
-  //     }
-  //     // if (data === null) {
-  //     //   setLogout(true);
-  //     // }
-  //   }
-  //   if (error) {
-  //     toast.error("An error occurred during login");
-  //   }
-  // }, [isSuccess, error]);
+    if (error) {
+      toast.error("An error occurred during login");
+    }
+  }, [isSuccess, error]);
 
   if (typeof window !== "undefined") {
     window.addEventListener("scroll", () => {
