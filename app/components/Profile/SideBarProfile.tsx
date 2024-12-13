@@ -2,6 +2,8 @@ import Image from "next/image";
 import React, { FC } from "react";
 import avatarDefault from "../../../public/avatar.png";
 import { RiLockPasswordLine } from "react-icons/ri";
+import { SiCoursera } from "react-icons/si";
+import { AiOutlineLogout } from "react-icons/ai";
 
 type Props = {
   user: any;
@@ -47,6 +49,28 @@ const SideBarProfile: FC<Props> = ({
       >
         <RiLockPasswordLine size={20} fill="#fff" />
         <h5 className="800px:block hidden">Change Password</h5>
+      </div>
+      <div
+        className={`w-full flex items-center px-3 gap-x-2 py-4 cursor-pointer ${
+          active === 3
+            ? "dark:bg-slate-800 bg-white"
+            : "bg-transparent hover:bg-slate-600 duration-300"
+        }`}
+        onClick={() => setActive(3)}
+      >
+        <SiCoursera size={20} fill="#fff" />
+        <h5 className="800px:block hidden">Enrolled Courses</h5>
+      </div>
+      <div
+        className={`w-full flex items-center px-3 gap-x-2 py-4 cursor-pointer ${
+          active === 4
+            ? "dark:bg-slate-800 bg-white"
+            : "bg-transparent hover:bg-slate-600 duration-300"
+        }`}
+        onClick={() => logOutHandler()}
+      >
+        <AiOutlineLogout size={20} fill="#fff" />
+        <h5 className="800px:block hidden">Log Out</h5>
       </div>
     </div>
   );
