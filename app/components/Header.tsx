@@ -40,24 +40,26 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
 
   useEffect(() => {
     // Perform social login if the user is not logged in but session data exists
-    if (!user && data) {
-      socialAuth({
-        email: data?.user?.email,
-        name: data?.user?.name,
-        avatar: data?.user?.image,
-      });
-      if (data === null) {
-        if (isSuccess) {
-          toast.success("Login Successfully");
-        }
-        if (data === null) {
-          setLogout(true);
-        }
-      }
-      if (error) {
-        toast.error("An error occurred during login");
+    if (!user) {
+      if (data) {
+        socialAuth({
+          email: data?.user?.email,
+          name: data?.user?.name,
+          avatar: data?.user?.image,
+        });
       }
     }
+    if (data === null) {
+      if (isSuccess) {
+        toast.success("Login Successfully");
+      }
+    }
+    if (data === null) {
+      setLogout(true);
+    }
+    // if (error) {
+    //   toast.error("An error occurred during login");
+    // }
   }, [data, user, socialAuth]);
 
   // useEffect(() => {
