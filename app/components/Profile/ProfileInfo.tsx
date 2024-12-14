@@ -3,7 +3,10 @@ import React, { FC, useEffect, useState } from "react";
 import avatarIcons from "../../../public/avatar.png";
 import { AiOutlineCamera } from "react-icons/ai";
 import { styles } from "@/app/styles/style";
-import { useUpdateAvatarMutation } from "@/redux/features/user/userApi";
+import {
+  useEditProfileMutation,
+  useUpdateAvatarMutation,
+} from "@/redux/features/user/userApi";
 import { useLoadUserQuery } from "@/redux/features/api/apiSlice";
 import toast from "react-hot-toast";
 
@@ -15,6 +18,8 @@ type Props = {
 const ProfileInfo: FC<Props> = ({ avatar, user }) => {
   const [name, setName] = useState(user && user.name);
   const [updateAvatar, { isSuccess, error }] = useUpdateAvatarMutation();
+  const [editProfile, { isSuccess: success, error: editError }] =
+    useEditProfileMutation();
   const [loadUser, setLoadUser] = useState(false);
   const {} = useLoadUserQuery(undefined, { skip: loadUser ? false : true });
 
@@ -30,29 +35,32 @@ const ProfileInfo: FC<Props> = ({ avatar, user }) => {
   };
 
   useEffect(() => {
-    if (isSuccess) {
+    if (isSuccess || success) {
       setLoadUser(true);
-      toast.success("Profile image updated successfully!");
+      toast.success("Profile updated successfully!");
     }
-    if (error) {
+    if (error || editError) {
       console.error(error);
-      // toast.error("Failed to update profile image.");
+      toast.error("Failed to update profile.");
     }
-  }, [isSuccess, error]);
+  }, [isSuccess, error, success, editError]);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    console.log("Profile updated with name:", name);
+    // console.log("Profile updated with name:", name);
+    if (name !== "") {
+      await editProfile({
+        name: name,
+      });
+    }
   };
 
   return (
-    <div className="w-full flex flex-col items-center bg-slate-700 py-20 px-6 rounded-lg shadow-lg max-w-4xl mx-auto">
+    <div className="w-full flex flex-col items-center bg-slate-700 py-20 px-5 rounded-lg shadow-lg max-w-4xl mx-auto">
       {/* Avatar Section */}
       <div className="relative w-36 h-36">
         <Image
-          src={
-            user.avatar || avatar ? user.avatar.url || avatar : avatarIcons
-          }
+          src={user.avatar || avatar ? user.avatar.url || avatar : avatarIcons}
           alt="User Avatar"
           width={128}
           height={128}
@@ -66,7 +74,7 @@ const ProfileInfo: FC<Props> = ({ avatar, user }) => {
           accept="image/png, image/jpg, image/jpeg, image/webp"
         />
         <label htmlFor="avatar">
-          <div className="absolute bottom-0 right-0 w-8 h-8 bg-gray-800 text-white flex items-center justify-center rounded-full cursor-pointer">
+          <div className="absolute bottom-0 right-0 w-8 h-8 bg-gray-700 text-white flex items-center justify-center rounded-full cursor-pointer">
             <AiOutlineCamera size={20} />
           </div>
         </label>
@@ -113,4 +121,3 @@ const ProfileInfo: FC<Props> = ({ avatar, user }) => {
 };
 
 export default ProfileInfo;
-
