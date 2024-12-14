@@ -39,7 +39,7 @@ const Profile: FC<Props> = ({ user }) => {
   }
 
   return (
-    <div className="w-[96%] lg:w-[85%] flex mx-auto h-screen">
+    <div className="w-[98%] lg:w-[85%] flex mx-auto h-screen">
       <div
         className={`w-[60px] 800px:w-[310px] h-[450px] dark:bg-slate-900 bg-opacity-90 bg-white border dark:border-[#ffffff1d] border-[#00000037] rounded-[5px] shadow-sm dark:shadow-sm mt-[80px] mb-[80px] sticky ${
           scroll ? "top-[120px]" : "top-[30px]"
@@ -54,14 +54,14 @@ const Profile: FC<Props> = ({ user }) => {
         />
       </div>
       {active === 1 && (
-        <div className="w-full p-3 mt-10 flex justify-center">
+        <div className="w-full p-1 mt-10 flex justify-center">
           <div className="w-full max-w-5xl ">
             <ProfileInfo user={user} avatar={avatar} />
           </div>
         </div>
       )}
       {active === 2 && (
-        <div className="w-full p-3 mt-10 flex justify-center">
+        <div className="w-full p-1 mt-10 flex justify-center">
           <div className="w-full max-w-5xl ">
             <ChangePassword />
           </div>
