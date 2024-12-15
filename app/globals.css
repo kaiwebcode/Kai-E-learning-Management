@@ -28,7 +28,22 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 2px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #1771c6;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #32ae7e;
 }
 
 /* Firefox */
@@ -46,6 +61,14 @@ body {
     hsla(0, 0%, 100%, 0) 89.25%
   );
   animation: changeBackgroundColor 4s infinite alternate;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #3e7fd9 2.34%, #5c3bd6 100.78%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
 }
 
 @keyframes changeBackgroundColor {
@@ -93,4 +116,11 @@ body {
 
 .shake {
   animation: shake 0.5s ease-in-out;
+}
+
+.css-dip3t8 {
+  background: unset !important;
+}
+.ps-menu-button:hover {
+  background: unset !important;
 }
