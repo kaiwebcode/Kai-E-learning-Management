@@ -12,12 +12,6 @@ import {
 } from "@mui/icons-material";
 import {
   HomeOutlinedIcon,
-  ArrowForwardIosIcon,
-  ArrowBackIosIcon,
-  PeopleOutlinedIcon,
-  ReceiptOutlinedIcon,
-  BarChartOutlinedIcon,
-  MapOutlinedIcon,
   GroupsIcon,
   OndemandVideoIcon,
   VideoCallIcon,
@@ -25,7 +19,10 @@ import {
   QuizIcon,
   WysiwygIcon,
   ManageHistoryIcon,
-  SettingsIcon,
+  BarChartOutlinedIcon,
+  ReceiptOutlinedIcon,
+  MapOutlinedIcon,
+  PeopleOutlinedIcon,
   ExitToAppIcon,
 } from "./Icon";
 import avatarDefault from "../../../../public/avatar.png";
@@ -120,11 +117,11 @@ const AdminSidebar: FC = () => {
                 display="flex"
                 justifyContent="space-between"
                 alignItems="center"
-                // px={1}
               >
                 <Typography
                   variant="h6"
-                  className="font-bold text-[#4f46e5] uppercase "
+                  component="div"
+                  className="font-bold text-[#4f46e5] uppercase"
                 >
                   <div className="text-3xl font-bold dark:text-white text-black">
                     ELearning
@@ -148,11 +145,18 @@ const AdminSidebar: FC = () => {
               height={80}
               className="rounded-full mx-auto"
             />
-            <Typography className="mt-2 text-lg font-medium">
+            <Typography
+              className="mt-2 text-lg font-medium"
+              component="div" // Fix: Change from default "p" to "div"
+            >
               <div className="text-xl pt-2">{user?.name || "Admin"}</div>
             </Typography>
 
-            <Typography variant="caption" className="text-gray-500 capitalize">
+            <Typography
+              variant="caption"
+              className="text-gray-500 capitalize"
+              component="div" // Fix: Change from default "p" to "div"
+            >
               <div className="text-2xl pt-2">
                 - {user?.role || "Admin Role"}
               </div>
@@ -162,6 +166,7 @@ const AdminSidebar: FC = () => {
 
         {/* Sidebar Menu */}
         <Menu iconShape="circle">
+          {/* Render Items */}
           <Item
             title="Dashboard"
             to="/admin"
@@ -169,6 +174,7 @@ const AdminSidebar: FC = () => {
             selected={selected}
             setSelected={setSelected}
           />
+
           <Typography
             variant="h5"
             sx={{ m: "15px 0 1px 20px" }}
@@ -194,12 +200,12 @@ const AdminSidebar: FC = () => {
             setSelected={setSelected}
           />
           <Typography
-              variant="h5"
-              className="!text-[18px] text-black dark:text-[#ffffffc1] capitalize !font-[400] pt-2"
-              sx={{ m: "15px 0 5px 20px" }}
-            >
-              {!isCollapsed && "Content"}
-            </Typography>
+            variant="h5"
+            className="!text-[18px] text-black dark:text-[#ffffffc1] capitalize !font-[400] pt-2"
+            sx={{ m: "15px 0 5px 20px" }}
+          >
+            {!isCollapsed && "Content"}
+          </Typography>
           <Item
             title="Create Course"
             to="/admin/create-course"
@@ -214,13 +220,13 @@ const AdminSidebar: FC = () => {
             selected={selected}
             setSelected={setSelected}
           />
-           <Typography
-              variant="h5"
-              className="!text-[18px] text-black dark:text-[#ffffffc1] capitalize !font-[400] pt-2"
-              sx={{ m: "15px 0 5px 20px" }}
-            >
-              {!isCollapsed && "Customization"}
-            </Typography>
+          <Typography
+            variant="h5"
+            className="!text-[18px] text-black dark:text-[#ffffffc1] capitalize !font-[400] pt-2"
+            sx={{ m: "15px 0 5px 20px" }}
+          >
+            {!isCollapsed && "Customization"}
+          </Typography>
           <Item
             title="Hero"
             to="/admin/hero"
@@ -243,12 +249,12 @@ const AdminSidebar: FC = () => {
             setSelected={setSelected}
           />
           <Typography
-              variant="h5"
-              className="!text-[18px] text-black dark:text-[#ffffffc1] capitalize !font-[400] pt-2"
-              sx={{ m: "15px 0 5px 20px" }}
-            >
-              {!isCollapsed && "Controllers"}
-            </Typography>
+            variant="h5"
+            className="!text-[18px] text-black dark:text-[#ffffffc1] capitalize !font-[400] pt-2"
+            sx={{ m: "15px 0 5px 20px" }}
+          >
+            {!isCollapsed && "Controllers"}
+          </Typography>
           <Item
             title="Manage Team"
             to="/admin/team"
@@ -257,12 +263,12 @@ const AdminSidebar: FC = () => {
             setSelected={setSelected}
           />
           <Typography
-              variant="h6"
-              className="!text-[18px] text-black dark:text-[#ffffffc1] capitalize !font-[400] pt-2"
-              sx={{ m: "15px 0 5px 20px" }}
-            >
-              {!isCollapsed && "Analytics"}
-            </Typography>
+            variant="h6"
+            className="!text-[18px] text-black dark:text-[#ffffffc1] capitalize !font-[400] pt-2"
+            sx={{ m: "15px 0 5px 20px" }}
+          >
+            {!isCollapsed && "Analytics"}
+          </Typography>
           <Item
             title="Courses Analytics"
             to="/admin/courses-analytics"
@@ -287,12 +293,12 @@ const AdminSidebar: FC = () => {
             setSelected={setSelected}
           />
           <Typography
-              variant="h6"
-              className="!text-[18px] text-black dark:text-[#ffffffc1] capitalize !font-[400] pt-2"
-              sx={{ m: "15px 0 5px 20px" }}
-            >
-              {!isCollapsed && "Extras"}
-            </Typography>
+            variant="h6"
+            className="!text-[18px] text-black dark:text-[#ffffffc1] capitalize !font-[400] pt-2"
+            sx={{ m: "15px 0 5px 20px" }}
+          >
+            {!isCollapsed && "Extras"}
+          </Typography>
           <div onClick={logoutHandler}>
             <Item
               title="Logout"

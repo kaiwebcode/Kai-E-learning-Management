@@ -26,24 +26,24 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
       </div>
 
       {open && (
-        <div className="absolute top-16 right-4 md:right-8 w-[90%] md:w-[350px] max-h-[60vh] overflow-y-scroll py-3 px-2 border dark:border-[#ffffff0c] border-[#0000001a] dark:bg-[#111C43] bg-white shadow-lg rounded-lg z-50">
+        <div className="absolute top-14 right-4 md:right-8 w-[70%] md:w-[350px] max-h-[60vh] overflow-y-scroll py-2 px-1 md:px-2 lg:px-2 border dark:border-[#ffffff0c] border-[#0000001a] dark:bg-[#111C43] bg-white shadow-lg rounded-lg z-50">
           <h5 className="text-center text-lg font-bold text-black dark:text-white">
             Notifications
           </h5>
-          {[...Array(3)].map((_, index) => (
+          {[...Array(4)].map((_, index) => (
             <div
               key={index}
               className="dark:bg-[#2d3a4e] bg-[#f1f1f1] font-Poppins border-b dark:border-b-[#ffffff47] border-b-[#e0e0e0] p-3 rounded-md my-2"
             >
               <div className="flex justify-between">
-                <p className="text-sm text-black dark:text-white">
+                <p className="text-xs md:text-sm lg:text-sm text-black dark:text-white">
                   New Question Received
                 </p>
-                <p className="text-sm text-blue-500 cursor-pointer">
+                <p className="text-xs md:text-sm lg:text-sm text-blue-500 cursor-pointer">
                   Mark as read
                 </p>
               </div>
-              <p className="text-sm text-black dark:text-white">
+              <p className="text-xs md:text-sm lg:text-sm text-black dark:text-white">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
               </p>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
