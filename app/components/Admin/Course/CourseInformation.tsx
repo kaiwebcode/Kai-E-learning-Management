@@ -61,8 +61,8 @@ const CourseInformation: FC<Props> = ({
   };
 
   return (
-    <div className="w-[95%] lg:w-[100%] p-1 mx-auto my-10 lg:mt-24 lg:ml-3 flex items-center justify-center">
-      <form onSubmit={handleSubmit} className="space-y-6">
+    <div className="w-[85%] lg:w-[100%]  mx-auto my-10 lg:mt-24 md:p-3 md:mr-4 flex items-center justify-center">
+      <form onSubmit={handleSubmit} className="space-y-6">  
         {/* Course Name */}
         <div>
           <label htmlFor="name" className={`${styles.label}`}>Course Name</label>
@@ -219,7 +219,7 @@ const CourseInformation: FC<Props> = ({
               <img
                 src={courseInfo.thumbnail}
                 alt="Thumbnail"
-                className="max-h-48 w-full object-cover rounded-md"
+                className="max-h-full w-full object-cover rounded-md"
               />
             ) : (
               <span className="text-gray-700 dark:text-white">
@@ -234,7 +234,7 @@ const CourseInformation: FC<Props> = ({
           <input
             type="submit"
             value="Next"
-            className="w-full lg:w-[180px] h-[40px] bg-[#37a39a] text-center text-white rounded-md mt-8 cursor-pointer"
+            className="w-full lg:w-[180px] h-[40px] bg-[#37a39a] text-center text-white rounded-md mt-4 cursor-pointer"
           />
         </div>
       </form>
