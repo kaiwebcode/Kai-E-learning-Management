@@ -126,8 +126,8 @@ const CourseContent: FC<Props> = ({
   };
 
   return (
-    <div className="w-[100%] m-auto  p-1 lg:p-6 md:p-5">
-      <form onSubmit={(e) => e.preventDefault()} >
+    <div className="w-full mx-auto lg:p-4 p-1 mb-4  md:p-8">
+      <form onSubmit={(e) => e.preventDefault()}>
         {courseContentData?.map((item: any, index: number) => {
           const showSectionInput =
             index === 0 ||
@@ -136,19 +136,19 @@ const CourseContent: FC<Props> = ({
           return (
             <>
               <div
-                className={`w-full dark:bg-[#00000073] bg-slate-500 p-6 rounded-lg  ${
-                  showSectionInput ? "mt-10" : "mb-0"
+                className={`w-full dark:bg-[#00000073] bg-slate-500 p-4 sm:p-6 rounded-lg  ${
+                  showSectionInput ? "mt-6  sm:mt-10" : "mb-0"
                 }`}
                 key={index}
               >
                 {showSectionInput && (
                   <>
-                    <div className="flex w-full items-center">
+                    <div className="flex items-center">
                       <input
                         type="text"
-                        className={`text-[20px] ${
+                        className={`text-[16px] sm:text-[20px] ${
                           item.videoSection === "Untitled Section"
-                            ? "w-[170px]"
+                            ? "w-[150px] sm:w-[170px]"
                             : "w-min"
                         } font-Poppins cursor-pointer dark:text-white text-black bg-transparent outline-none`}
                         value={item.videoSection}
@@ -164,25 +164,20 @@ const CourseContent: FC<Props> = ({
                   </>
                 )}
 
-                <div className="flex w-full items-center justify-between my-0">
+                <div className="flex items-center justify-between my-0">
                   {isCollapsed[index] ? (
-                    <>
-                      {item.title ? (
-                        <p className="font-Poppins dark:text-white text-black">
-                          {index + 1}. {item.title}
-                        </p>
-                      ) : (
-                        <></>
-                      )}
-                    </>
+                    item.title && (
+                      <p className="font-Poppins dark:text-white text-black text-sm sm:text-base">
+                        {index + 1}. {item.title}
+                      </p>
+                    )
                   ) : (
                     <div></div>
                   )}
 
-                  {/* // arrow button for collasped video content */}
                   <div className="flex items-center">
                     <AiOutlineDelete
-                      className={`dark:text-white text-[20px] mr-2 text-black ${
+                      className={`dark:text-white text-[16px] sm:text-[20px] mr-2 text-black ${
                         index > 0 ? "cursor-pointer" : "cursor-no-drop"
                       }`}
                       onClick={() => {
@@ -205,6 +200,7 @@ const CourseContent: FC<Props> = ({
                     />
                   </div>
                 </div>
+
                 {!isCollapsed[index] && (
                   <>
                     <div className="my-3">
@@ -221,6 +217,7 @@ const CourseContent: FC<Props> = ({
                         }}
                       />
                     </div>
+
                     <div className="mb-3">
                       <label className={styles.label}>Video Url</label>
                       <input
@@ -235,6 +232,7 @@ const CourseContent: FC<Props> = ({
                         }}
                       />
                     </div>
+
                     <div className="mb-3">
                       <label className={styles.label}>Video Length (in minutes)</label>
                       <input
@@ -249,12 +247,11 @@ const CourseContent: FC<Props> = ({
                         }}
                       />
                     </div>
-                    
 
                     <div className="mb-3">
                       <label className={styles.label}>Video Description</label>
                       <textarea
-                        rows={8}
+                        rows={4}
                         cols={30}
                         placeholder="sdder"
                         className={`${styles.input} !h-min py-2`}
@@ -267,18 +264,17 @@ const CourseContent: FC<Props> = ({
                       />
                       <br />
                     </div>
+
                     {item?.links.map((link: any, linkIndex: number) => (
                       <div className="mb-3 block" key={linkIndex}>
-                        <div className="w-full flex items-center justify-between">
-                          <label className={styles.label}>
-                            Link {linkIndex + 1}
-                          </label>
+                        <div className="flex items-center justify-between">
+                          <label className={styles.label}>Link {linkIndex + 1}</label>
                           <AiOutlineDelete
                             className={`${
                               linkIndex === 0
                                 ? "cursor-no-drop"
                                 : "cursor-pointer"
-                            } text-black dark:text-white text-[20px]`}
+                            } text-black dark:text-white text-[16px] sm:text-[20px]`}
                             onClick={() =>
                               linkIndex === 0
                                 ? null
@@ -312,11 +308,10 @@ const CourseContent: FC<Props> = ({
                         />
                       </div>
                     ))}
-                    <br />
-                    {/* add link button */}
+
                     <div className="inline-block mb-4">
                       <p
-                        className="flex items-center text-[18px] dark:text-white text-black cursor-pointer"
+                        className="flex items-center text-[14px] sm:text-[18px] dark:text-white text-black cursor-pointer"
                         onClick={() => handleAddLink(index)}
                       >
                         <BsLink45Deg className="mr-2" /> Add Link
@@ -324,12 +319,11 @@ const CourseContent: FC<Props> = ({
                     </div>
                   </>
                 )}
-                <br />
-                {/* add new content */}
+
                 {index === courseContentData.length - 1 && (
                   <div>
                     <p
-                      className="flex items-center text-[18px] dark:text-white text-black cursor-pointer"
+                      className="flex items-center text-[14px] sm:text-[18px] dark:text-white text-black cursor-pointer"
                       onClick={(e: any) => newContentHandler(item)}
                     >
                       <AiOutlinePlusCircle className="mr-2" /> Add New Content
@@ -340,32 +334,29 @@ const CourseContent: FC<Props> = ({
             </>
           );
         })}
-        <br />
+
         <div
-          className="flex items-center text-[20px] dark:text-white text-black cursor-pointer"
+          className="flex items-center text-[16px] sm:text-[20px] dark:text-white text-black cursor-pointer mt-6 sm:mt-10"
           onClick={() => addNewSection()}
         >
           <AiOutlinePlusCircle className="mr-2" /> Add new Section
         </div>
       </form>
-      <br />
-      <div className="w-full flex flex-col lg:flex-row md:flex-row gap-x-4 items-center justify-between">
+
+      <div className="w-full flex flex-col sm:flex-row gap-4 items-center justify-between mt-8">
         <div
-          className="w-full 800px:w-[180px] flex items-center justify-center h-[40px] bg-[#37a39a] text-center text-[#fff] rounded mt-8 cursor-pointer"
+          className="w-full sm:w-[180px] flex items-center justify-center h-[40px] bg-[#37a39a] text-center text-[#fff] rounded cursor-pointer"
           onClick={() => prevButton()}
         >
           Prev
         </div>
         <div
-          className="w-full 800px:w-[180px] flex items-center justify-center h-[40px] bg-[#37a39a] text-center text-[#fff] rounded mt-8 cursor-pointer"
+          className="w-full sm:w-[180px] flex items-center justify-center h-[40px] bg-[#37a39a] text-center text-[#fff] rounded cursor-pointer"
           onClick={() => handleOptions()}
         >
           Next
         </div>
       </div>
-      <br />
-      <br />
-      <br />
     </div>
   );
 };
