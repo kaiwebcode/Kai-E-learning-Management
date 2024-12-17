@@ -126,8 +126,8 @@ const CourseContent: FC<Props> = ({
   };
 
   return (
-    <div className="w-[90%] m-auto  p-3">
-      <form onSubmit={handleSubmit}>
+    <div className="w-[100%] m-auto  p-1 lg:p-6 md:p-5">
+      <form onSubmit={(e) => e.preventDefault()} >
         {courseContentData?.map((item: any, index: number) => {
           const showSectionInput =
             index === 0 ||
@@ -136,10 +136,9 @@ const CourseContent: FC<Props> = ({
           return (
             <>
               <div
-                // className={`w-full bg-[#cdc8c817] p-4 ${
-                //   showSectionInput ? "mt-10" : "mb-0"
-                // }`}
-                className="mt-5"
+                className={`w-full dark:bg-[#00000073] bg-slate-500 p-6 rounded-lg  ${
+                  showSectionInput ? "mt-10" : "mb-0"
+                }`}
                 key={index}
               >
                 {showSectionInput && (
@@ -237,9 +236,7 @@ const CourseContent: FC<Props> = ({
                       />
                     </div>
                     <div className="mb-3">
-                      <label className={styles.label}>
-                        Video Length (in minutes)
-                      </label>
+                      <label className={styles.label}>Video Length (in minutes)</label>
                       <input
                         type="number"
                         placeholder="20"
@@ -252,6 +249,7 @@ const CourseContent: FC<Props> = ({
                         }}
                       />
                     </div>
+                    
 
                     <div className="mb-3">
                       <label className={styles.label}>Video Description</label>
@@ -351,15 +349,15 @@ const CourseContent: FC<Props> = ({
         </div>
       </form>
       <br />
-      <div className="w-full  flex flex-col items-center justify-between">
+      <div className="w-full flex flex-col lg:flex-row md:flex-row gap-x-4 items-center justify-between">
         <div
-          className="w-full 800px:w-[180px] flex items-center md:flex-row justify-center h-[40px] bg-[#37a39a] text-center text-[#fff] rounded-lg mt-8 cursor-pointer"
+          className="w-full 800px:w-[180px] flex items-center justify-center h-[40px] bg-[#37a39a] text-center text-[#fff] rounded mt-8 cursor-pointer"
           onClick={() => prevButton()}
         >
           Prev
         </div>
         <div
-          className="w-full 800px:w-[180px] flex items-center justify-center h-[40px] bg-[#37a39a] text-center text-[#fff] rounded-lg mt-8 cursor-pointer"
+          className="w-full 800px:w-[180px] flex items-center justify-center h-[40px] bg-[#37a39a] text-center text-[#fff] rounded mt-8 cursor-pointer"
           onClick={() => handleOptions()}
         >
           Next
