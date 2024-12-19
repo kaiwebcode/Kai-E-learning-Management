@@ -54,8 +54,8 @@ const CourseContent: FC<Props> = ({
       item.description === "" ||
       item.videoUrl === "" ||
       item.links[0].title === "" ||
-      item.links[0].url === "" ||
-      item.videoLength === ""
+      item.links[0].url === ""
+      // item.videoLength === ""
     ) {
       toast.error("Please fill all the fields first!");
     } else {
@@ -75,7 +75,7 @@ const CourseContent: FC<Props> = ({
         title: "",
         description: "",
         videoSection: newVideoSection,
-        videoLength: "",
+        // videoLength: "",
         links: [{ title: "", url: "" }],
       };
 
@@ -233,7 +233,7 @@ const CourseContent: FC<Props> = ({
                       />
                     </div>
 
-                    <div className="mb-3">
+                    {/* <div className="mb-3">
                       <label className={styles.label}>Video Length (in minutes)</label>
                       <input
                         type="number"
@@ -246,12 +246,12 @@ const CourseContent: FC<Props> = ({
                           setCourseContentData(updatedData);
                         }}
                       />
-                    </div>
+                    </div> */}
 
                     <div className="mb-3">
                       <label className={styles.label}>Video Description</label>
                       <textarea
-                        rows={4}
+                        rows={8}
                         cols={30}
                         placeholder="sdder"
                         className={`${styles.input} !h-min py-2`}
@@ -268,7 +268,9 @@ const CourseContent: FC<Props> = ({
                     {item?.links.map((link: any, linkIndex: number) => (
                       <div className="mb-3 block" key={linkIndex}>
                         <div className="flex items-center justify-between">
-                          <label className={styles.label}>Link {linkIndex + 1}</label>
+                          <label className={styles.label}>
+                            Link {linkIndex + 1}
+                          </label>
                           <AiOutlineDelete
                             className={`${
                               linkIndex === 0
@@ -321,12 +323,13 @@ const CourseContent: FC<Props> = ({
                 )}
 
                 {index === courseContentData.length - 1 && (
-                  <div>
+                  <div className="pt-5">
                     <p
                       className="flex items-center text-[14px] sm:text-[18px] dark:text-white text-black cursor-pointer"
                       onClick={(e: any) => newContentHandler(item)}
                     >
-                      <AiOutlinePlusCircle className="mr-2" /> Add New Content
+                      <AiOutlinePlusCircle className="mr-1 text-md" /> Add New
+                      Content
                     </p>
                   </div>
                 )}

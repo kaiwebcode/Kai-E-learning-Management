@@ -4,6 +4,7 @@ import CourseInformation from "./CourseInformation";
 import CourseOptions from "./CourseOptions";
 import CourseData from "./CourseData";
 import CourseContent from "./CourseContent";
+import CoursePreview from "./CoursePreview";
 
 const CreateCourse = () => {
   // const [createCourse, { isLoading, isSuccess, error }] =
@@ -73,7 +74,7 @@ const CreateCourse = () => {
         videoUrl: courseContent.videoUrl,
         title: courseContent.title,
         description: courseContent.description,
-        videoLength: courseContent.videoLength,
+        // videoLength: courseContent.videoLength,
         videoSection: courseContent.videoSection,
         links: courseContent.links.map((link) => ({
           title: link.title,
@@ -87,7 +88,7 @@ const CreateCourse = () => {
     const data = {
       name: courseInfo.name,
       description: courseInfo.description,
-      categories: courseInfo.categories,
+      // categories: courseInfo.categories,
       price: courseInfo.price,
       estimatedPrice: courseInfo.estimatedPrice,
       tags: courseInfo.tags,
@@ -97,13 +98,15 @@ const CreateCourse = () => {
       totalVideos: courseContentData.length,
       benefits: formattedBenefits,
       prerequisites: formattedPrerequisites,
-      courseData: formattedCourseContentData,
+      courseContent: formattedCourseContentData,
     };
     setCourseData(data);
   };
 
+  console.log(courseData)
+
   const handleCourseCreate = async (e: any) => {
-    // const data = courseData;
+    const data = courseData;
     // if (!isLoading) {
     //   await createCourse(data);
     // }
@@ -142,6 +145,14 @@ const CreateCourse = () => {
             courseContentData={courseContentData}
             setCourseContentData={setCourseContentData}
             handleSubmit={handleSubmit}
+          />
+        )}
+        {active === 3 && (
+          <CoursePreview
+            active={active}
+            setActive={setActive}
+            courseData={courseData}
+            handleCourseCreate={handleCourseCreate}
           />
         )}
       </div>

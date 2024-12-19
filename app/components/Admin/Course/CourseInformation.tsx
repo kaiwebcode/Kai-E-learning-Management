@@ -144,7 +144,7 @@ const CourseInformation: FC<Props> = ({
             />
           </div>
 
-          <div>
+          {/* <div>
             <label htmlFor="categories" className={`${styles.label}`}>Course Categories</label>
             <select
               id="categories"
@@ -161,7 +161,7 @@ const CourseInformation: FC<Props> = ({
                 </option>
               ))}
             </select>
-          </div>
+          </div> */}
         </div>
 
         {/* Course Level and Demo URL */}
