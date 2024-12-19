@@ -14,7 +14,7 @@ const CoursePlayer: FC<Props> = ({ videoUrl, title }) => {
 
   useEffect(() => {
     axios
-      .post("https://kai-e-learning-management.vercel.app/getVdoCipherOTP", {
+      .post("https://kai-e-learning-management-backend.onrender.com/api/v1/getVdoCipherOTP", {
         videoId: videoUrl,
       })
       .then((res) => {
