@@ -11,7 +11,7 @@ type Props = {};
 
 function page({}: Props) {
   return (
-    <div >
+    <div>
       <AdminProtected>
         <Heading
           title="Elearning - Admin"
