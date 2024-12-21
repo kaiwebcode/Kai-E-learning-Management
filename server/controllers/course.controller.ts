@@ -127,30 +127,29 @@ export const getSingleCourse = CatchAsyncError(
 export const getAllCourses = CatchAsyncError(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const isCacheExist = await redis.get("allCourses");
+      // const isCacheExist = await redis.get("allCourses");
 
-      if (isCacheExist) {
-        const course = JSON.parse(isCacheExist);
-        console.log("hitting redia");
-        res.status(200).json({
-          success: true,
-          course,
-        });
-      } else {
-        const courses = await CourseModel.find().select(
-          "-courseData.videoUrl -courseData.suggestion -courseData.questions -courseData.links"
-        );
+      // if (isCacheExist) {
+      //   const course = JSON.parse(isCacheExist);
+      //   console.log("hitting redia");
+      //   res.status(200).json({
+      //     success: true,
+      //     course,
+      //   });
+      // } else {
+      const courses = await CourseModel.find().select(
+        "-courseData.videoUrl -courseData.suggestion -courseData.questions -courseData.links"
+      );
 
-        console.log("hitting mongodv");
+      console.log("hitting mongodv");
 
-        await redis.set("allCourses", JSON.stringify(courses)); // 7days
+      // await redis.set("allCourses", JSON.stringify(courses)); // 7days
 
-        res.status(200).json({
-          success: true,
-          courses,
-        });
-      }
-
+      res.status(200).json({
+        success: true,
+        courses,
+      });
+    } catch (error: any) {
       // const courses = await CourseModel.find().select(
       //   "-courseData.videoUrl -courseData.suggestion -courseData.questions -courseData.links"
       // );
@@ -159,7 +158,6 @@ export const getAllCourses = CatchAsyncError(
       //   success: true,
       //   courses,
       // });
-    } catch (error: any) {
       return next(new ErrorHandler(error.message, 500));
     }
   }

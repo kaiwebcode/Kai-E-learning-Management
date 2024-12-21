@@ -115,7 +115,7 @@ const CoursePreview: FC<Props> = ({
         {/* Course Description */}
         <div className="w-full pt-5">
           <h1 className="text-[25px] font-Poppins font-[600]">Course Details</h1>
-          <p className="text-[18px] mt-5 whitespace-pre-line">{courseData?.description}</p>
+          <p className="text-[18px] mt-2 whitespace-pre-line">{courseData?.description}</p>
         </div>
       </div>
 
