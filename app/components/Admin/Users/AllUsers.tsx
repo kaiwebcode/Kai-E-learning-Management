@@ -146,7 +146,7 @@ const AllCourses: FC<Props> = ({ isTeam }) => {
   };
 
   return (
-    <div className="mt-[50px]">
+    <div className="mt-[20px] pb-10">
       {isLoading ? (
         <Loader />
       ) : (
