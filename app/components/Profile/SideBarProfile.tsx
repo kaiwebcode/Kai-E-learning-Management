@@ -25,7 +25,7 @@ const SideBarProfile: FC<Props> = ({
   return (
     <div className="w-full">
       <div
-        className={`w-full flex items-center gap-x-2 py-4  cursor-pointer ${
+        className={`w-full flex items-center gap-x-2 px-3 py-4  cursor-pointer ${
           active === 1
             ? "dark:bg-slate-800 bg-white"
             : "bg-transparent hover:bg-slate-600 duration-300"
@@ -85,7 +85,7 @@ const SideBarProfile: FC<Props> = ({
         </Link>
       )}
       <div
-        className={`w-full flex items-center  gap-x-2 py-4 cursor-pointer ${
+        className={`w-full flex items-center px-3 gap-x-2 py-4 cursor-pointer ${
           active === 4
             ? "dark:bg-slate-800 bg-white"
             : "bg-transparent hover:bg-slate-600 duration-300"
