@@ -88,7 +88,6 @@ const AllCourses: FC<Props> = ({ isTeam }) => {
         );
       },
     },
-
     {
       field: "  ",
       headerName: "Email",
@@ -146,7 +145,7 @@ const AllCourses: FC<Props> = ({ isTeam }) => {
   };
 
   return (
-    <div className="mt-[20px] pb-10">
+    <div className="mt-[10px]">
       {isLoading ? (
         <Loader />
       ) : (

@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Box, Button, Modal } from "@mui/material";
 import { AiOutlineDelete } from "react-icons/ai";
 import { useTheme } from "next-themes";
 import { FiEdit2 } from "react-icons/fi";
 import Link from "next/link";
-import { useGetAllCoursesQuery } from "@/redux/features/courses/coursesApi";
+import {
+  useDeleteCourseMutation,
+  useGetAllCoursesQuery,
+} from "@/redux/features/courses/coursesApi";
 import { styles } from "@/app/styles/style";
 import Loader from "../../Loader/Loader";
 import { format } from "timeago.js";
+import toast from "react-hot-toast";
 
 type Props = {};
 
@@ -17,9 +21,10 @@ const AllCourses = (props: Props) => {
   const [open, setOpen] = useState(false);
   const [courseId, setCourseId] = useState("");
   const { isLoading, data, refetch } = useGetAllCoursesQuery(
-    {}
-    // { refetchOnMountOrArgChange: true }
+    {},
+    { refetchOnMountOrArgChange: true }
   );
+  const [deleteCourse, { isSuccess, error }] = useDeleteCourseMutation({});
 
   const columns = [
     { field: "id", headerName: "ID", flex: 0.5 },
@@ -77,9 +82,23 @@ const AllCourses = (props: Props) => {
       });
   }
 
+  useEffect(() => {
+    if (isSuccess) {
+      setOpen(false);
+      refetch();
+      toast.success("Course Deleted Successfully");
+    }
+    if (error) {
+      if ("data" in error) {
+        const errorMessage = error as any;
+        toast.error(errorMessage.data.message);
+      }
+    }
+  }, [isSuccess, error, refetch]);
+
   const handleDelete = async () => {
-    console.log(`Delete course with ID: ${courseId}`);
-    setOpen(false);
+    const id = courseId;
+    await deleteCourse(id);
   };
 
   return (

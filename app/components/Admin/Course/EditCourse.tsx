@@ -1,21 +1,36 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import CourseInformation from "./CourseInformation";
 import CourseOptions from "./CourseOptions";
 import CourseData from "./CourseData";
 import CourseContent from "./CourseContent";
 import CoursePreview from "./CoursePreview";
-import { useCreateCourseMutation } from "@/redux/features/courses/coursesApi";
+import {
+  useCreateCourseMutation,
+  useEditCourseMutation,
+  useGetAllCoursesQuery,
+} from "@/redux/features/courses/coursesApi";
 import { redirect } from "next/navigation";
 import toast from "react-hot-toast";
 
-const CreateCourse = () => {
-  const [createCourse, { isLoading, isSuccess, error }] =
-    useCreateCourseMutation();
+type Props = {
+  id: string;
+};
+
+const EditCourse: FC<Props> = ({ id }) => {
+  // console.log(id);
+
+  const [editCourse, { isSuccess, error }] = useEditCourseMutation();
+  const { data, refetch } = useGetAllCoursesQuery(
+    {},
+    { refetchOnMountOrArgChange: true }
+  );
+
+  const editCourseData = data && data.courses.find((i: any) => i._id === id);
 
   useEffect(() => {
     if (isSuccess) {
-      toast.success("Course created successfully");
+      toast.success("Course Updated successfully");
       redirect("/admin/courses");
     }
     if (error) {
@@ -27,14 +42,34 @@ const CreateCourse = () => {
   }, [isSuccess, error]);
 
   const [active, setActive] = useState(0);
-  const [courseInfo, setCourseInfo] = useState({
+
+  useEffect(() => {
+    if (editCourseData) {
+      setCourseInfo({
+        name: editCourseData.name,
+        description: editCourseData.description,
+        price: editCourseData.price,
+        estimatedPrice: editCourseData?.estimatedPrice,
+        tags: editCourseData.tags,
+        level: editCourseData.level,
+        // categories: editCourseData.categories,
+        demoUrl: editCourseData.demoUrl,
+        thumbnail: editCourseData?.thumbnail?.url,
+      });
+      setBenefits(editCourseData.benefits);
+      setPrerequisites(editCourseData.prerequisites);
+      setCourseContentData(editCourseData.courseData);
+    }
+  }, [editCourseData]);
+
+  const [courseInfo, setCourseInfo] = useState<any>({
     name: "",
     description: "",
     price: "",
     estimatedPrice: "",
     tags: "",
     level: "",
-    categories:"",
+    // categories: "",
     demoUrl: "",
     thumbnail: "",
   });
@@ -46,7 +81,7 @@ const CreateCourse = () => {
       title: "",
       description: "",
       videoSection: "Untitled Section",
-      videoLength: "",
+      // videoLength: "",
       links: [
         {
           title: "",
@@ -57,9 +92,9 @@ const CreateCourse = () => {
     },
   ]);
 
-
   const [courseData, setCourseData] = useState({});
 
+  console.log(courseData);
 
   const handleSubmit = async () => {
     // Format benefits array
@@ -77,8 +112,8 @@ const CreateCourse = () => {
         videoUrl: courseContent.videoUrl,
         title: courseContent.title,
         description: courseContent.description,
-        // videoLength: courseContent.videoLength,
         videoSection: courseContent.videoSection,
+        // videoLength: courseContent.videoLength,
         links: courseContent.links.map((link) => ({
           title: link.title,
           url: link.url,
@@ -98,21 +133,19 @@ const CreateCourse = () => {
       thumbnail: courseInfo.thumbnail,
       level: courseInfo.level,
       demoUrl: courseInfo.demoUrl,
-      totalVideos: courseContentData.length,
       benefits: formattedBenefits,
       prerequisites: formattedPrerequisites,
-      courseData: formattedCourseContentData,
+      courseContent: formattedCourseContentData,
     };
+
     setCourseData(data);
   };
 
   const handleCourseCreate = async (e: any) => {
     const data = courseData;
-    if (!isLoading) {
-      await createCourse(data);
-    }
+    // console.log(data);
+    await editCourse({ id: editCourseData?._id, data });
   };
-
 
   return (
     <div className="flex flex-col pl-3 pt-10 pr-1 lg:flex-row w-full min-h-screen ">
@@ -154,6 +187,7 @@ const CreateCourse = () => {
             setActive={setActive}
             courseData={courseData}
             handleCourseCreate={handleCourseCreate}
+            isEdit={true}
           />
         )}
       </div>
@@ -166,4 +200,4 @@ const CreateCourse = () => {
   );
 };
 
-export default CreateCourse;
+export default EditCourse;

@@ -40,14 +40,14 @@ courseRouter.get("/get-courses", getAllCourses);
 courseRouter.get(
   "/get-admin-courses",
   isAutheticated,
-  updateAccessToken,
+  // updateAccessToken,
   authorizeRoles("admin"),
   getAdminAllCourses
 );
 
 courseRouter.get(
   "/get-course-content/:id",
-  updateAccessToken,
+  // updateAccessToken,
   isAutheticated,
   getCourseByUser
 );
@@ -55,7 +55,7 @@ courseRouter.get(
 courseRouter.put(
   "/add-question",
   isAutheticated,
-  updateAccessToken,
+  // updateAccessToken,
   addQuestion
 );
 

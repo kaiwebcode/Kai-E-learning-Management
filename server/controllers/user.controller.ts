@@ -1,5 +1,5 @@
 require("dotenv").config();
-import { NextFunction, Request, Response } from "express";
+import e, { NextFunction, Request, Response } from "express";
 import { CatchAsyncError } from "../middleware/CatchAsyncErrors";
 import ErrorHandler from "../utils/Errorhandler";
 import jwt, { JwtPayload, Secret } from "jsonwebtoken";
@@ -10,7 +10,7 @@ import cloudinary from "cloudinary";
 
 // Import the userService to handle user-related business logic
 import * as userService from "../utils/userService"; // <-- add this line
-import { User } from "@prisma/client";
+// import { User } from "@prisma/client";
 import {
   accessTokenOptions,
   refreshTokenOptions,
@@ -441,20 +441,25 @@ export const getAllUsers = CatchAsyncError(
 );
 
 // update user role --- only for admin
+interface UpdateUserRoleRequestBody {
+  email: string;
+  role: string;
+}
+
 export const updateUserRole = CatchAsyncError(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const { id, role } = req.body;
-      // const isUserExist = await userModel.findOne({ email });
-      // if (isUserExist) {
-      // const id = isUserExist._id;
-      updateUserRoleService(res, id, role);
-      // } else {
-      // res.status(400).json({
-      //   success: false,
-      //   message: "User not found",
-      // });
-      // }
+      const { email, role } = req.body;
+      const isUserExist = await userModel.findOne({ email });
+      if (isUserExist) {
+        const id: any = isUserExist._id;
+        updateUserRoleService(res, id, role);
+      } else {
+        res.status(400).json({
+          success: false,
+          message: "User not found",
+        });
+      }
     } catch (error: any) {
       return next(new ErrorHandler(error.message, 400));
     }
