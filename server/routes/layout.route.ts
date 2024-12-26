@@ -8,7 +8,7 @@ layoutRouter.post("/create-layout",updateAccessToken, isAutheticated,authorizeRo
 
 layoutRouter.put("/edit-layout",updateAccessToken, isAutheticated,authorizeRoles("admin"), editLayout);
 
-layoutRouter.get("/get-layout",getLayoutByType);
+layoutRouter.get("/get-layout/:type",getLayoutByType);
 
 
 export default layoutRouter;

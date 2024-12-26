@@ -5,6 +5,7 @@ import LayoutModel from "../models/layout.model";
 import cloudinary from "cloudinary";
 
 // create layout
+// create layout
 export const createLayout = CatchAsyncError(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -103,7 +104,7 @@ export const editLayout = CatchAsyncError(
 
       if (type === "FAQ") {
         const { faq } = req.body;
-        const FaqItem = await LayoutModel.findOne({ type: "FAQ" }); 
+        const FaqItem = await LayoutModel.findOne({ type: "FAQ" });
         const faqItems = await Promise.all(
           faq.map(async (item: any) => {
             return {
@@ -149,7 +150,7 @@ export const editLayout = CatchAsyncError(
 export const getLayoutByType = CatchAsyncError(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const { type } = req.body;
+      const { type } = req.params;
       const layout = await LayoutModel.findOne({ type });
       res.status(201).json({
         success: true,
