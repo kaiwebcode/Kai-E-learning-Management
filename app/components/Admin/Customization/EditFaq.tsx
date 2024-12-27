@@ -95,7 +95,7 @@ const EditFaq = (props: Props) => {
       {isLoading ? (
         <Loader />
       ) : (
-        <div className="w-[90%] max-w-5xl mx-auto mt-[120px]">
+        <div className="w-[90%] max-w-5xl mx-auto lg:mt-[120px] mt-3 px-2">
           <div className="mt-8 space-y-6">
             <dl className="space-y-8">
               {questions.map((q: any) => (
