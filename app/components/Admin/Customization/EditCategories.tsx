@@ -106,7 +106,7 @@ const EditCategories = (props: Props) => {
               </div>
             ))}
           </div>
-          <div className="flex flex-col items-center space-y-4 mt-6">
+          <div className="flex flex-col items-center space-y-4 mt-10">
             <button
               className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600"
               onClick={newCategoriesHandler}
