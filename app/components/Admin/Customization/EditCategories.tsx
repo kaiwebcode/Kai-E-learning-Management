@@ -78,13 +78,13 @@ const EditCategories = (props: Props) => {
       {isLoading ? (
         <Loader />
       ) : (
-        <div className="mt-10 pl-3 pb-10 ">
+        <div className="mt-10 pl-4 pb-10 ">
           <h1 className="text-3xl font-semibold text-center mb-8">Edit Categories</h1>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {categories.map((item: any, index: number) => (
               <div
                 key={index}
-                className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-4 flex flex-col space-y-4"
+                className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-3 lg:p-4 flex flex-col space-y-4"
               >
                 <input
                   className="bg-gray-100 dark:bg-gray-700 rounded-md p-2 text-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
