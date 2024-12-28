@@ -54,8 +54,8 @@ const CourseContent: FC<Props> = ({
       item.description === "" ||
       item.videoUrl === "" ||
       item.links[0].title === "" ||
-      item.links[0].url === ""
-      // item.videoLength === ""
+      item.links[0].url === "" ||
+      item.videoLength === ""
     ) {
       toast.error("Please fill all the fields first!");
     } else {
@@ -75,7 +75,7 @@ const CourseContent: FC<Props> = ({
         title: "",
         description: "",
         videoSection: newVideoSection,
-        // videoLength: "",
+        videoLength: "",
         links: [{ title: "", url: "" }],
       };
 
@@ -89,7 +89,7 @@ const CourseContent: FC<Props> = ({
       courseContentData[courseContentData.length - 1].description === "" ||
       courseContentData[courseContentData.length - 1].videoUrl === "" ||
       courseContentData[courseContentData.length - 1].links[0].title === "" ||
-      courseContentData[courseContentData.length - 1].links[0].url === ""
+      courseContentData[courseContentData.length - 1].links[0].url === "" 
     ) {
       toast.error("Please fill all the fields first!");
     } else {
@@ -233,8 +233,10 @@ const CourseContent: FC<Props> = ({
                       />
                     </div>
 
-                    {/* <div className="mb-3">
-                      <label className={styles.label}>Video Length (in minutes)</label>
+                    <div className="mb-3">
+                      <label className={styles.label}>
+                        Video Length (in minutes)
+                      </label>
                       <input
                         type="number"
                         placeholder="20"
@@ -246,7 +248,7 @@ const CourseContent: FC<Props> = ({
                           setCourseContentData(updatedData);
                         }}
                       />
-                    </div> */}
+                    </div>
 
                     <div className="mb-3">
                       <label className={styles.label}>Video Description</label>
