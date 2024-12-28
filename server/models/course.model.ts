@@ -36,7 +36,7 @@ export interface ICourse extends Document {
   // _id: mongoose.Types.ObjectId;
   name: string;
   description: string;
-  // categories: string;
+  categories: string;
   price: number;
   estimatedPrice?: number;
   thumbnail: object;
@@ -100,10 +100,10 @@ const courseSchema = new Schema<ICourse>(
       type: String,
       required: true,
     },
-    // categories: {
-    //   type: String,
-    //   required: true,
-    // },
+    categories: {
+      type: String,
+      required: true,
+    },
     price: {
       type: Number,
       required: true,
