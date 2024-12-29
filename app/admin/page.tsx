@@ -10,17 +10,19 @@ type Props = {};
 
 const Page = (props: Props) => {
   return (
-    <div>
+    <div >
       <AdminProtected>
         <Heading
           title="Elearning - Admin"
           description="Elearning is a platform for students to learn and get help from teachers"
           keywords="Programming, MERN, Redux, Machine Learning"
         />
-        <div className="grid grid-cols-[auto_1fr] min-h-screen md:flex">
+        <div className="flex ">
+          <div className="1500px:w-[16%] w-1/5">
           <AdminSidebar />
-          <div className="flex-1">
-            <DashboardHero />
+          </div>
+          <div className="w-[95%] ">
+            <DashboardHero isDashboard={true}/>
           </div>
         </div>
       </AdminProtected>

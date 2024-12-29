@@ -15,30 +15,30 @@ type Props = {
     isDashboard?: boolean;
 }
 
-const analyticsData = [
-    { name: "January 2023", count: 440 },
-    { name: "February 2023", count: 8200 },
-    { name: "March 2023", count: 4033 },
-    { name: "April 2023", count: 4502 },
-    { name: "May 2023", count: 2042 },
-    { name: "Jun 2023", count: 3454 },
-    { name: "July 2023", count: 356 },
-    { name: "Aug 2023", count: 5667 },
-    { name: "Sept 2023", count: 1320 },
-    { name: "Oct 2023", count: 6526 },
-    { name: "Nov 2023", count: 5480 },
-    { name: "December 2023", count: 485 },
-];
+// const analyticsData = [
+//     { name: "January 2023", count: 440 },
+//     { name: "February 2023", count: 8200 },
+//     { name: "March 2023", count: 4033 },
+//     { name: "April 2023", count: 4502 },
+//     { name: "May 2023", count: 2042 },
+//     { name: "Jun 2023", count: 3454 },
+//     { name: "July 2023", count: 356 },
+//     { name: "Aug 2023", count: 5667 },
+//     { name: "Sept 2023", count: 1320 },
+//     { name: "Oct 2023", count: 6526 },
+//     { name: "Nov 2023", count: 5480 },
+//     { name: "December 2023", count: 485 },
+// ];
 
 const UserAnalytics = ({ isDashboard }: Props) => {
     const { data, isLoading } = useGetUsersAnalyticsQuery({});
 
-    //  const analyticsData: any = [];
+    const analyticsData: any = [];
 
-    //   data &&
-    //     data.users.last12Months.forEach((item: any) => {
-    //       analyticsData.push({ name: item.month, count: item.count });
-    //     });
+    data &&
+        data.users.last12Months.forEach((item: any) => {
+            analyticsData.push({ name: item.month, count: item.count });
+        });
 
 
     return (
@@ -47,7 +47,7 @@ const UserAnalytics = ({ isDashboard }: Props) => {
                 isLoading ? (
                     <Loader />
                 ) : (
-                    <div className={`${!isDashboard ? "mt-[50px]" : "mt-[50px] dark:bg-[#111C43] shadow-sm pb-5 rounded-sm"}`}>
+                    <div className={`${!isDashboard ? "mt-[50px]" : "mt-[50px] dark:bg-[#111C43] shadow-sm py-5  pr-2 rounded-sm"}`}>
                         <div className={`${isDashboard ? "!ml-8 mb-5" : ''}`}>
                             <h1 className={`${styles.title} ${isDashboard && '!text-[20px]'} pl-10 !text-start`}>
                                 Users Analytics
@@ -62,11 +62,11 @@ const UserAnalytics = ({ isDashboard }: Props) => {
                         </div>
 
                         <div className={`w-full ${isDashboard ? 'h-[30vh]' : 'h-screen'} flex items-center justify-center`}>
-                            <ResponsiveContainer width={isDashboard ? '100%' : '90%'} height={!isDashboard ? "50%" : '100%'}>
+                            <ResponsiveContainer width={isDashboard ? '100%' : '95%'} height={!isDashboard ? "50%" : '100%'}>
                                 <AreaChart
                                     data={analyticsData}
                                     margin={{
-                                        top: 20,
+                                        top: 0,
                                         right: 0,
                                         left: 0,
                                         bottom: 0,

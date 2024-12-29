@@ -13,36 +13,36 @@ import {
 } from "recharts";
 import Loader from "../../Loader/Loader";
 
-// const analyticsData = [
-//   {
-//     name: "Page A",
-//     Count: 4000,
-//   },
-//   {
-//     name: "Page B",
-//     Count: 3000,
-//   },
-//   {
-//     name: "Page C",
-//     Count: 5000,
-//   },
-//   {
-//     name: "Page D",
-//     Count: 1000,
-//   },
-//   {
-//     name: "Page E",
-//     Count: 4000,
-//   },
-//   {
-//     name: "Page F",
-//     Count: 800,
-//   },
-//   {
-//     name: "Page G",
-//     Count: 200,
-//   },
-// ];
+const analyticsData = [
+  {
+    name: "Page A",
+    Count: 4000,
+  },
+  {
+    name: "Page B",
+    Count: 3000,
+  },
+  {
+    name: "Page C",
+    Count: 5000,
+  },
+  {
+    name: "Page D",
+    Count: 1000,
+  },
+  {
+    name: "Page E",
+    Count: 4000,
+  },
+  {
+    name: "Page F",
+    Count: 800,
+  },
+  {
+    name: "Page G",
+    Count: 200,
+  },
+];
 
 type Props = {
     isDashboard?: boolean;
@@ -80,7 +80,7 @@ export default function OrdersAnalytics({ isDashboard }: Props) {
                         )}
                     </div>
                     <div
-                        className={`w-full ${!isDashboard ? "h-[85%]" : "h-screen"
+                        className={`w-full ${!isDashboard ? "h-[80%]" : "h-full"
                             } flex items-center justify-center`}
                     >
                         <ResponsiveContainer
@@ -94,7 +94,7 @@ export default function OrdersAnalytics({ isDashboard }: Props) {
                                 margin={{
                                     top: 5,
                                     right: 30,
-                                    left: 10,
+                                    left: 0,
                                     bottom: 5,
                                 }}
                             >
