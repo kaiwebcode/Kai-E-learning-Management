@@ -162,13 +162,13 @@ const DashboardWidgets: FC<Props> = ({ open }) => {
             {/* Bottom Section */}
             <div className="grid gap-4 lg:grid-cols-2 sm:grid-cols-1 mt-6">
                 {/* Orders Analytics */}
-                <div className="bg-white dark:bg-gray-800 rounded-lg shadow lg:p-6 pb-8  w-full overflow-hidden">
+                <div className="bg-white dark:bg-gray-800 rounded-lg shadow lg:p-2 lg:pt-5 pb-8  max-w-full overflow-hidden">
                     <OrdersAnalytics isDashboard={true} />
                 </div>
 
                 {/* Recent Transactions */}
-                <div className="bg-white dark:bg-gray-800 rounded-lg shadow lg:p-6 p-2 w-full overflow-hidden">
-                    <h5 className="text-lg font-medium text-gray-700 dark:text-gray-300 mb-4">
+                <div className="bg-white dark:bg-gray-800 rounded-lg shadow lg:p-5 p-2 overflow-hidden">
+                    <h5 className="text-xl font-medium text-gray-700 dark:text-gray-300 pb-4 pt-2">
                         Recent Transactions
                     </h5>
                     <AllInvoices isDashboard={true} />

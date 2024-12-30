@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useState } from "react";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { Box } from "@mui/material";
+import { Box, Toolbar } from "@mui/material";
 import { useTheme } from "next-themes";
 import { useGetAllCoursesQuery } from "@/redux/features/courses/coursesApi";
 import Loader from "../../Loader/Loader";
