@@ -4,7 +4,8 @@ import { FC, useState } from "react";
 import Heading from "./utils/Heading";
 import Header from "./components/Header";
 import Hero from "./components/Route/Hero";
-import Courses from "./components/Course/Courses"
+import Courses from "./components/Route/Courses"
+import Reviews from "./components/Route/Reviews"
 
 interface Props {
 
@@ -26,6 +27,7 @@ const Home: FC<Props> = (props) => {
       <Header open={open} setOpen={setOpen} activeItem={activeItem} setRoute={setRoute} route={route}/>
       <Hero />
       <Courses />
+      <Reviews />
     </div>
   );
 };
