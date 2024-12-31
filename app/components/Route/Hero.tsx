@@ -1,9 +1,11 @@
+import { useGetHeroDataQuery } from "@/redux/features/layout/layoutApi";
 import Image from "next/image";
 import { FC } from "react";
 
 type Props = {};
 
 const Hero: FC<Props> = () => {
+  const { data, refetch } = useGetHeroDataQuery("Banner", {});
   return (
     <div className="flex flex-col 1000px:flex-row items-center justify-between h-screen px-6 1000px:px-10 relative overflow-hidden py-16">
       {/* Left Side: Image with Animated Circle */}
@@ -21,9 +23,11 @@ const Hero: FC<Props> = () => {
 
           {/* Inner Image */}
           <div className="absolute w-[85%] h-[85%] p-5 flex items-center justify-center rounded-full bg-white dark:bg-black z-10">
-            <Image
-              src={require("../../../public/banner-img-1.png")}
+            <img
+              src={data?.layout?.banner?.image?.url || null}
               alt="Hero Banner"
+              width={400}
+              height={400}
               className="object-contain w-full h-full rounded-full"
             />
           </div>
@@ -33,11 +37,10 @@ const Hero: FC<Props> = () => {
       {/* Right Side: Text Content */}
       <div className="w-full 1000px:w-1/2 flex gap-y-1 lg:gap-y-6 flex-col items-center 1000px:items-start mt-10 1000px:mt-0 text-center 1000px:text-left">
         <h1 className="text-3xl 1000px:text-5xl font-bold dark:text-white text-gray-800 leading-snug">
-          Improve Your Online Learning Experience Instantly
+        {data?.layout?.banner?.title}
         </h1>
         <p className="text-base 1000px:text-lg text-gray-600 dark:text-gray-400 mt-4 max-w-[400px] 1000px:max-w-[600px]">
-          Discover how our platform can make learning faster, more engaging, and
-          accessible for everyone. Start your journey today!
+         {data?.layout?.banner.subTitle}
         </p>
         <button className="mt-6 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-md text-lg transition-all duration-300">
           Get Started

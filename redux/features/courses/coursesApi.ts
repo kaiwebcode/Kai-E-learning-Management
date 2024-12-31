@@ -32,13 +32,13 @@ export const coursesApi = apiSlice.injectEndpoints({
         credentials: "include" as const,
       }),
     }),
-    // getUsersAllCourses: builder.query({
-    //   query: () => ({
-    //     url: "get-courses",
-    //     method: "GET",
-    //     credentials: "include" as const,
-    //   }),
-    // }),
+    getUsersAllCourses: builder.query({
+      query: () => ({
+        url: "get-courses",
+        method: "GET",
+        credentials: "include" as const,
+      }),
+    }),
     // getCourseDetails: builder.query({
     //   query: (id: any) => ({
     //     url: `get-course/${id}`,

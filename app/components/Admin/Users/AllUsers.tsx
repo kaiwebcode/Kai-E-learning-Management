@@ -145,13 +145,13 @@ const AllCourses: FC<Props> = ({ isTeam }) => {
   };
 
   return (
-    <div className="mt-[10px]">
+    <div className="mt-[10px] pl-16">
       {isLoading ? (
         <Loader />
       ) : (
         <Box m="20px">
           {isTeam && (
-            <div className="w-full flex justify-end">
+            <div className="min-w-full flex justify-end">
               <div
                 className={`${styles.button} !w-[200px] !rounded-[10px] dark:bg-[#57c7a3] !h-[35px] dark:border dark:border-[#ffffff6c]`}
                 onClick={() => setActive(!active)}

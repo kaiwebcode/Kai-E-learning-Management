@@ -22,7 +22,7 @@ function page({}: Props) {
           <div className="1500px:w-[16%] w-1/5">
             <AdminSidebar />
           </div>
-          <div className="w-[95%]"> 
+          <div className="w-[100%]"> 
             <DashboardHero />
             <AllUsers isTeam={true} />
           </div>
