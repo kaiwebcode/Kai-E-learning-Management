@@ -26,7 +26,7 @@ const ReviewCard = (props: Props) => {
                     {props.item.profession}
                     </h6> 
                 </div>
-                <Ratings rating={props.item.ratings}/>
+                <Ratings rating={5}/>
             </div>
             {/* for Mobile */}
             <div className='800px:hidden justify-between w-full flex flex-col'>
@@ -38,7 +38,7 @@ const ReviewCard = (props: Props) => {
                     {props.item.profession}
                     </h6> 
                 </div>
-                <Ratings rating={props.item.ratings}/>
+                <Ratings rating={5}/>
             </div>
         </div>
         <p className='pt-2 px-2 text-black dark:text-white'>

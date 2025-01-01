@@ -7,44 +7,49 @@ type Props = {}
 
 export const reviews = [
     {
-        name: "Gene Bates",
-        avatar: "https://avatar.iran.liara.run/public",
-        profession: "Student | Cambridge university",
+        name: "Alex Johnson",
+        avatar: "https://randomuser.me/api/portraits/men/1.jpg",
+        profession: "Software Engineer | Google",
         comment:
-            "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ratione tempora quaerat sed et cupiditate, beatae velit error laborum quasi maiores, ipsam quae laboriosam perferendis exercitationem veritatis? Omnis distinctio labore natus! Est, laudantium obcaecati labore alias iure rem omnis. Esse, placeat. Labore autem consequuntur voluptatum natus possimus doloribus ipsam magni debitis inventore repellendus! Pariatur nemo veniam perferendis reiciendis adipisci, distinctio voluptate." 
+            "Incredible experience! Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, fuga quod nesciunt officiis veritatis impedit quibusdam deserunt dolore pariatur."
     },
     {
-        name: "Gene Bates",
-        avatar: "https://avatar.iran.liara.run/public",
-        profession: "Student | Cambridge university",
+        name: "Sophia Lee",
+        avatar: "https://randomuser.me/api/portraits/women/2.jpg",
+        profession: "Digital Marketer | HubSpot",
         comment:
-            "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Architecto voluptatem quas libero. Deleniti necessitatibus laboriosam quibusdam. Minima ad obcaecati error in? Cumque sapiente voluptatibus reprehenderit doloremque perspiciatis quasi atque quaerat Necessitatibus officia numquam alias accusamus assumenda quia et asperiores tempora! Autem, rem? Reiciendis eaque commodi repudiandae fuga"
-    }, {
-        name: "Gene Bates",
-        avatar: "https://avatar.iran.liara.run/public",
-        profession: "Student | Cambridge university",
-        comment:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, esse? In perferendis corporis, reiciendis iusto autem nam odio ipsum ab quod illum."
-    }, {
-        name: "Gene Bates",
-        avatar: "https://avatar.iran.liara.run/public",
-        profession: "Student | Cambridge university",
-        comment:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, esse? In perferendis corporis, reiciendis iusto autem nam odio ipsum ab quod illum."
-    }, {
-        name: "Gene Bates",
-        avatar: "https://avatar.iran.liara.run/public",
-        profession: "Student | Cambridge university",
-        comment:
-            "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Architecto voluptatem quas libero. Deleniti necessitatibus laboriosam quibusdam. Minima ad obcaecati error in? Cumque sapiente voluptatibus reprehenderit doloremque perspiciatis quasi atque quaerat Necessitatibus officia numquam alias accusamus assumenda quia et asperiores tempora! Autem, rem? Reiciendis eaque commodi repudiandae fuga, ea temporibus quisquam animi tempora quod est praesentium nisi quis maiores quos expedita?"
-    }, {
-        name: "Gene Bates",
-        avatar: "https://avatar.iran.liara.run/public",
-        profession: "Student | Cambridge university",
-        comment:
-            "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Architecto voluptatem quas libero. Deleniti necessitatibus laboriosam quibusdam. Minima ad obcaecati error in? Cumque sapiente voluptatibus reprehenderit doloremque perspiciatis quasi atque quaerat Necessitatibus officia numquam alias accusamus assumenda quia et asperiores tempora! Autem, rem? Reiciendis eaque commodi repudiandae fuga, ea temporibus quisquam animi tempora quod est praesentium nisi quis maiores quos expedita?"
+            "Absolutely fantastic service! Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, repellat quibusdam! Fuga temporibus voluptatibus id quo deleniti animi distinctio vitae."
     },
-]
+    {
+        name: "Michael Brown",
+        avatar: "https://randomuser.me/api/portraits/men/3.jpg",
+        profession: "Freelance Writer",
+        comment:
+            "Highly recommend! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae, excepturi? Culpa, nemo! Voluptatum eos hic necessitatibus officia quibusdam fugit."
+    },
+    {
+        name: "Emily Davis",
+        avatar: "https://randomuser.me/api/portraits/women/4.jpg",
+        profession: "UI/UX Designer | Canva",
+        comment:
+            "The quality is unmatched. Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci suscipit sapiente, eligendi quasi fugiat optio iste accusantium veniam aliquid dolore."
+    },
+    {
+        name: "Chris Evans",
+        avatar: "https://randomuser.me/api/portraits/men/5.jpg",
+        profession: "Entrepreneur",
+        comment:
+            "Will definitely come back! Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores quidem earum quos, debitis atque molestiae nulla voluptate non dolorem."
+    },
+    {
+        name: "Amelia Clarke",
+        avatar: "https://randomuser.me/api/portraits/women/6.jpg",
+        profession: "Product Manager | Slack",
+        comment:
+            "Superb attention to detail! Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic recusandae dolores inventore molestias pariatur veritatis dignissimos nobis rem repellendus!"
+    }
+];
+
 
 function Reviews({ }: Props) {
     return (
