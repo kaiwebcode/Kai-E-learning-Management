@@ -5,6 +5,8 @@ import Loader from "../Loader/Loader";
 import Heading from "@/app/utils/Heading";
 import Header from "../Header";
 import Footer from "../../components/Footer/footer"
+import CourseDetails from "./CourseDetials";
+
 
 type Props = {
     id: string;
@@ -34,10 +36,12 @@ const CourseDetailsPage = ({ id }: Props) => {
                             open={open}
                             setOpen={setOpen}
                             activeItem={1} />
-                        <div className="my-20 grid items-center justify-center">
+                        {/* <div className="my-20 grid items-center justify-center ">
                             <h1>Course Details Page</h1>
                             <p>Course ID: {id}</p>
-                        </div>
+                        </div> */}
+
+                        <CourseDetails data={data.course} />
                         <Footer />
                     </div>
 
