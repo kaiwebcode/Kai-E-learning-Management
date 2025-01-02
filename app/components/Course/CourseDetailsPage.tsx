@@ -22,7 +22,7 @@ const CourseDetailsPage = ({ id }: Props) => {
                 isLoading ? (
                     <Loader />
                 ) : (
-                    <div className="h-screen">
+                    <div >
                         <Heading
                             title={data.course.name + " - ELearning"}
                             description={"Elearning is a programming community which is developed by KAI for helping programmers"}
