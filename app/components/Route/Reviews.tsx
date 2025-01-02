@@ -53,7 +53,7 @@ export const reviews = [
 
 function Reviews({ }: Props) {
     return (
-        <div className='w-[90%] 800px:w-[85%] m-auto'>
+        <div className='w-[90%] 800px:w-[85%] m-auto my-20'>
             <div className='w-full 800px:flex items-center'>
                 <div className='800px:w-[50%] w-full'>
                     <Image
