@@ -6,6 +6,7 @@ import React from 'react';
 import { IoCheckmarkDoneOutline } from 'react-icons/io5';
 import { useSelector } from 'react-redux';
 import { format } from 'timeago.js';
+import CourseContentList from "../Course/CourseContentList"
 
 type Props = {
     data: any;
@@ -77,7 +78,8 @@ const CourseDetails = ({ data }: Props) => {
                             <h1 className='text-[25px] font-[600] text-black dark:text-white'>
                                 Course Overview
                             </h1>
-                            {/* Course content */}
+                            {/* Course content list */}
+                            <CourseContentList data={data?.courseData}/>
                         </div>
                         <br />
                         <br />
@@ -174,6 +176,11 @@ const CourseDetails = ({ data }: Props) => {
                                     </div>
                                 )}
                             </div>
+                            <br />
+                            <p className='pb-1 text-black dark:text-white'>• Source code include</p>
+                            <p className='pb-1 text-black dark:text-white'>• Full lifetime access</p>
+                            <p className='pb-1 text-black dark:text-white'>• Certificate of completion</p>
+                            <p className='pb-1 800px:pb-1 text-black dark:text-white'>• Premium Support</p>
                         </div>
                     </div>
                 </div>
