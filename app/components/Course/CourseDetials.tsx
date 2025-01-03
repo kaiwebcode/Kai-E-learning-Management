@@ -79,7 +79,7 @@ const CourseDetails = ({ data }: Props) => {
                                 Course Overview
                             </h1>
                             {/* Course content list */}
-                            <CourseContentList data={data?.courseData}/>
+                            <CourseContentList data={data?.courseData} isDemo={true}/>
                         </div>
                         <br />
                         <br />
@@ -177,10 +177,12 @@ const CourseDetails = ({ data }: Props) => {
                                 )}
                             </div>
                             <br />
+                            <div className='pb-3'>
                             <p className='pb-1 text-black dark:text-white'>• Source code include</p>
                             <p className='pb-1 text-black dark:text-white'>• Full lifetime access</p>
                             <p className='pb-1 text-black dark:text-white'>• Certificate of completion</p>
                             <p className='pb-1 800px:pb-1 text-black dark:text-white'>• Premium Support</p>
+                            </div>
                         </div>
                     </div>
                 </div>
