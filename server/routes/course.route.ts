@@ -40,7 +40,7 @@ courseRouter.get("/get-courses", getAllCourses);
 courseRouter.get(
   "/get-admin-courses",
   isAutheticated,
-  // updateAccessToken,
+  
   authorizeRoles("admin"),
   getAdminAllCourses
 );

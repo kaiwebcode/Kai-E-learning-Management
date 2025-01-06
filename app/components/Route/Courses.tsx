@@ -1,4 +1,4 @@
-import { useGetAllCoursesQuery } from '@/redux/features/courses/coursesApi'
+import { useGetAllCoursesQuery, useGetUsersAllCoursesQuery } from '@/redux/features/courses/coursesApi'
 import React, { useEffect, useState } from 'react'
 import CourseCard from '../Course/CourseCard';
 
@@ -6,7 +6,7 @@ import CourseCard from '../Course/CourseCard';
 type Props = {}
 
 function Courses({ }: Props) {
-    const { data, isLoading } = useGetAllCoursesQuery({});
+    const { data, isLoading } = useGetUsersAllCoursesQuery({});
     const [courses, setCourses] = useState<any[]>([])
 
     useEffect(() => {
