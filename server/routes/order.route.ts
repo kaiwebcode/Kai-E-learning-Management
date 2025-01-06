@@ -3,9 +3,9 @@ import { authorizeRoles, isAutheticated } from "../middleware/auth";
 import {
   //   createMobileOrder,
   createOrder,
-    getAllOrders,
-  //   newPayment,
-  //   sendStripePublishableKey,
+  getAllOrders,
+  newPayment,
+  sendStripePublishableKey,
 } from "../controllers/order.controller";
 import { updateAccessToken } from "../controllers/user.controller";
 const orderRouter = express.Router();
@@ -22,8 +22,8 @@ orderRouter.get(
   getAllOrders
 );
 
-// orderRouter.get("/payment/stripepublishablekey", sendStripePublishableKey);
+orderRouter.get("/payment/stripepublishablekey", sendStripePublishableKey);
 
-// orderRouter.post("/payment", isAutheticated, newPayment);
+orderRouter.post("/payment", isAutheticated, newPayment);
 
 export default orderRouter;
