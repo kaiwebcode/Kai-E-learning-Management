@@ -3,30 +3,30 @@
 import CourseContent from '@/app/components/Course/CourseContent';
 import Loader from '@/app/components/Loader/Loader';
 import { useLoadUserQuery } from '@/redux/features/api/apiSlice';
-import { useRouter } from 'next/navigation'; // Use `useRouter` for client-side navigation
+import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
 
-type Props = {
+interface PageProps {
     params: {
-        id: string; // Define the expected type for `id`
+        id: string; // Ensure `id` is explicitly typed
     };
-};
+}
 
-const Page = ({ params }: Props) => {
+const Page = ({ params }: PageProps) => {
     const { id } = params; // Destructure `id` from `params`
     const { isLoading, error, data } = useLoadUserQuery(undefined, {});
-    const router = useRouter(); // Use `useRouter` instead of `redirect`
+    const router = useRouter();
 
     useEffect(() => {
         if (data) {
-            const isPurchased = data.user.courses.find((item: any) => item._id === id);
+            const isPurchased = data.user.courses.some((item: any) => item._id === id);
             if (!isPurchased) {
-                router.push('/'); // Use `router.push` for navigation
+                router.push('/'); // Redirect if the course is not purchased
             }
         }
 
         if (error) {
-            router.push('/');
+            router.push('/'); // Redirect if there is an error
         }
     }, [data, error, id, router]);
 
@@ -36,7 +36,7 @@ const Page = ({ params }: Props) => {
                 <Loader />
             ) : (
                 <div>
-                    <CourseContent id={id} user={data.user} />
+                    <CourseContent id={id} user={data?.user} />
                 </div>
             )}
         </>
