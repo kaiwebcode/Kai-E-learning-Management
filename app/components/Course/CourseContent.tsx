@@ -36,13 +36,13 @@ const CourseContent = ({ id, user }: Props) => {
                                 <CourseContentMedia
                                     data={data}
                                     id={id}
-                                    activeVideo={activeVideo}
+                                    activeVideo={activeVideo}   
                                     setActiveVideo={setActiveVideo}
                                     user={user}
                                     refetch={refetch}
                                 />
                             </div>
-                            <div className="pl-12 lg:pl-0 md:pl-4 col-span-3">
+                            <div className="pl-12 lg:pl-0 md:pl-4 col-span-3 mb-6 lg:mb-0 md:mb-0">
                                 <CourseContentList
                                     setActiveVideo={setActiveVideo}
                                     data={data}

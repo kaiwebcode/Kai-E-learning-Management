@@ -1,8 +1,11 @@
 import { styles } from '@/app/styles/style';
 import CoursePlayer from '@/app/utils/CoursePlayer';
+import { useAddNewQuestionMutation } from '@/redux/features/courses/coursesApi';
 import Image from 'next/image';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import toast from 'react-hot-toast';
 import { AiFillStar, AiOutlineArrowLeft, AiOutlineArrowRight, AiOutlineStar } from 'react-icons/ai';
+import { format } from 'timeago.js';
 
 type Props = {
     data: any;
@@ -13,7 +16,7 @@ type Props = {
     setActiveVideo: (activeVideo: number) => void;
 }
 
-const CourseContentMedia = ({ data, id, user, activeVideo, setActiveVideo }: Props) => {
+const CourseContentMedia = ({ data, id, user, activeVideo, setActiveVideo, refetch }: Props) => {
     const [activeBar, setactiveBar] = useState(0);
     const [question, setQuestion] = useState("");
     const [review, setReview] = useState("");
@@ -23,10 +26,61 @@ const CourseContentMedia = ({ data, id, user, activeVideo, setActiveVideo }: Pro
     const [reply, setReply] = useState("");
     const [reviewId, setReviewId] = useState("");
     const [isReviewReply, setIsReviewReply] = useState(false);
+    const [
+        addNewQuestion,
+        { isSuccess, error, isLoading: questionCreationLoading },
+    ] = useAddNewQuestionMutation();
 
     const isReviewExists = data?.reviews?.find(
         (item: any) => item.user._id === user._id
     );
+
+    const handleQuestion = () => {
+        if (question.length === 0) {
+            toast.error("Question can't be empty");
+        } else {
+            // console.log({
+            //     question,
+            //     courseId: id,
+            //     contentId: data[activeVideo]._id,
+            // })
+            addNewQuestion({
+                question,
+                courseId: id,
+                contentId: data[activeVideo]._id,
+            });
+        }
+    };
+
+    useEffect(() => {
+        if (isSuccess) {
+            setQuestion("");
+            refetch();
+            toast.success("Question added successfully")
+            // socketId.emit("notification", {
+            //     title: `New Question Received`,
+            //     message: `You have a new question in ${data[activeVideo].title}`,
+            //     userId: user._id,
+            // });
+        }
+        if (error) {
+            if ("data" in error) {
+                const errorMessage = error as any;
+                toast.error(errorMessage.data.message);
+            }
+        }
+
+    }, [isSuccess, error])
+
+    const handleAnswerSubmit = () => {
+        console.log('fff')
+        // addAnswerInQuestion({
+        //     answer,
+        //     courseId: id,
+        //     contentId: data[activeVideo]._id,
+        //     questionId: questionId,
+        // });
+    };
 
     return (
         <div className='w-[95%] 800px:w-[86%] py-4 m-auto'>
@@ -131,12 +185,10 @@ const CourseContentMedia = ({ data, id, user, activeVideo, setActiveVideo }: Pro
                     </div>
                     <div className="w-full flex justify-end">
                         <div
-                            className=
-                            {`${styles.button
-                                } !w-[120px] !h-[40px] text-[18px] mt-5 
-            //     questionCreationLoading && "cursor-not-allowed"
-            //   }`}
-                        //   onClick={questionCreationLoading ? () => {} : handleQuestion}
+                            className={`${styles.button
+                                } !w-[120px] !h-[40px] text-[18px] mt-5 ${questionCreationLoading && "cursor-not-allowed"
+                                }`}
+                            onClick={questionCreationLoading ? () => { } : handleQuestion}
                         >
                             Submit
                         </div>
@@ -145,17 +197,17 @@ const CourseContentMedia = ({ data, id, user, activeVideo, setActiveVideo }: Pro
                     <br />
                     <div className="w-full h-[1px] bg-[#ffffff3b]"></div>
                     <div>
-                        {/* <CommentReply
-              data={data}
-              activeVideo={activeVideo}
-              answer={answer}
-              setAnswer={setAnswer}
-              handleAnswerSubmit={handleAnswerSubmit}
-              user={user}
-              questionId={questionId}
-              setQuestionId={setQuestionId}
-              answerCreationLoading={answerCreationLoading}
-            /> */}
+                        <CommentReply
+                            data={data}
+                            activeVideo={activeVideo}
+                            answer={answer}
+                            setAnswer={setAnswer}
+                            handleAnswerSubmit={handleAnswerSubmit}
+                            user={user}
+                            questionId={questionId}
+                            setQuestionId={setQuestionId}
+                        // answerCreationLoading={answerCreationLoading}
+                        />
                     </div>
                 </>
             )}
@@ -238,6 +290,80 @@ const CourseContentMedia = ({ data, id, user, activeVideo, setActiveVideo }: Pro
                 )
             }
         </div>
+    )
+}
+
+const CommentReply = ({
+    data,
+    activeVideo,
+    answer,
+    setAnswer,
+    handleAnswerSubmit,
+    questionId,
+    setQuestionId,
+    answerCreationLoading,
+}: any) => {
+
+    return (
+        <>
+            <div className="w-full my-3">
+                {data[activeVideo].questions.map((item: any, index: any) => (
+                    <CommentItem
+                        key={index}
+                        data={data}
+                        activeVideo={activeVideo}
+                        item={item}
+                        index={index}
+                        answer={answer}
+                        setAnswer={setAnswer}
+                        questionId={questionId}
+                        setQuestionId={setQuestionId}
+                        handleAnswerSubmit={handleAnswerSubmit}
+                        answerCreationLoading={answerCreationLoading}
+                    />
+                ))}
+            </div>
+        </>
+    )
+}
+
+const CommentItem = ({
+    questionId,
+    setQuestionId,
+    item,
+    answer,
+    setAnswer,
+    handleAnswerSubmit,
+    answerCreationLoading,
+}: any) => {
+    const [replyActive, setreplyActive] = useState(false);
+    return (
+        <>
+            <div className='my-4'>
+                <div className='flex mb-2'>
+                    <div>
+                        <Image
+                            src={
+                                item.user.avatar
+                                    ? item.user.avatar.url
+                                    : "https://res.cloudinary.com/dshp9jnuy/image/upload/v1665822253/avatars/nrxsg8sd9iy10bbsoenn.png"
+                            }
+                            width={50}
+                            height={50}
+                            alt=""
+                            className="w-[50px] h-[50px] rounded-full object-cover"
+                        />
+                    </div>
+                    <div className="pl-3 dark:text-white text-black">
+                        <h5 className="text-[20px]">{item?.user.name}</h5>
+                        <p>{item?.question}</p>
+                        <small className="text-[#000000b8] dark:text-[#ffffff83]">
+                            {!item.createdAt ? "" : format(item?.createdAt)} •
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </>
     )
 }
 
