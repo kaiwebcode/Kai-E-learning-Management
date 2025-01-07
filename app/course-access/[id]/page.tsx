@@ -1,34 +1,33 @@
-'use client';
+"use client"
 
 import CourseContent from '@/app/components/Course/CourseContent';
 import Loader from '@/app/components/Loader/Loader';
 import { useLoadUserQuery } from '@/redux/features/api/apiSlice';
-import { useRouter } from 'next/navigation';
-import React, { useEffect } from 'react';
+import { redirect } from 'next/navigation';
+import React, { useEffect } from 'react'
 
-interface PageProps {
-    params: {
-        id: string; // Ensure `id` is explicitly typed
-    };
+type Props = {
+    params: any;
+    user: any;
 }
 
-const Page = ({ params }: PageProps) => {
-    const { id } = params; // Destructure `id` from `params`
-    const { isLoading, error, data } = useLoadUserQuery(undefined, {});
-    const router = useRouter();
+const page = ({ params }: Props) => {
+    const id = params.id;
+    const { isLoading, error, data } = useLoadUserQuery(undefined, {})
 
     useEffect(() => {
+
         if (data) {
-            const isPurchased = data.user.courses.some((item: any) => item._id === id);
+            const isPurchased = data.user.courses.find((item: any) => item._id === id);
             if (!isPurchased) {
-                router.push('/'); // Redirect if the course is not purchased
+                redirect("/");
             }
         }
-
         if (error) {
-            router.push('/'); // Redirect if there is an error
+            redirect("/")
         }
-    }, [data, error, id, router]);
+
+    }, [data, error])
 
     return (
         <>
@@ -36,11 +35,11 @@ const Page = ({ params }: PageProps) => {
                 <Loader />
             ) : (
                 <div>
-                    <CourseContent id={id} user={data?.user} />
+                    <CourseContent id={id} user={data.user} />
                 </div>
             )}
         </>
-    );
-};
+    )
+}
 
-export default Page;
+export default page
