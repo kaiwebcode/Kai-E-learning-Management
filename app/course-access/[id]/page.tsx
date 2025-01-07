@@ -8,6 +8,7 @@ import React, { useEffect } from 'react'
 
 type Props = {
     params: any;
+    user: any;
 }
 
 const page = ({ params }: Props) => {
@@ -34,7 +35,7 @@ const page = ({ params }: Props) => {
                 <Loader />
             ) : (
                 <div>
-                    <CourseContent id={id}  />
+                    <CourseContent id={id} user={data.user} />
                 </div>
             )}
         </>

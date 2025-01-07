@@ -1,19 +1,32 @@
 import { styles } from '@/app/styles/style';
 import CoursePlayer from '@/app/utils/CoursePlayer';
+import Image from 'next/image';
 import React, { useState } from 'react'
-import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
+import { AiFillStar, AiOutlineArrowLeft, AiOutlineArrowRight, AiOutlineStar } from 'react-icons/ai';
 
 type Props = {
     data: any;
     id: string;
     activeVideo: number;
-    // user: any;
+    user: any;
     refetch: any;
     setActiveVideo: (activeVideo: number) => void;
 }
 
-const CourseContentMedia = ({ data, id, activeVideo, setActiveVideo }: Props) => {
+const CourseContentMedia = ({ data, id, user, activeVideo, setActiveVideo }: Props) => {
     const [activeBar, setactiveBar] = useState(0);
+    const [question, setQuestion] = useState("");
+    const [review, setReview] = useState("");
+    const [rating, setRating] = useState(1);
+    const [answer, setAnswer] = useState("");
+    const [questionId, setQuestionId] = useState("");
+    const [reply, setReply] = useState("");
+    const [reviewId, setReviewId] = useState("");
+    const [isReviewReply, setIsReviewReply] = useState(false);
+
+    const isReviewExists = data?.reviews?.find(
+        (item: any) => item.user._id === user._id
+    );
 
     return (
         <div className='w-[95%] 800px:w-[86%] py-4 m-auto'>
@@ -59,7 +72,7 @@ const CourseContentMedia = ({ data, id, activeVideo, setActiveVideo }: Props) =>
                             ? "text-red-500"
                             : "dark:text-white text-black"
                             }`}
-                    onClick={() => setactiveBar(index)}
+                        onClick={() => setactiveBar(index)}
                     >
                         {text}
                     </h5>
@@ -89,6 +102,141 @@ const CourseContentMedia = ({ data, id, activeVideo, setActiveVideo }: Props) =>
                     ))}
                 </div>
             )}
+
+
+            {activeBar === 2 && (
+                <>
+                    <div className='w-full flex'>
+                        <Image
+                            src={
+                                user.avatar
+                                    ? user.avatar.url
+                                    : "https://res.cloudinary.com/dshp9jnuy/image/upload/v1665822253/avatars/nrxsg8sd9iy10bbsoenn.png"
+                            }
+                            width={50}
+                            height={50}
+                            alt=""
+                            className="w-[50px] h-[50px] rounded-full object-cover"
+                        />
+                        <textarea
+                            name=""
+                            value={question}
+                            onChange={(e) => setQuestion(e.target.value)}
+                            id=""
+                            cols={40}
+                            rows={5}
+                            placeholder="Write your question..."
+                            className="outline-none bg-transparent ml-3 border dark:text-white text-black border-[#0000001d] dark:border-[#ffffff57] 800px:w-full p-2 rounded w-[90%] 800px:text-[18px] font-Poppins"
+                        ></textarea>
+                    </div>
+                    <div className="w-full flex justify-end">
+                        <div
+                            className=
+                            {`${styles.button
+                                } !w-[120px] !h-[40px] text-[18px] mt-5 
+            //     questionCreationLoading && "cursor-not-allowed"
+            //   }`}
+                        //   onClick={questionCreationLoading ? () => {} : handleQuestion}
+                        >
+                            Submit
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div className="w-full h-[1px] bg-[#ffffff3b]"></div>
+                    <div>
+                        {/* <CommentReply
+              data={data}
+              activeVideo={activeVideo}
+              answer={answer}
+              setAnswer={setAnswer}
+              handleAnswerSubmit={handleAnswerSubmit}
+              user={user}
+              questionId={questionId}
+              setQuestionId={setQuestionId}
+              answerCreationLoading={answerCreationLoading}
+            /> */}
+                    </div>
+                </>
+            )}
+
+            {
+                activeBar === 3 && (
+                    <div className='w-full'>
+                        <>
+                            {
+                                !isReviewExists && (
+                                    <>
+                                        <div className='flex w-full'>
+
+                                            <Image
+                                                src={
+                                                    user.avatar
+                                                        ? user.avatar.url
+                                                        : "https://res.cloudinary.com/dshp9jnuy/image/upload/v1665822253/avatars/nrxsg8sd9iy10bbsoenn.png"
+                                                }
+                                                width={50}
+                                                height={50}
+                                                alt=""
+                                                className="w-[50px] h-[50px] rounded-full object-cover"
+                                            />
+                                            <div className='w-full'>
+                                                <h5 className="pl-3 text-[20px] font-[500] dark:text-white text-black ">
+                                                    Give a Rating <span className="text-red-500">*</span>
+                                                </h5>
+                                                <div className="flex w-full ml-2 pb-3">
+                                                    {[1, 2, 3, 4, 5].map((i) =>
+                                                        rating >= i ? (
+                                                            <AiFillStar
+                                                                key={i}
+                                                                className="mr-1 cursor-pointer"
+                                                                color="rgb(246,186,0)"
+                                                                size={25}
+                                                                onClick={() => setRating(i)}
+                                                            />
+                                                        ) : (
+                                                            <AiOutlineStar
+                                                                key={i}
+                                                                className="mr-1 cursor-pointer"
+                                                                color="rgb(246,186,0)"
+                                                                size={25}
+                                                                onClick={() => setRating(i)}
+                                                            />
+                                                        )
+                                                    )}
+                                                </div>
+                                                <textarea
+                                                    name=""
+                                                    value={review}
+                                                    onChange={(e) => setReview(e.target.value)}
+                                                    id=""
+                                                    cols={40}
+                                                    rows={5}
+                                                    placeholder="Write your comment..."
+                                                    className="outline-none bg-transparent 800px:ml-3 dark:text-white text-black border border-[#00000027] dark:border-[#ffffff57] w-[95%] 800px:w-full p-2 rounded text-[18px] font-Poppins"
+                                                ></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div className="w-full flex justify-end">
+                                            <div
+                                                className={`${styles.button
+                                                    } !w-[120px] !h-[40px] text-[18px] mt-5 800px:mr-0 mr-2
+                                                    }`}
+                                            // onClick={
+                                            //     reviewCreationLoading ? () => { } : handleReviewSubmit
+                                            // }
+                                            >
+                                                Submit
+                                            </div>
+                                        </div>
+                                    </>
+                                )
+                            }
+                        </>
+                    </div>
+                )
+            }
         </div>
     )
 }
