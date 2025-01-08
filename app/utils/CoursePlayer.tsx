@@ -29,14 +29,14 @@ const CoursePlayer: FC<Props> = ({ videoUrl, title }) => {
 
   return (
     <div>
-      <h1 className="text-xl font-semibold mb-4 text-gray-200">{title}</h1>
-      <div className="flex flex-col items-center justify-center p-1 bg-gray-100 rounded-lg shadow-md">
+      <h1 className="text-xl font-semibold mb-4 dark:text-gray-200 text-black">{title}</h1>
+      <div className="flex flex-col items-center justify-center p-1 bg-gray-500 rounded-lg shadow-md">
         <div
           style={{
             paddingTop: "56.25%", // 16:9 aspect ratio
             position: "relative",
             width: "100%",
-            maxWidth: "900px",
+            maxWidth: "1000px",
           }}
           className="rounded-lg overflow-hidden"
         >
