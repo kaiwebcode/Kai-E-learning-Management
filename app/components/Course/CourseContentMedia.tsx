@@ -302,6 +302,7 @@ const CourseContentMedia = ({ data, id, user, activeVideo, setActiveVideo, refet
                             setQuestionId={setQuestionId}
                         // answerCreationLoading={answerCreationLoading}
                         />
+                        
                     </div>
                 </>
             )}
@@ -507,6 +508,7 @@ const CommentReply = ({
                         answerCreationLoading={answerCreationLoading}
                     />
                 ))}
+                
             </div>
         </>
     )
@@ -626,7 +628,9 @@ const CommentItem = ({
                         </>
                     </>
                 )}
+                
             </div>
+            <div className='w-full h-[1px] bg-[#ffffff3b]'></div>
         </>
     )
 }

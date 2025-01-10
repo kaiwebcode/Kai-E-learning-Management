@@ -180,10 +180,13 @@ const CourseDetails = ({ data, stripePromise,
                                                 </small>
                                             </div>
                                         </div>
+                                        
                                     ))}
+                                    <div className='w-full h-[1px] bg-[#ffffff3b]'></div>
                                 </div>
-
+                            
                             ))}
+                            
                         </div>
 
                     </div>
