@@ -10,6 +10,8 @@ import CourseContentList from "../Course/CourseContentList"
 import { Elements } from "@stripe/react-stripe-js";
 import CheckOutForm from "../Payment/CheckOutForm";
 import { useLoadUserQuery } from '@/redux/features/api/apiSlice';
+import Image from 'next/image';
+import { VscVerifiedFilled } from 'react-icons/vsc';
 
 type Props = {
     data: any;
@@ -150,8 +152,37 @@ const CourseDetails = ({ data, stripePromise,
                                             </h5>
                                             <Ratings rating={item.rating} />
                                         </div>
+
                                     </div>
+                                    {item.commentReplies.map((i: any, index: number) => (
+                                        <div className="w-full flex 800px:ml-16 my-5" key={index}>
+                                            <div className="w-[50px] h-[50px]">
+                                                <Image
+                                                    src={
+                                                        i.user.avatar
+                                                            ? i.user.avatar.url
+                                                            : "https://res.cloudinary.com/dshp9jnuy/image/upload/v1665822253/avatars/nrxsg8sd9iy10bbsoenn.png"
+                                                    }
+                                                    width={50}
+                                                    height={50}
+                                                    alt=""
+                                                    className="w-[50px] h-[50px] rounded-full object-cover"
+                                                />
+                                            </div>
+                                            <div className="pl-2">
+                                                <div className="flex items-center">
+                                                    <h5 className="text-[20px]">{i.user.name}</h5>{" "}
+                                                    <VscVerifiedFilled className="text-[#0095F6] ml-2 text-[20px]" />
+                                                </div>
+                                                <p>{i.comment}</p>
+                                                <small className="text-[#ffffff83]">
+                                                    {format(i.createdAt)} •
+                                                </small>
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
+
                             ))}
                         </div>
 
