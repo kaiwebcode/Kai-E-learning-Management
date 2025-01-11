@@ -21,7 +21,7 @@ const CoursePlayer: FC<Props> = ({ videoUrl, title }) => {
       })
       .then((res) => {
         setVideoData(res.data);
-      })  
+      })
       .catch((err) => {
         console.error("Error fetching video data:", err);
       });
@@ -29,7 +29,7 @@ const CoursePlayer: FC<Props> = ({ videoUrl, title }) => {
 
   return (
     <div>
-      <h1 className="text-xl font-semibold mb-4 dark:text-gray-300 text-black">{title}</h1>
+      <h1 className="text-xl font-semibold mb-4 dark:text-gray-200 text-black">{title}</h1>
       <div className="flex flex-col items-center justify-center p-1 bg-gray-500 rounded-lg shadow-md">
         <div
           style={{

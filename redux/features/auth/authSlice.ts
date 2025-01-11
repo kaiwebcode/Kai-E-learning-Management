@@ -21,7 +21,7 @@ const authSlice = createSlice({
       }>
     ) => {
       state.token = action.payload.accessToken;
-      //   state.refreshToken = action.payload.refreshToken;
+      state.refreshToken = action.payload.refreshToken;
       state.user = action.payload.user;
     },
     userLoggedOut: (state) => {
