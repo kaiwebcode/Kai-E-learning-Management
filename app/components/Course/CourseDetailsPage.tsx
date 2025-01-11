@@ -35,11 +35,11 @@ const CourseDetailsPage = ({ id }: Props) => {
             const publishablekey = config?.publishablekey;
             setStripePromise(loadStripe(publishablekey));
         }
-        if (data && userData?.user) {
+        if (data) {
             const amount = Math.round(data.course.price * 100);
             createPaymentIntent(amount);
         }
-    }, [config, data, userData]);
+    }, [config, data]);
 
     useEffect(() => {
         if (paymentIntentData) {

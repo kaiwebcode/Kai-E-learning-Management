@@ -9,8 +9,6 @@ import toast from 'react-hot-toast';
 type Props = {
     setOpen: any;
     data: any;
-    user: any;
-    refetch: any
 }
 
 const CheckOutForm = ({ setOpen, data }: Props) => {

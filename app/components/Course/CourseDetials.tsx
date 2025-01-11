@@ -261,7 +261,7 @@ const CourseDetails = ({ data, stripePromise,
                             <div className="w-full ">
                                 {stripePromise && clientSecret && (
                                     <Elements stripe={stripePromise} options={{ clientSecret }}>
-                                        <CheckOutForm setOpen={setOpen} data={data} user={user} refetch={refetch} />
+                                        <CheckOutForm setOpen={setOpen} data={data} />
                                     </Elements>
                                 )}
                             </div>
