@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { useGetUsersAllCoursesQuery } from "@/redux/features/courses/coursesApi";
 import { useGetHeroDataQuery } from "@/redux/features/layout/layoutApi";
@@ -13,8 +13,12 @@ import CourseCard from "../components/Course/CourseCard";
 type Props = {};
 
 const Page = (props: Props) => {
-  const searchParams = useSearchParams();
-  const search = searchParams?.get("title");
+  // Suspense Boundary for `useSearchParams`
+  const SearchWrapper = () => {
+    const searchParams = useSearchParams();
+    const search = searchParams?.get("title");
+    return search;
+  };
 
   const { data, isLoading } = useGetUsersAllCoursesQuery(undefined, {});
   const { data: categoriesData } = useGetHeroDataQuery("Categories", {});
@@ -36,14 +40,8 @@ const Page = (props: Props) => {
       );
     }
 
-    if (search) {
-      filteredCourses = filteredCourses.filter((item: any) =>
-        item.name.toLowerCase().includes(search.toLowerCase())
-      );
-    }
-
     setCourses(filteredCourses);
-  }, [data, category, search]);
+  }, [data, category]);
 
   const categories = categoriesData?.layout.categories;
 
@@ -94,11 +92,14 @@ const Page = (props: Props) => {
                   </div>
                 ))}
             </div>
+            <Suspense fallback={<div>Loading search...</div>}>
+              <SearchWrapper />
+            </Suspense>
             {courses && courses.length === 0 && (
               <p
                 className={`${styles.label} justify-center min-h-screen flex items-center`}
               >
-                {search
+                {category === "All"
                   ? "No courses found!"
                   : "No courses found in this category. Please try another one!"}
               </p>
