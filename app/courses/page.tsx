@@ -18,21 +18,21 @@ const page = (props: Props) => {
     const { data: categoriesData } = useGetHeroDataQuery("Categories", {});
     const [route, setRoute] = useState("Login");
     const [open, setOpen] = useState(false);
-    const [courses, setCourses] = useState([]);
+    const [courses, setcourses] = useState([]);
     const [category, setCategory] = useState("All");
 
 
     useEffect(() => {
         if (category === "All") {
-            setCourses(data?.courses)
+            setcourses(data?.courses)
         }
         if (category !== "All") {
-            setCourses(
+            setcourses(
                 data?.courses.filter((item: any) => item.categories === category)
             )
         }
         if (search) {
-            setCourses(
+            setcourses(
                 data?.courses.filter((item: any) => item.name.toLowerCase().includes(search.toLowerCase()))
             );
         };

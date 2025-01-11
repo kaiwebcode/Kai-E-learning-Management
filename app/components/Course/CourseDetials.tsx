@@ -2,7 +2,7 @@ import { styles } from '@/app/styles/style';
 import CoursePlayer from '@/app/utils/CoursePlayer';
 import Ratings from '@/app/utils/Ratings';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { IoCheckmarkDoneOutline, IoCloseOutline } from 'react-icons/io5';
 import { useSelector } from 'react-redux';
 import { format } from 'timeago.js';
@@ -26,14 +26,9 @@ const CourseDetails = ({ data, stripePromise,
     setRoute,
     setOpen: openAuthModal }: Props) => {
     const { data: userData, refetch } = useLoadUserQuery(undefined, {});
-    const [user, setUser] = useState<any>();
-    // const user = userData?.user;
+    // const [user, setUser] = useState<any>();
+    const user = userData?.user;
     const [open, setOpen] = useState(false);
-
-    useEffect(() => {
-        setUser(userData?.user)
-    }, [userData])
-
     const discountPercentange =
         ((data?.estimatedPrice - data.price) / data?.estimatedPrice) * 100;
 
@@ -43,12 +38,7 @@ const CourseDetails = ({ data, stripePromise,
         user && user?.courses?.find((item: any) => item._id === data._id);
 
     const handleOrder = (e: any) => {
-        if (user) {
-            setOpen(true);
-        } else {
-            setRoute("Login");
-            openAuthModal(true)
-        }
+        setOpen(true);
     };
 
     return (
@@ -190,13 +180,13 @@ const CourseDetails = ({ data, stripePromise,
                                                 </small>
                                             </div>
                                         </div>
-
+                                        
                                     ))}
                                     <div className='w-full h-[1px] bg-[#ffffff3b]'></div>
                                 </div>
-
+                            
                             ))}
-
+                            
                         </div>
 
                     </div>
