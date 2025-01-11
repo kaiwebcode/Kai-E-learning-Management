@@ -1,9 +1,9 @@
 "use client";
 
+import React, { useEffect, useState, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { useGetUsersAllCoursesQuery } from "@/redux/features/courses/coursesApi";
 import { useGetHeroDataQuery } from "@/redux/features/layout/layoutApi";
-import { useSearchParams } from "next/navigation";
-import React, { Suspense, useEffect, useState } from "react";
 import Loader from "../components/Loader/Loader";
 import Header from "../components/Header";
 import Heading from "../utils/Heading";
@@ -15,8 +15,10 @@ type Props = {};
 const Page = (props: Props) => {
   const searchParams = useSearchParams();
   const search = searchParams?.get("title");
+
   const { data, isLoading } = useGetUsersAllCoursesQuery(undefined, {});
   const { data: categoriesData } = useGetHeroDataQuery("Categories", {});
+
   const [route, setRoute] = useState("Login");
   const [open, setOpen] = useState(false);
   const [courses, setCourses] = useState([]);
@@ -112,5 +114,8 @@ const Page = (props: Props) => {
     </Suspense>
   );
 };
+
+// Enforce dynamic rendering to avoid SSG/SSR
+export const dynamic = "force-dynamic";
 
 export default Page;
