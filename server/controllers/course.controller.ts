@@ -141,7 +141,7 @@ export const getAllCourses = CatchAsyncError(
         "-courseData.videoUrl -courseData.suggestion -courseData.questions -courseData.links"
       );
 
-      console.log("hitting mongodv");
+      // console.log("hitting mongodv");
 
       // await redis.set("allCourses", JSON.stringify(courses)); // 7days
 
