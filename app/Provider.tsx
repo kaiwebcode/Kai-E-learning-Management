@@ -3,12 +3,12 @@ import React, { FC, useEffect, useState } from "react";
 import { Provider } from "react-redux";
 import { store } from "../redux/store";
 import Loader from "./components/Loader/Loader";
-// import socketIO from "socket.io-client";
+import socketIO from "socket.io-client";
 import { SessionProvider } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { useLoadUserQuery } from "@/redux/features/api/apiSlice";
-// const ENDPOINT = process.env.NEXT_PUBLIC_SOCKET_SERVER_URI || "";
-// const socketId = socketIO(ENDPOINT, { transports: ["websocket"] });
+const ENDPOINT = process.env.NEXT_PUBLIC_SOCKET_SERVER_URI || "";
+const socketId = socketIO(ENDPOINT, { transports: ["websocket"] });
 
 interface ProvidersProps {
   children: any;
@@ -20,16 +20,16 @@ export function Providers({ children }: ProvidersProps) {
 
 export const Custom: FC<{ children: React.ReactNode }> = ({ children }) => {
   const { isLoading } = useLoadUserQuery({});
-  // const [isMounted, setisMounted] = useState(false);
+  const [isMounted, setisMounted] = useState(false);
 
-  // useEffect(() => {
-  //   socketId.on("connection", () => {});
-  //   setisMounted(true);
-  // }, []);
+  useEffect(() => {
+    socketId.on("connection", () => { });
+    setisMounted(true);
+  }, []);
 
-  // if (!isMounted) {
-  //   return;
-  // }
+  if (!isMounted) {
+    return;
+  }
 
   return <>{isLoading ? <Loader /> : <> {children} </>} </>;
 };
