@@ -9,6 +9,9 @@ import { AiFillStar, AiOutlineArrowLeft, AiOutlineArrowRight, AiOutlineStar } fr
 import { BiMessage } from 'react-icons/bi';
 import { VscVerifiedFilled } from 'react-icons/vsc';
 import { format } from 'timeago.js';
+import socketIO from "socket.io-client";
+const ENDPOINT = process.env.NEXT_PUBLIC_SOCKET_SERVER_URI || "";
+const socketId = socketIO(ENDPOINT, { transports: ["websocket"] });
 
 type Props = {
     data: any;
@@ -89,23 +92,23 @@ const CourseContentMedia = ({ data, id, user, activeVideo, setActiveVideo, refet
             setQuestion("");
             refetch();
             toast.success("Question added successfully")
-            // socketId.emit("notification", {
-            //     title: `New Question Received`,
-            //     message: `You have a new question in ${data[activeVideo].title}`,
-            //     userId: user._id,
-            // });
+            socketId.emit("notification", {
+                title: `New Question Received`,
+                message: `You have a new question in ${data[activeVideo].title}`,
+                userId: user._id,
+            });
         }
         if (answerSuccess) {
             setAnswer("");
             refetch();
             toast.success("Answer added successfully")
-            // if (user.role !== "admin") {
-            //   socketId.emit("notification", {
-            //     title: `New Reply Received`,
-            //     message: `You have a new question in ${data[activeVideo].title}`,
-            //     userId: user._id,
-            //   });
-            // }
+            if (user.role !== "admin") {
+                socketId.emit("notification", {
+                    title: `New Reply Received`,
+                    message: `You have a new question in ${data[activeVideo].title}`,
+                    userId: user._id,
+                });
+            }
         }
         if (error) {
             if ("data" in error) {
@@ -124,11 +127,11 @@ const CourseContentMedia = ({ data, id, user, activeVideo, setActiveVideo, refet
             setRating(1);
             courseRefetch();
             toast.success("Review added successfully")
-            // socketId.emit("notification", {
-            //     title: `New Question Received`,
-            //     message: `You have a new question in ${data[activeVideo].title}`,
-            //     userId: user._id,
-            // });
+            socketId.emit("notification", {
+                title: `New Question Received`,
+                message: `You have a new question in ${data[activeVideo].title}`,
+                userId: user._id,
+            });
         }
         if (reviewError) {
             if ("data" in reviewError) {
@@ -302,7 +305,7 @@ const CourseContentMedia = ({ data, id, user, activeVideo, setActiveVideo, refet
                             setQuestionId={setQuestionId}
                         // answerCreationLoading={answerCreationLoading}
                         />
-                        
+
                     </div>
                 </>
             )}
@@ -399,11 +402,11 @@ const CourseContentMedia = ({ data, id, user, activeVideo, setActiveVideo, refet
                                                     className="w-[50px] h-[50px] rounded-full object-cover"
                                                 />
                                             </div>
-                                            <div className="ml-2">
+                                            <div className="ml-2 mb-2">
                                                 <h1 className="text-[18px]">{item?.user.name}</h1>
                                                 <Ratings rating={item.rating} />
                                                 <p>{item.comment}</p>
-                                                <small className="text-[#0000009e] dark:text-[#ffffff83]">
+                                                <small className="text-[#0000009e]  dark:text-[#ffffff83]">
                                                     {format(item.createdAt)} •
                                                 </small>
                                             </div>
@@ -508,7 +511,7 @@ const CommentReply = ({
                         answerCreationLoading={answerCreationLoading}
                     />
                 ))}
-                
+
             </div>
         </>
     )
@@ -628,7 +631,7 @@ const CommentItem = ({
                         </>
                     </>
                 )}
-                
+
             </div>
             <div className='w-full h-[1px] bg-[#ffffff3b]'></div>
         </>
