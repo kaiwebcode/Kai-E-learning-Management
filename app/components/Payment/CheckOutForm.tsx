@@ -13,9 +13,10 @@ type Props = {
     setOpen: any;
     data: any;
     user: any;
+    refetch: any
 }
 
-const CheckOutForm = ({ setOpen, data, user }: Props) => {
+const CheckOutForm = ({ setOpen, data, user, refetch }: Props) => {
     const stripe = useStripe();
     const elements = useElements()
     const [message, setMessage] = useState<any>("");
@@ -45,10 +46,11 @@ const CheckOutForm = ({ setOpen, data, user }: Props) => {
 
     useEffect(() => {
         if (orderData) {
-            setLoadUser(true)
+            // setLoadUser(true)
+            refetch()
             socketId.emit("notification", {
                 title: "New Order",
-                message: `You have a new order from ${data.course.name}`,
+                message: `You have a new order from ${data.name}`,
                 userId: user._id
             });
             redirect(`/course-access/${data._id}`)

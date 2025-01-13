@@ -41,7 +41,7 @@ const Login: FC<Props> = ({ setRoute, setOpen, refetch }) => {
     if (isSuccess) {
       toast.success("Login Successfully!");
       setOpen(false);
-      // redirect("/admin");
+      refetch();
     }
     if (error) {
       if ("data" in error) {

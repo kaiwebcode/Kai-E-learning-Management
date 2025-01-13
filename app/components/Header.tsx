@@ -16,6 +16,7 @@ import {
   useSocialAuthMutation,
 } from "@/redux/features/auth/authApi";
 import toast from "react-hot-toast";
+import { useLoadUserQuery } from "@/redux/features/api/apiSlice";
 
 type Props = {
   open: boolean;
@@ -28,49 +29,60 @@ type Props = {
 const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
   const [active, setActive] = useState(false);
   const [openSidebar, setOpenSidebar] = useState(false);
-  const { user } = useSelector((state: any) => state.auth);
+  // const { user } = useSelector((state: any) => state.auth);
+  const { data: userData, isLoading, refetch } = useLoadUserQuery(undefined, {})
   const { data } = useSession();
   const [socialAuth, { isSuccess, error }] = useSocialAuthMutation();
-  // const [logout, setLogout] = useState(false);
-  // const {} = useLogOutQuery(undefined, {
-  //   skip: !logout ? true : false,
-  // });
+  const [logout, setLogout] = useState(false);
+  const { } = useLogOutQuery(undefined, {
+    skip: !logout ? true : false,
+  });
 
   // console.log(data);
 
   useEffect(() => {
     // Perform social login if the user is not logged in but session data exists
-    if (!user && data) {
-      socialAuth({
-        email: data?.user?.email,
-        name: data?.user?.name,
-        avatar: data?.user?.image,
-      });
-    }
-    // if (data === null) {
-    //     setLogout(true);
-    //   }
-
-  }, [data, user, socialAuth]);
-
-  useEffect(() => {
-    // Display toast after successful social login
-    // if (data === null) {
-      if (isSuccess) {
-        toast.success("Login Successfully");
+    if (!isLoading) {
+      if (!userData) {
+        if (data) {
+          socialAuth({
+            email: data?.user?.email,
+            name: data?.user?.name,
+            avatar: data?.user?.image,
+          });
+          refetch()
+        }
       }
-      // if (data === null) {
-      //   setLogout(true);
-      // }
-    // }
-    if (error) {
-      toast.error("An error occurred during login");
+      if (data === null) {
+        if (isSuccess) {
+          toast.success("Login Successfully");
+        }
+      }
+      if (data === null && !isLoading && !userData) {
+        setLogout(true)
+      }
     }
-  }, [isSuccess, error]);
+
+  }, [data, userData, isLoading, socialAuth]);
+
+  // useEffect(() => {
+  //   // Display toast after successful social login
+  //   if (data === null) {
+  //     if (isSuccess) {
+  //       toast.success("Login Successfully");
+  //     }
+  //     if (data === null) {
+  //       setLogout(true);
+  //     }
+  //   }
+  //   if (error) {
+  //     toast.error("An error occurred during login");
+  //   }
+  // }, [isSuccess, error]);
 
   if (typeof window !== "undefined") {
     window.addEventListener("scroll", () => {
-      if (window.screenY > 80) {
+      if (window.scrollY > 85) {
         setActive(true);
       } else {
         setActive(false);
@@ -91,11 +103,10 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
   return (
     <div className="w-full relative">
       <div
-        className={`${
-          active
-            ? "dark:bg-opacity-50 dark:bg-gradient-to-b dark:from-gray-900 dark:to-black fixed top-0 left-0 w-full h-[80px] z-[80] border-b dark:border-[#ffffff1c] shadow-xl transition-500 duration-500"
-            : "w-full border-b dark:border-[#ffffff1c] h-[80px] z-[80] dark:shadow"
-        }`}
+        className={`${active
+          ? "dark:bg-opacity-50 bg-white dark:bg-gradient-to-b dark:from-gray-900 dark:to-black fixed top-0 left-0 w-full h-[80px] z-[80] border-b dark:border-[#ffffff1c] transition-500 duration-500"
+          : "w-full border-b dark:border-[#ffffff1c] h-[80px] z-[80] dark:shadow"
+          }`}
       >
         <div className="w-[95%] 800px:w-[92%] m-auto py-2 h-full">
           <div className="w-full h-[80px] flex items-center justify-between p-3">
@@ -119,15 +130,15 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
                 />
               </div>
               <div className="pl-2">
-                {user ? (
+                {userData ? (
                   <Link href="/profile">
                     <Image
-                      src={user.avatar ? user.avatar.url : avatar}
+                      src={userData?.user.avatar ? userData.user.avatar.url : avatar}
                       alt="user image"
                       className="w-[30px] h-[30px] rounded-full cursor-pointer object-cover"
                       width={30}
                       height={30}
-                      style={{border: activeItem === 5 ? "2px solid #ffc107" : "none"}}
+                      style={{ border: activeItem === 5 ? "2px solid #ffc107" : "none" }}
                     />
                   </Link>
                 ) : (
@@ -139,7 +150,7 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
                 )}
               </div>
             </div>
-          </div>
+          </div> 
         </div>
         {/* mobile sidebar */}
         {openSidebar && (
@@ -173,6 +184,7 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
               setRoute={setRoute}
               activeItem={activeItem}
               component={Login}
+              refetch={refetch}
             />
           )}
         </>
