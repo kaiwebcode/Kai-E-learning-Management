@@ -21,7 +21,7 @@ const CoursePlayer: FC<Props> = ({ videoUrl, title }) => {
       })
       .then((res) => {
         setVideoData(res.data);
-      })  
+      })
       .catch((err) => {
         console.error("Error fetching video data:", err);
       });

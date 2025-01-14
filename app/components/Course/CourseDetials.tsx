@@ -192,7 +192,7 @@ const CourseDetails = ({ data, stripePromise,
                                         </div>
 
                                     ))}
-                                    <div className='w-full h-[1px] bg-[#ffffff3b] my-3'></div>
+                                    <div className='w-full h-[1px] bg-[#ffffff3b] my-4'></div>
                                 </div>
 
                             ))}
