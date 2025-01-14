@@ -62,7 +62,7 @@ const Page = (props: Props) => {
                         route={route}
                         setRoute={setRoute}
                     />
-                    <div className="w-[90%] m-auto 800px:grid-cols-10 h-screen">
+                    <div className="w-[90%] m-auto 800px:grid-cols-10 ">
                         <Heading
                             title="All courses - ELearning"
                             description="Elearning is a programming community."
@@ -96,7 +96,7 @@ const Page = (props: Props) => {
                         {/* No courses found */}
                         {courses && courses.length === 0 && (
                             <p
-                                className={`${styles.label} justify-center min-h-screen flex items-center`}
+                                className={`${styles.label} justify-center h-screen flex items-center `}
                             >
                                 {search
                                     ? "No courses found!"
@@ -106,7 +106,7 @@ const Page = (props: Props) => {
                         <br />
                         <br />
                         {/* Display Courses */}
-                        <div className="grid grid-cols-1 gap-[20px] md:grid-cols-2 md:gap-[25px] lg:grid-cols-3 lg:gap-[25px] 1500px:grid-cols-4 1500px:gap-[35px] mb-20 border-0">
+                        <div className="grid grid-cols-1 gap-[20px] md:grid-cols-2 md:gap-[25px] lg:grid-cols-3 lg:gap-[25px] 1500px:grid-cols-4 1500px:gap-[35px] mb-10 border-0 h-screen">
                             {courses &&
                                 courses.map((item: any, index: number) => (
                                     <CourseCard item={item} key={index} />
