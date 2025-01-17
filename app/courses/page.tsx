@@ -9,6 +9,7 @@ import Header from "../components/Header";
 import Heading from "../utils/Heading";
 import { styles } from "../styles/style";
 import CourseCard from "../components/Course/CourseCard";
+import Footer from '../components/Footer/footer'
 
 type Props = {};
 
@@ -83,8 +84,8 @@ const Page = (props: Props) => {
                                     <div key={index}>
                                         <div
                                             className={`h-[35px] ${category === item.title
-                                                    ? "bg-[crimson]"
-                                                    : "bg-[#5050cb]"
+                                                ? "bg-[crimson]"
+                                                : "bg-[#5050cb]"
                                                 } m-3 px-3 rounded-[30px] flex items-center justify-center cursor-pointer`}
                                             onClick={() => setCategory(item.title)}
                                         >
@@ -113,6 +114,7 @@ const Page = (props: Props) => {
                                 ))}
                         </div>
                     </div>
+                    <Footer />
                 </>
             )}
         </div>

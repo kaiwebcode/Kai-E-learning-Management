@@ -6,6 +6,7 @@ import Heading from "../utils/Heading";
 import Header from "../components/Header";
 import Profile from "../components/Profile/Profile"
 import { useSelector } from "react-redux";
+import Footer from '../components/Footer/footer'
 
 type Props = {};
 
@@ -18,7 +19,7 @@ const page: FC<Props> = (props) => {
   // console.log(user.name)
 
   return (  
-    <div>
+    <div className="min-h-screen">
       <Protected>
         <Heading
           title={`${user.name}`}
@@ -33,6 +34,7 @@ const page: FC<Props> = (props) => {
           route={route}
         />
         <Profile user={user} />
+        <Footer />
       </Protected>
     </div>
   );
