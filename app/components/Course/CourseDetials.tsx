@@ -99,7 +99,7 @@ const CourseDetails = ({ data, stripePromise,
                         ))}
                         <br />
                         <br />
-                        <div>
+                        <div className='border border-white px-6 py-3'>
                             <h1 className='text-[25px] font-[600] text-black dark:text-white'>
                                 Course Overview
                             </h1>

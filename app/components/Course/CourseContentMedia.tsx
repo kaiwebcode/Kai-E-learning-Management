@@ -303,7 +303,7 @@ const CourseContentMedia = ({ data, id, user, activeVideo, setActiveVideo, refet
                             user={user}
                             questionId={questionId}
                             setQuestionId={setQuestionId}
-                        // answerCreationLoading={answerCreationLoading}
+                            answerCreationLoading={answerCreationLoading}
                         />
 
                     </div>

@@ -70,14 +70,15 @@ const footer = ({ }: Props) => {
                         </h3>
                         <ul className='space-y-4'>
                             <li>
-                                <Link href="https://www.youtube.com"
+                                <Link href="https://www.linkedin.com/in/kaif-qureshi-06b5782a7/"
                                     className='text-base text-black dark:text-gray-300 dark:hover:text-white'
                                 >
-                                    Youtube
+                                    Linkedin
                                 </Link>
                             </li>
+
                             <li>
-                                <Link href="https://www.instagram.com/"
+                                <Link href="https://www.instagram.com/Kaif.__q/#"
                                     className='text-base text-black dark:text-gray-300 dark:hover:text-white'
                                 >
                                     Instagram
