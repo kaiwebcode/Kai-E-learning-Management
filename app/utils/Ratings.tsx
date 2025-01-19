@@ -16,7 +16,7 @@ const Ratings:FC<Props> = ({ rating }) => {
             key={i}
             size={20}
             color="#f6b100"
-            className="mr-2 cursor-pointer"
+            className="mr-1 cursor-pointer"
           />
         );
       } else if (i === Math.ceil(rating) && !Number.isInteger(rating)) {
@@ -25,7 +25,7 @@ const Ratings:FC<Props> = ({ rating }) => {
             key={i}
             size={17}
             color="#f6ba00"
-            className="mr-2 cursor-pointer"
+            className="mr-1 cursor-pointer"
           />
         );
       } else {
@@ -34,12 +34,12 @@ const Ratings:FC<Props> = ({ rating }) => {
             key={i}
             size={20}
             color="#f6ba00"
-            className="mr-2 cursor-pointer"
+            className="mr-1 cursor-pointer"
           />
         );
       }
     }
-    return <div className="flex mt-1 ml-2 800px:mt-0 800px:ml-0"> {stars}</div>;
+    return <div className="flex mt-1 ml-2 800px:mt-0 800px:ml-0">{stars}</div>;
   };
 
   export default Ratings;

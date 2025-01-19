@@ -7,7 +7,7 @@ import About from "./About"
 
 type Props = {}
 
-const page = ({ }: Props) => {
+const Page = ({ }: Props) => {
     const [open, setOpen] = useState(false);
     const [activeItem, setActiveItem] = useState(2);
     const [route, setRoute] = useState("Login");
@@ -32,4 +32,4 @@ const page = ({ }: Props) => {
     )
 }
 
-export default page
+export default Page

@@ -119,15 +119,16 @@ const CourseDetails = ({ data, stripePromise,
                         </div>
                         <br />
                         <br />
-                        <div className='w-full'>
+                        <div className='w-full border p-3 md:p-4 lg:p-6 border-solid'>
+                                <h1 className='text-[40px] font-bold text-black dark:text-white'>Reviews</h1>
                             <div className='800px:flex items-center'>
                                 <Ratings rating={data?.ratings} />
                                 <div className='mb-2 800px:mb-[unset]' />
                                 <h5 className='text-[25px] text-black dark:text-white'>
-                                    {Number.isInteger(data?.ratings)
-                                        ? data?.ratings.toFixed(1)
-                                        : data?.ratings.toFixed(2)}{""}
-                                    Course Rating * {data?.reviews?.length} Reviews
+                                    {/* {Number.isInteger(data?.ratings) */}
+                                        {/* // ? data?.ratings.toFixed(1) */}
+                                        {/* // : data?.ratings.toFixed(2)}{""} */}
+                                    Course Rating * {data?.reviews?.length}
 
                                 </h5>
                             </div>
@@ -144,9 +145,9 @@ const CourseDetails = ({ data, stripePromise,
                                                 </h1>
                                             </div>
                                         </div>
-                                        <div className='hidden 800px:block pl-2 '>
-                                            <div className='flex items-center'>
-                                                <h5 className='text-[18px] pr-2 text-black dark:text-white'>{item.user.name}</h5>
+                                        <div className='hidden 800px:block pl-2'>
+                                            <div >
+                                                <h5 className='text-[18px] pr-1 text-black dark:text-white'>{item.user.name}</h5>
                                                 <Ratings rating={item.rating} />
                                             </div>
                                             <p className='text-black dark:text-white'>

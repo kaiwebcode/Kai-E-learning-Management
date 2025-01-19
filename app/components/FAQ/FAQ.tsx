@@ -1,41 +1,47 @@
 import { styles } from '@/app/styles/style';
 import { useGetHeroDataQuery } from '@/redux/features/layout/layoutApi';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { HiMinus, HiPlus } from 'react-icons/hi';
 
-type Props = {}
+type Props = {};
 
 function FAQ({ }: Props) {
     const { data, isLoading } = useGetHeroDataQuery("FAQ", {
         refetchOnMountOrArgChange: true,
     });
-    const [activeQuestion, setActiveQuestion] = useState(null);
+    const [activeQuestion, setActiveQuestion] = useState<string | null>(null);
     const [questions, setQuestions] = useState<any[]>([]);
 
     useEffect(() => {
         if (data) {
             setQuestions(data.layout.faq);
         }
-    }, [data])
+    }, [data]);
 
-
-    const toggleQuestion = (id: any) => {
-        setActiveQuestion(activeQuestion === id ? null : id)
-    }
+    const toggleQuestion = (id: string) => {
+        setActiveQuestion((prevActiveQuestion) => (prevActiveQuestion === id ? null : id));
+    };
 
     return (
         <div className='my-16'>
             <div className='w-[90%] 800px:w-[80%] m-auto'>
                 <h1 className={`${styles.title} 800px:text-[40px]`}>
-                    Frequnetly Asked Questions
+                    Frequently Asked Questions
                 </h1>
                 <div className='mt-12'>
                     <dl className='space-y-8'>
                         {questions.map((q) => (
-                            <div key={q.id} className={`${q._id !== questions[0]?._id && "border-t"} border-gray-200 pt-6`}>
+                            <div 
+                                key={q._id} 
+                                className={`${
+                                    q._id !== questions[0]?._id ? "border-t" : ""
+                                } border-gray-200 pt-6`}
+                            >
                                 <dt className='text-lg'>
-                                    <button className='flex  items-start justify-between w-full text-left focus:outline-none'
-                                        onClick={() => toggleQuestion(q._id)}>
+                                    <button 
+                                        className='flex items-start justify-between w-full text-left focus:outline-none'
+                                        onClick={() => toggleQuestion(q._id)}
+                                    >
                                         <span className='font-medium text-black dark:text-white'>
                                             {q.question}
                                         </span>
@@ -48,20 +54,20 @@ function FAQ({ }: Props) {
                                         </span>
                                     </button>
                                 </dt>
-                                {
-                                    activeQuestion === q._id && (
-                                        <dd className='mt-2 pr-12'>
-                                            <p className='text-base text-black dark:text-white'>{q.answer}</p>
-                                        </dd>
-                                    )
-                                }
+                                {activeQuestion === q._id && (
+                                    <dd className='mt-2 pr-12'>
+                                        <p className='text-base text-black dark:text-white'>
+                                            {q.answer}
+                                        </p>
+                                    </dd>
+                                )}
                             </div>
                         ))}
                     </dl>
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default FAQ
+export default FAQ;

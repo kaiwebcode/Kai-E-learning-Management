@@ -1,11 +1,15 @@
 "use client";
 
 import { ThemeSwitcher } from "@/app/utils/ThemeSwitcher";
-import { useGetAllNotificationsQuery, useUpdateNotificationStatusMutation } from "@/redux/features/notifications/notificationsApi";
+import {
+  useGetAllNotificationsQuery,
+  useUpdateNotificationStatusMutation,
+} from "@/redux/features/notifications/notificationsApi";
 import React, { FC, useEffect, useState } from "react";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import socketIO from "socket.io-client";
 import { format } from "timeago.js";
+
 const ENDPOINT = process.env.NEXT_PUBLIC_SOCKET_SERVER_URI || "";
 const socketId = socketIO(ENDPOINT, { transports: ["websocket"] });
 
@@ -14,20 +18,18 @@ type Props = {
   setOpen?: (value: boolean) => void;
 };
 
-
 const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
-
   const { data, refetch } = useGetAllNotificationsQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
   const [updateNotificationStatus, { isSuccess }] =
     useUpdateNotificationStatusMutation();
-  const [notifications, setNotifications] = useState<any>([]);
+  const [notifications, setNotifications] = useState<any[]>([]);
   const [audio] = useState<any>(
     typeof window !== "undefined" &&
-    new Audio(
-      "https://res.cloudinary.com/dkg6jv4l0/video/upload/v1716750964/notification_jvwqd0.mp3"
-    )
+      new Audio(
+        "https://res.cloudinary.com/dkg6jv4l0/video/upload/v1716750964/notification_jvwqd0.mp3"
+      )
   );
 
   const playNotificationSound = () => {
@@ -47,11 +49,11 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
   }, [data, isSuccess, audio]);
 
   useEffect(() => {
-    socketId.on("newNotification", (data) => {
+    socketId.on("newNotification", () => {
       refetch();
       playNotificationSound();
     });
-  }, []);
+  }, [refetch, playNotificationSound]);
 
   const handleNotificationStatusChange = async (id: string) => {
     await updateNotificationStatus(id);
@@ -68,7 +70,7 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
           <IoMdNotificationsOutline className="text-2xl cursor-pointer dark:text-white text-black" />
           <span className="absolute -top-2 -right-2 bg-[#3ccba0] rounded-full w-[20px] h-[20px] text-[12px] flex items-center justify-center text-white">
             {notifications && notifications.length}
-          </span> 
+          </span>
         </div>
       </div>
 
@@ -79,19 +81,20 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
           </h5>
           {notifications &&
             notifications.map((item: any, index: number) => (
-
               <div
                 key={index}
                 className="dark:bg-[#2d3a4e] bg-[#f1f1f1] font-Poppins border-b dark:border-b-[#ffffff47] border-b-[#e0e0e0] p-3 rounded-md my-2"
               >
                 <div className="flex justify-between">
                   <p className="text-xs md:text-sm lg:text-sm text-black dark:text-white">
-                    <p className="text-black dark:text-white">{item.title}</p>
+                    {item.title}
                   </p>
-                  <p className="text-xs md:text-sm lg:text-sm text-blue-500 cursor-pointer"
-                    onClick={() => handleNotificationStatusChange(item._id)}>
+                  <span
+                    className="text-xs md:text-sm lg:text-sm text-blue-500 cursor-pointer"
+                    onClick={() => handleNotificationStatusChange(item._id)}
+                  >
                     Mark as read
-                  </p>
+                  </span>
                 </div>
                 <p className="text-xs md:text-sm lg:text-sm text-black dark:text-white">
                   {item.message}
@@ -100,7 +103,6 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
                   {format(item.createdAt)}
                 </p>
               </div>
-
             ))}
         </div>
       )}
