@@ -11,7 +11,7 @@ type Props = {
 const CourseCard: FC<Props> = ({ item, isProfile }) => {
     return (
         <Link href={!isProfile ? `/course/${item._id}` : `course-access/${item._id}`} passHref>
-            <div className="w-full min-h-[40vh] lg:min-h-[50vh] min-w-[40vh] gap-36 bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-shadow rounded-lg p-3">
+            <div className="w-full min-h-[40vh] min-w-[30vh] gap-36 bg-white dark:bg-gray-800 shadow-md hover:shadow-2xl transition-shadow rounded-lg p-3">
                 {/* Course Thumbnail */}
                 <div className="w-full  overflow-hidden mb-4 mt-2">
                     <img

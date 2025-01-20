@@ -27,7 +27,7 @@ const Home: FC<Props> = (props) => {
         keywords="Programing, MERN, Redux, Machine Learning "
       />
       {/* <div className=" sticky top-0 dark:bg-slate-900 z-[-10]"> */}
-      <div className="w-full sticky top-0 z-50 bg-slate-900">
+      <div className="w-full sticky top-0 z-50 dark:bg-slate-900 bg-white">
       <Header open={open} setOpen={setOpen} activeItem={activeItem} setRoute={setRoute} route={route}/>
       </div>
       {/* </div> */}
