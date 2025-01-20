@@ -1,6 +1,7 @@
 import React from 'react';
-import HighlightText from './HighlightText';
+
 import { Button } from '@/components/ui/button';
+import HighlightText from './HighlightText';
 
 const LearningGridArray = [
   {
@@ -51,11 +52,10 @@ const LearningGrid = () => {
         <div
           key={index}
           className={`${index === 0 && "lg:col-span-2 lg:h-[280px] p-5 "}
-          ${
-            card.order % 2 === 1
+          ${card.order % 2 === 1
               ? "bg-slate-700 lg:h-[280px] p-5"
               : "bg-slate-800 lg:h-[280px] p-5"
-          }
+            }
           ${card.order === 3 && "lg:col-start-2"}
           ${card.order < 0 && "bg-transparent"}`}
         >

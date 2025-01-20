@@ -1,47 +1,59 @@
 import Ratings from '@/app/utils/Ratings';
 import Link from 'next/link';
-import React, { FC } from 'react'
+import React, { FC } from 'react';
 import { AiOutlineUnorderedList } from 'react-icons/ai';
 
 type Props = {
     item: any;
-    isProfile?: boolean
-}
+    isProfile?: boolean;
+};
 
 const CourseCard: FC<Props> = ({ item, isProfile }) => {
     return (
-        <Link href={!isProfile ? `/course/${item._id}` : `course-access/${item._id}`}>
-            <div className='w-full min-h-[40vh] dark:bg-slate-500 dark:bg-opacity-20 backdrop-blur border dark:border-[#ffffff1d] border-[#00000015] dark:shadow-[bg-slate-700] rounded-lg p-3 shadow-lg dark:shadow-inner'>
-                <img src={item.thumbnail.url} width={500} height={300} className='rounded-lg object-contain w-full  ' alt='Course thumbnail' />
-                <br />
-                <h1 className='text-[16px] text-black dark:text-[#fff]'>
+        <Link href={!isProfile ? `/course/${item._id}` : `course-access/${item._id}`} passHref>
+            <div className="w-full min-h-[40vh] lg:min-h-[50vh] min-w-[40vh] gap-36 bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-shadow rounded-lg p-3">
+                {/* Course Thumbnail */}
+                <div className="w-full  overflow-hidden mb-4 mt-2">
+                    <img
+                        src={item.thumbnail.url}
+                        alt="Course thumbnail"
+                        className="w-full  object-contain rounded-lg  transition-transform hover:scale-105"
+                    />
+                </div>
+
+                {/* Course Title */}
+                <h1 className="text-lg font-semibold text-gray-800 dark:text-gray-100 truncate mb-2">
                     {item.name}
                 </h1>
-                <div className='w-full flex items-center justify-between pt-2'>
+
+                {/* Ratings and Students */}
+                <div className="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400 mb-4">
                     <Ratings rating={item.ratings} />
-                    <h5 className={`text-black dark:text-[#fff] ${isProfile && "hidden 800px:inline"}`}>
+                    <span>
                         {item.purchased} Students
-                    </h5>
+                    </span>
                 </div>
-                <div className='w-full flex items-center justify-between pt-5'>
-                    <div className='flex'>
-                        <h3 className='text-black dark:text-[#fff]'>
-                            {item.price === 0 ? "Free" : item.price + "$"}
-                        </h3>
-                        <h5 className='pl-1 text-[14px] mt-[-5px] line-through opacity-80 text-black dark:text-[#fff]'>
-                            {item.estimatedPrice}$
-                        </h5>
+
+                {/* Price and Lectures */}
+                <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                        <span className="text-xl font-bold text-gray-800 dark:text-gray-100">
+                            {item.price === 0 ? "Free" : `$${item.price}`}
+                        </span>
+                        {item.estimatedPrice && item.price !== item.estimatedPrice && (
+                            <span className="line-through text-sm text-gray-500 dark:text-gray-400">
+                                ${item.estimatedPrice}
+                            </span>
+                        )}
                     </div>
-                    <div className='flex items-center pb-3 '>
-                        <AiOutlineUnorderedList size={20} fill='#fff' />
-                        <h5 className='pl-1 text-black dark:text-[#fff]'>
-                            {item.courseData?.length} Lectures
-                        </h5>
+                    <div className="flex items-center space-x-1 text-gray-600 dark:text-gray-400">
+                        <AiOutlineUnorderedList size={20} />
+                        <span>{item.courseData?.length} Lectures</span>
                     </div>
                 </div>
             </div>
         </Link>
-    )
-}
+    );
+};
 
-export default CourseCard
+export default CourseCard;

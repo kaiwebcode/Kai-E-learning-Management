@@ -1,47 +1,43 @@
-import { useGetAllCoursesQuery, useGetUsersAllCoursesQuery } from '@/redux/features/courses/coursesApi'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import { useGetUsersAllCoursesQuery } from '@/redux/features/courses/coursesApi';
 import CourseCard from '../Course/CourseCard';
 
+type Props = {};
 
-type Props = {}
-
-function Courses({ }: Props) {
+function Courses({}: Props) {
     const { data, isLoading } = useGetUsersAllCoursesQuery({});
-    const [courses, setCourses] = useState<any[]>([])
+    const [courses, setCourses] = useState<any[]>([]);
 
     useEffect(() => {
-        setCourses(data?.courses);
-    }, [data])
+        if (data?.courses) {
+            setCourses(data.courses);
+        }
+    }, [data]);
 
-    // console.log(data)
+    if (isLoading) {
+        return <div className="text-center mt-10">Loading courses...</div>;
+    }
+
     return (
-        <div>
-            <div className={`w-[90%] 800px:w-[80%] m-auto mt-10`}>
-                <h1 className='text-center text-[25px] leading-[35px] sm:text-3xl lg:text-4xl dark:text-white 800px:!leading-[60px] text-[#000] font-[700] tracking-tight'>
-                    Expand Your Career <s/>
-                    <span className='text-gradient'>
-                        Opportunity
-                    </span> <br />
-                     With Our Courses
-                </h1>
+        <div className="w-[90%] md:w-[80%] mx-auto mt-10">
+            <h1 className="text-center text-2xl sm:text-3xl lg:text-4xl font-bold dark:text-white text-gray-800 leading-tight mb-8">
+                Expand Your Career
                 <br />
-                <br />
-                <div className='grid grid-cols-1 gap-[20px] md:grid-cols-2 md:gap-[25px] lg:grid-cols-3 lg:gap-[25px] 1500px:grid-cols-4 1500px:gap-[35px] mb-12 border-0'>
-                    {courses &&
-                        courses.map((item: any, index: number) => (
-                            <CourseCard
-                                item={item}
-                                key={index}
-                            // setRoute={setRoute}
-                            // setOpen={setOpen} 
-                            />
-                        ))}
-                </div>
-
+                <span className="text-gradient">Opportunities</span> With Our Courses
+            </h1>
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
+                {courses.length > 0 ? (
+                    courses.map((item: any, index: number) => (
+                        <CourseCard key={index} item={item} />
+                    ))
+                ) : (
+                    <p className="col-span-full text-center text-gray-600 dark:text-gray-400">
+                        No courses available at the moment.
+                    </p>
+                )}
             </div>
-
         </div>
-    )
+    );
 }
 
-export default Courses
+export default Courses;
