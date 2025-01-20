@@ -5,31 +5,31 @@ type Props = {}
 
 const footer = ({ }: Props) => {
     return (
-        <footer>
-            <div className='border border-[#0000000e] dark:border-[#ffffff1e]' />
+        <footer className='bg-slate-800 pb-4'>
+            <div className='border border-[#0000000e] dark:border-[#ffffff1e] ' />
             <br />
             <div className='w-[95%] 800px:w-full 800px:max-w-[85%] mx-auto px-2 sm:px-6 lg:px-8'>
                 <div className='grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4'>
                     <div className='space-y-3'>
-                        <h3 className='text-[20px] font-[600] text-black dark:text-white'>About</h3>
+                        <h3 className='text-[20px] font-[600] text-white dark:text-white'>About</h3>
                         <ul className='space-y-4'>
                             <li>
                                 <Link href="/about"
-                                    className='text-base text-black dark:text-gray-300 dark:hover:text-white'
+                                    className='text-base text-white dark:text-gray-300 dark:hover:text-white'
                                 >
                                     Our Story
                                 </Link>
                             </li>
                             <li>
                                 <Link href="/privacy-policy"
-                                    className='text-base text-black dark:text-gray-300 dark:hover:text-white'
+                                    className='text-base text-white dark:text-gray-300 dark:hover:text-white'
                                 >
                                     Privacy Policy
                                 </Link>
                             </li>
                             <li>
                                 <Link href="/faq"
-                                    className='text-base text-black dark:text-gray-300 dark:hover:text-white'
+                                    className='text-base text-white dark:text-gray-300 dark:hover:text-white'
                                 >
                                     FAQ
                                 </Link>
@@ -37,27 +37,27 @@ const footer = ({ }: Props) => {
                         </ul>
                     </div>
                     <div className='space-y-3'>
-                        <h3 className='text-[20px] font-[600] text-black dark:text-white'>
+                        <h3 className='text-[20px] font-[600] text-white dark:text-white'>
                             Quick Links
                         </h3>
                         <ul className='space-y-3'>
                             <li>
                                 <Link href="/courses"
-                                    className='text-base text-black dark:text-gray-300 dark:hover:text-white'
+                                    className='text-base text-white dark:text-gray-300 dark:hover:text-white'
                                 >
                                     Courses
                                 </Link>
                             </li>
                             <li>
                                 <Link href="/profile"
-                                    className='text-base text-black dark:text-gray-300 dark:hover:text-white'
+                                    className='text-base text-white dark:text-gray-300 dark:hover:text-white'
                                 >
                                     My Account
                                 </Link>
                             </li>
                             <li>
                                 <Link href="/courses-dashboard"
-                                    className='text-base text-black dark:text-gray-300 dark:hover:text-white'
+                                    className='text-base text-white dark:text-gray-300 dark:hover:text-white'
                                 >
                                     Course Dashboard
                                 </Link>
@@ -65,13 +65,13 @@ const footer = ({ }: Props) => {
                         </ul>
                     </div>
                     <div className='space-y-3'>
-                        <h3 className='text-[20px] font-[600] text-black dark:text-white'>
+                        <h3 className='text-[20px] font-[600] text-white dark:text-white'>
                             Social Links
                         </h3>
                         <ul className='space-y-4'>
                             <li>
                                 <Link href="https://www.linkedin.com/in/kaif-qureshi-06b5782a7/"
-                                    className='text-base text-black dark:text-gray-300 dark:hover:text-white'
+                                    className='text-base text-white dark:text-gray-300 dark:hover:text-white'
                                 >
                                     Linkedin
                                 </Link>
@@ -79,14 +79,14 @@ const footer = ({ }: Props) => {
 
                             <li>
                                 <Link href="https://www.instagram.com/Kaif.__q/#"
-                                    className='text-base text-black dark:text-gray-300 dark:hover:text-white'
+                                    className='text-base text-white dark:text-gray-300 dark:hover:text-white'
                                 >
                                     Instagram
                                 </Link>
                             </li>
                             <li>
                                 <Link href="https://www.github.com/kaiwebcode"
-                                    className='text-base text-black dark:text-gray-300 dark:hover:text-white'
+                                    className='text-base text-white dark:text-gray-300 dark:hover:text-white'
                                 >
                                     github
                                 </Link>
@@ -94,23 +94,23 @@ const footer = ({ }: Props) => {
                         </ul>
                     </div>
                     <div>
-                        <h3 className='text-[20px] font-[600] text-black dark:text-white pb-2'>
+                        <h3 className='text-[20px] font-[600] text-white dark:text-white pb-2'>
                             Contact Info
                         </h3>
-                        <p className=' text-black dark:text-gray-300 dark:hover:text-white pb-2'>
+                        <p className=' text-white dark:text-gray-300 dark:hover:text-white pb-2'>
                             Call Us:- 911-911-911-911
                         </p>
-                        <p className=' text-black dark:text-gray-300 dark:hover:text-white pb-2'>
+                        <p className=' text-white dark:text-gray-300 dark:hover:text-white pb-2'>
                             Address: +91 India, Maharashtra, Mumbai
                         </p>
-                        <p className=' text-black dark:text-gray-300 dark:hover:text-white pb-2'>
+                        <p className=' text-white dark:text-gray-300 dark:hover:text-white pb-2'>
                             Mail Us:
                             kq97705@gmail.com
                         </p>
                     </div>
                 </div>
                 <br />
-                <p className='text-center text-black dark:text-white my-6'>
+                <p className='text-center text-white dark:text-white my-6'>
                     Copyright © 2023 Kai-Learning | All Rights Reserved
                 </p>
             </div>
