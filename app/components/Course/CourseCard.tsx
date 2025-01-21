@@ -11,7 +11,7 @@ type Props = {
 const CourseCard: FC<Props> = ({ item, isProfile }) => {
     return (
         <Link href={!isProfile ? `/course/${item._id}` : `course-access/${item._id}`} passHref>
-            <div className="w-full min-h-[40vh] min-w-[30vh] gap-36 bg-white dark:bg-gray-800 shadow-md hover:shadow-2xl transition-shadow rounded-lg p-3">
+            <div className="w-full min-h-[40vh] min-w-[30vh] gap-36 bg-white dark:bg-gray-800 shadow-md hover:shadow-2xl transition-shadow rounded-lg p-3 ">
                 {/* Course Thumbnail */}
                 <div className="w-full  overflow-hidden mb-4 mt-2">
                     <img
@@ -35,7 +35,7 @@ const CourseCard: FC<Props> = ({ item, isProfile }) => {
                 </div>
 
                 {/* Price and Lectures */}
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between pb-2">
                     <div className="flex items-center space-x-2">
                         <span className="text-xl font-bold text-gray-800 dark:text-gray-100">
                             {item.price === 0 ? "Free" : `$${item.price}`}

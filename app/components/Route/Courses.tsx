@@ -19,8 +19,8 @@ function Courses({}: Props) {
     }
 
     return (
-        <div className="w-[90%] md:w-[80%] mx-auto mt-10">
-            <h1 className="text-center text-2xl sm:text-3xl lg:text-4xl font-bold dark:text-white text-gray-800 leading-tight mb-8">
+        <div className="w-[90%] md:w-[80%] mx-auto mt-16">
+            <h1 className="text-center text-2xl sm:text-3xl lg:text-4xl font-bold dark:text-white text-gray-800 leading-tight my-8">
                 Expand Your Career
                 <br />
                 <span className="text-gradient">Opportunities</span> With Our Courses

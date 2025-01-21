@@ -26,6 +26,8 @@ const page: FC<Props> = (props) => {
           description="Elearning is a platform for students to learn and get help from teachers"
           keywords="Programing, MERN, Redux, Machine Learning "
         />
+        <div className="w-full sticky top-0 z-50 dark:bg-slate-900 bg-white shadow-xl">
+
         <Header
           open={open}
           setOpen={setOpen}
@@ -33,6 +35,7 @@ const page: FC<Props> = (props) => {
           setRoute={setRoute}
           route={route}
         />
+          </div>
         <Profile user={user} />
         <Footer />
       </Protected>

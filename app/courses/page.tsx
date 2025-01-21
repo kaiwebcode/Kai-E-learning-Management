@@ -56,13 +56,16 @@ const Page = (props: Props) => {
                 <Loader />
             ) : (
                 <>
-                    <Header
-                        activeItem={1}
-                        open={open}
-                        setOpen={setOpen}
-                        route={route}
-                        setRoute={setRoute}
-                    />
+                    <div className="w-full sticky top-0 z-50 dark:bg-slate-900 bg-white shadow-xl">
+
+                        <Header
+                            activeItem={1}
+                            open={open}
+                            setOpen={setOpen}
+                            route={route}
+                            setRoute={setRoute}
+                        />
+                    </div>
                     <div className="w-[90%] m-auto 800px:grid-cols-10 ">
                         <Heading
                             title="All courses - ELearning"

@@ -19,13 +19,16 @@ const Page = ({ }: Props) => {
                 description='Kai-Learning is a learning management system for helping programmers.'
                 keywords='programing, mern'
             />
+            <div className="w-full sticky top-0 z-50 dark:bg-slate-900 bg-white shadow-xl">
+
             <Header
                 open={open}
                 setOpen={setOpen}
                 activeItem={activeItem}
                 setRoute={setRoute}
                 route={route}
-            />
+                />
+                </div>
             <FAQ />
             <br />
             <br />
