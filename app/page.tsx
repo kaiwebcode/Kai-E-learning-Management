@@ -9,6 +9,7 @@ import Reviews from "./components/Route/Reviews"
 import FAQ from "./components/FAQ/FAQ"
 import Footer from "./components/Footer/footer"
 import CodeBlocks from "./components/Homepage/CodeBlocks";
+import CodeBlocks2 from "./components/Homepage/CodeBlocks2";
 
 interface Props {
 
@@ -59,7 +60,7 @@ const Home: FC<Props> = (props) => {
           codeblock={`<!DOCTYPE html>
             <html>
               <head>
-                <title>Logical Example</title>
+                <title>kai-Elearning</title>
                 <style>
                   body { font-family: Arial, sans-serif; background-color: #f4f4f4; }
                 </style>
@@ -74,6 +75,46 @@ const Home: FC<Props> = (props) => {
         />
       </div>
       <Courses />
+      <div className=" mx-3">
+        <CodeBlocks2
+          position="flex-col lg:flex-row items-center "
+          heading={
+            <h1 className="text-3xl lg:text-5xl font-bold text-center lg:text-left text-gray-800 dark:text-white">
+              Start coding in seconds
+            </h1>
+          }
+          subheading={
+            <p className="text-lg lg:text-xl text-center lg:text-left text-gray-600 dark:text-gray-300">
+              Go ahead, give it a try. Our hands-on learning environment means you'll be writing real code from your very first lesson.
+            </p>
+          }
+          ctabtn1={
+            <button className="px-6 py-3 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition duration-300">
+              Start Learning
+            </button>
+          }
+          ctabtn2={
+            <button className="px-6 py-3 bg-gray-200 text-gray-800 rounded-lg shadow-md hover:bg-gray-300 transition duration-300">
+              Read More
+            </button>
+          }
+          codeblock={`<!DOCTYPE html>
+            <html>
+              <head>
+                <title>Kai-Elaerning</title>
+                <style>
+                  body { font-family: Arial, sans-serif; background-color: #f4f4f4; }
+                </style>
+              </head>
+              <body>
+                <h1><a href="/">Welcome to My Website</a></h1>
+                <p>This is a simple HTML example with inline CSS.</p>
+              </body> </html>`}
+          backgroudGradient="bg-gradient-to-r from-blue-500 to-purple-600"
+          codeColor="text-white"
+
+        />
+      </div>
       <Reviews />
       <FAQ />
       <Footer />

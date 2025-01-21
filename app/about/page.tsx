@@ -21,14 +21,14 @@ const Page = ({ }: Props) => {
             />
             <div className="w-full sticky top-0 z-50 dark:bg-slate-900 bg-white shadow-xl">
 
-            <Header
-                open={open}
-                setOpen={setOpen}
-                activeItem={activeItem}
-                setRoute={setRoute}
-                route={route}
+                <Header
+                    open={open}
+                    setOpen={setOpen}
+                    activeItem={activeItem}
+                    setRoute={setRoute}
+                    route={route}
                 />
-                </div>
+            </div>
             <About />
             <br />
             <br />

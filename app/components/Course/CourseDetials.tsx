@@ -12,6 +12,7 @@ import CheckOutForm from "../Payment/CheckOutForm";
 import { useLoadUserQuery } from '@/redux/features/api/apiSlice';
 import Image from 'next/image';
 import { VscVerifiedFilled } from 'react-icons/vsc';
+import { redirect } from 'next/navigation';
 
 type Props = {
     data: any;
@@ -46,7 +47,7 @@ const CourseDetails = ({ data, stripePromise,
         if (user) {
             setOpen(true);
         } else {
-            setRoute("Login");
+            redirect("/login");
             openAuthModal(true);
         }
     };
