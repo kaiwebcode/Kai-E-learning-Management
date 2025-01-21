@@ -61,8 +61,7 @@ const Login: FC<Props> = ({ open, setOpen, activeItem, route, setRoute, refetch 
 
   return (
     <>
-      <Header
-       />
+      {/* <Header /> */}
       <div className="dark:bg-slate-800">
         <div className="flex flex-col md:flex-row w-full min-h-screen items-center justify-center bg-gray-900 p-4">
           <div className="w-full md:w-1/2 p-6">
