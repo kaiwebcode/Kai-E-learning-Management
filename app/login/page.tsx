@@ -18,12 +18,9 @@ import Student from "../../public/login.5eeb0b81544a40330d4b.webp";
 import Header from "../components/Header";
 
 type Props = {
-  open: boolean; // Required
-  setOpen: (open: boolean) => void; // Required
-  activeItem: string; // Required
-  route: string; // Required
+
   setRoute: (route: string) => void; // Required
-  refetch?: () => void; // Optional
+
 };
 
 const schema = Yup.object().shape({
@@ -33,7 +30,7 @@ const schema = Yup.object().shape({
   password: Yup.string().required("Please enter your password!").min(6),
 });
 
-const Login: FC<Props> = ({ open, setOpen, activeItem, route, setRoute, refetch }) => {
+const Login: FC<Props> = ({ setRoute }) => {
   const [show, setShow] = useState(false);
   const [login, { isSuccess, error }] = useLoginMutation();
   const formik = useFormik({
