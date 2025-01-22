@@ -25,7 +25,7 @@ const Signup: FC<Props> = ({ setRoute }) => {
 
   useEffect(() => {
     if (isSuccess) {
-      const message = data?.message || "Registration successful";
+      const message = data?.message || "Registration successfully";
       toast.success(message);
       setRoute("Verification");
     }
@@ -56,11 +56,11 @@ const Signup: FC<Props> = ({ setRoute }) => {
 
   return (
     <div className="w-full p-5">
-      <h1 className={`${styles.title}`}>Join to ELearning</h1>
+      <h1 className={`${styles.title}`}>Join to Kai-ELearning</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3 py-2">
           <label className={`${styles.label}`} htmlFor="email">
-            Enter your Name
+            Name
           </label>
           <input
             type="text"
@@ -68,7 +68,7 @@ const Signup: FC<Props> = ({ setRoute }) => {
             value={values.name}
             onChange={handleChange}
             id="name"
-            placeholder="johndoe"
+            placeholder="Enter your Name"
             className={`${errors.name && touched.name && "border-red-500"} ${
               styles.input
             }`}
@@ -78,7 +78,7 @@ const Signup: FC<Props> = ({ setRoute }) => {
           )}
         </div>
         <label className={`${styles.label}`} htmlFor="email">
-          Enter your Email
+         Email Address
         </label>
         <input
           type="email"
@@ -86,7 +86,7 @@ const Signup: FC<Props> = ({ setRoute }) => {
           value={values.email}
           onChange={handleChange}
           id="email"
-          placeholder="loginmail@gmail.com"
+          placeholder="Enter your Email"
           className={`${errors.email && touched.email && "border-red-500"} ${
             styles.input
           }`}
@@ -96,7 +96,7 @@ const Signup: FC<Props> = ({ setRoute }) => {
         )}
         <div className="w-full py-4 relative">
           <label className={`${styles.label}`} htmlFor="email">
-            Enter your password
+            Password
           </label>
           <input
             type={!show ? "password" : "text"}
@@ -104,7 +104,7 @@ const Signup: FC<Props> = ({ setRoute }) => {
             value={values.password}
             onChange={handleChange}
             id="password"
-            placeholder="password!@%"
+            placeholder="Enter your Password"
             className={`${
               errors.password && touched.password && "border-red-500"
             } ${styles.input}`}
@@ -133,12 +133,12 @@ const Signup: FC<Props> = ({ setRoute }) => {
       </form>
       <br />
       <h5>
-        Go back to{" "}
+        Already have an Account?
         <span
-          className="text-blue-500 cursor-pointer"
+          className="text-blue-500 cursor-pointer pl-1"
           onClick={() => setRoute("Login")}
         >
-          login!
+          Click here!
         </span>
       </h5>
     </div>

@@ -47,8 +47,9 @@ const CourseDetails = ({ data, stripePromise,
         if (user) {
             setOpen(true);
         } else {
-            redirect("/login");
+            setRoute("Login")
             openAuthModal(true);
+            // redirect("/login");
         }
     };
 

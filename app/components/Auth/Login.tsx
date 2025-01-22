@@ -12,6 +12,7 @@ import { useLoginMutation } from "@/redux/features/auth/authApi";
 import { toast } from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { signIn } from "next-auth/react";
+import { Button } from "@/components/ui/button";
 
 type Props = {
   setRoute: (route: string) => void;
@@ -59,7 +60,7 @@ const Login: FC<Props> = ({ setRoute, setOpen, refetch }) => {
       <form onSubmit={handleSubmit}>
         <div className="pt-8">
           <label className={`${styles.label}`} htmlFor="email">
-            Enter your Email
+            Email Address
           </label>
           <input
             type="email"
@@ -67,17 +68,16 @@ const Login: FC<Props> = ({ setRoute, setOpen, refetch }) => {
             value={values.email}
             onChange={handleChange}
             id="email"
-            placeholder="loginmail@gmail.com"
-            className={`${errors.email && touched.email && "border-red-500"} ${
-              styles.input
-            }`}
+            placeholder="Enter your Email"
+            className={`${errors.email && touched.email && "border-red-500"} ${styles.input
+              }`}
           />
           {errors.email && touched.email && (
             <span className="text-red-500 pt-2 block">{errors.email}</span>
           )}
           <div className="w-full mt-8 relative mb-1">
             <label className={`${styles.label}`} htmlFor="email">
-              Enter your password
+              Password
             </label>
             <input
               type={!show ? "password" : "text"}
@@ -85,10 +85,9 @@ const Login: FC<Props> = ({ setRoute, setOpen, refetch }) => {
               value={values.password}
               onChange={handleChange}
               id="password"
-              placeholder="password!@%"
-              className={`${
-                errors.password && touched.password && "border-red-500"
-              } ${styles.input}`}
+              placeholder="Enter your Password"
+              className={`${errors.password && touched.password && "border-red-500"
+                } ${styles.input}`}
             />
             {!show ? (
               <AiOutlineEyeInvisible
@@ -114,18 +113,24 @@ const Login: FC<Props> = ({ setRoute, setOpen, refetch }) => {
         </div>
       </form>
       <br />
-      <h5 className="flex items-center justify-center my-3">Or Join with</h5>
-      <div className="flex items-center justify-center my-3">
-        <FcGoogle
-          size={30}
-          className="cursor-pointer mr-2"
-          onClick={() => signIn("google")}
-        />
-        <AiFillGithub
-          size={30}
-          className="cursor-pointer ml-2"
-          onClick={() => signIn("github")}
-        />
+      <h5 className="flex items-center justify-center mb-3">Or Join with</h5>
+      <div className="flex items-center justify-center my-3 gap-5 pb-3">
+        <Button className="w-full dark:bg-white bg-slate-400"
+          onClick={() => signIn("google")}>
+          <FcGoogle
+            size={50}
+            className="cursor-pointer"
+
+          />
+        </Button>
+        <Button className="w-full dark:bg-white bg-slate-400"
+          onClick={() => signIn("github")}>
+          <AiFillGithub
+            size={50}
+            className="cursor-pointer"
+            onClick={() => signIn("github")}
+          />
+        </Button>
       </div>
       <h5>
         For the first time do sign up{" "}

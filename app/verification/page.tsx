@@ -6,8 +6,9 @@
 // import Profile from "../components/Profile/Profile"
 // import { useSelector } from "react-redux";
 // import Footer from '../components/Footer/footer'
-// import login from "./Login"
-// import Login from "./Login";
+// import verification from "./verification"
+// import Verification from "./verification";
+// // import Login from "./Login";
 
 // type Props = {};
 
@@ -20,9 +21,8 @@
 //   // console.log(user.name)
 
 //   return (  
-//     <div
-//     //  className="min-h-screen"
-//     >
+//     <div className="min-h-screen">
+   
 //         <Heading
 //           title={`${user.name}`}
 //           description="Elearning is a platform for students to learn and get help from teachers"
@@ -38,9 +38,8 @@
 //           route={route}
 //         />
 //           </div>
-//         <Login setRoute={setRoute}/>
-//        <Footer />
-    
+//         <Verification setRoute={setRoute} />
+//         <Footer />
 //     </div>
 //   );
 // };
@@ -53,7 +52,7 @@ type Props = {}
 
 function page({}: Props) {
   return (
-    <div>Login page</div>
+    <div>verification page</div>
   )
 }
 
