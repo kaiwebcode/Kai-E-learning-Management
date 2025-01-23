@@ -30,7 +30,6 @@ const About = ({ }: Props) => {
                             <Image src={BannerImage1} width={400} height={400} alt='BannerImage1' />
                             <Image src={BannerImage2} width={400} height={400} alt='BannerImage1' />
                             <Image src={BannerImage3} width={400} height={400} alt='BannerImage1' />
-
                         </div>
                     </div>
                 </section>
@@ -54,7 +53,7 @@ const About = ({ }: Props) => {
                             <div className='mt-24 flex lg:w-[50%] flex-col gap-12'>
                                 <h1 className='bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#FCB045] bg-clip-text text-5xl font-semibold text-transparent lg:w-[70%] '>Our Founding Story</h1>
 
-                                <p className='text-base font-medium text-richblack-300 lg:w-[95%]'>Our e-learning platform was born out of a shared vision and passion for transforming education. It all began with a group of educators, technologists, and lifelong learners who recognized the need for accessible, flexible, and high-quality learning opportunities in a rapidly evolving digital world.</p>
+                                <p className='text-base font-medium text-richblack-300 lg:w-[95%]'>Our Kai-Elearning platform was born out of a shared vision and passion for transforming education. It all began with a group of educators, technologists, and lifelong learners who recognized the need for accessible, flexible, and high-quality learning opportunities in a rapidly evolving digital world.</p>
 
                                 <p className='text-base font-medium text-richblack-300 lg:w-[95%]'>As experienced educators ourselves, we witnessed firsthand the limitations and challenges of traditional education systems. We believed that education should not be confined to the walls of a classroom or restricted by geographical boundaries. We envisioned a platform that could bridge these gaps and empower individuals from all walks of life to unlock their full potential.</p>
                             </div>
@@ -70,7 +69,7 @@ const About = ({ }: Props) => {
                             {/* left box */}
                             <div className='my-24 flex lg:w-[40%] flex-col gap-10'>
                                 <h1 className='bg-gradient-to-b from-[#FF512F] to-[#F09819] bg-clip-text text-4xl font-semibold text-transparent lg:w-[70%] '>Our Vision</h1>
-                                <p className='text-base font-medium text-richblack-300 lg:w-[95%]'>With this vision in mind, we set out on a journey to create an e-learning platform that would revolutionize the way people learn. Our team of dedicated experts worked tirelessly to develop a robust and intuitive platform that combines cutting-edge technology with engaging content, fostering a dynamic and interactive learning experience.</p>
+                                <p className='text-base font-medium text-richblack-300 lg:w-[95%]'>With this vision in mind, we set out on a journey to create an Kai-Elearning platform that would revolutionize the way people learn. Our team of dedicated experts worked tirelessly to develop a robust and intuitive platform that combines cutting-edge technology with engaging content, fostering a dynamic and interactive learning experience.</p>
                             </div>
 
                             {/* right box */}

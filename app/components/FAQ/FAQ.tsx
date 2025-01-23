@@ -23,12 +23,12 @@ function FAQ({ }: Props) {
     };
 
     return (
-        <div className='my-16'>
+        <div className='my-24'>
             <div className='w-[90%] 800px:w-[80%] m-auto'>
                 <h1 className={`${styles.title} 800px:text-[40px]`}>
                     Frequently Asked Questions
                 </h1>
-                <div className='mt-12'>
+                <div className='mt-8'>
                     <dl className='space-y-8'>
                         {questions.map((q) => (
                             <div 

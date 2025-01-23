@@ -11,6 +11,7 @@ import Footer from "./components/Footer/footer"
 import CodeBlocks from "./components/Homepage/CodeBlocks";
 import CodeBlocks2 from "./components/Homepage/CodeBlocks2";
 import RatingSlider from "./components/Review/RatingSlider";
+import InstructorSection from "./components/Homepage/InstructorSection";
 
 interface Props {
 
@@ -116,11 +117,12 @@ const Home: FC<Props> = (props) => {
 
         />
       </div>
-      <div className=' mb-16 mt-3'>
+      <div className=' mb-20 mt-32'>
         <h2 className='text-center text-2xl md:text-4xl font-semibold mt-8 text-richblack-5 mb-5'>Reviews from other learners</h2>
         <RatingSlider />
       </div>
-      <Reviews />
+      {/* <Reviews /> */}
+      <InstructorSection />
       <FAQ />
       <Footer />
     </div>
