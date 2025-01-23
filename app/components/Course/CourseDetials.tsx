@@ -122,14 +122,14 @@ const CourseDetails = ({ data, stripePromise,
                         <br />
                         <br />
                         <div className='w-full border p-3 md:p-4 lg:p-6 border-solid'>
-                                <h1 className='text-[40px] font-bold text-black dark:text-white'>Reviews</h1>
+                            <h1 className='text-[40px] font-bold text-black dark:text-white'>Reviews</h1>
                             <div className='800px:flex items-center'>
                                 <Ratings rating={data?.ratings} />
                                 <div className='mb-2 800px:mb-[unset]' />
                                 <h5 className='text-[25px] text-black dark:text-white'>
                                     {/* {Number.isInteger(data?.ratings) */}
-                                        {/* // ? data?.ratings.toFixed(1) */}
-                                        {/* // : data?.ratings.toFixed(2)}{""} */}
+                                    {/* // ? data?.ratings.toFixed(1) */}
+                                    {/* // : data?.ratings.toFixed(2)}{""} */}
                                     Course Rating * {data?.reviews?.length}
 
                                 </h5>
@@ -139,6 +139,7 @@ const CourseDetails = ({ data, stripePromise,
                                 data?.reviews && [...data.reviews].reverse()
                             ).map((item: any, index: number) => (
                                 <div className='w-full pb-4' key={index}>
+                                    <div className='w-full h-[1px] bg-[#ffffff3b] my-4'></div>
                                     <div className='flex'>
                                         <div className='w-[50px] h-[50px]'>
                                             <div className='w-[50px] h-[50px] bg-slate-600 rounded-[50px] flex items-center justify-center cursor-pointer'>
@@ -195,7 +196,7 @@ const CourseDetails = ({ data, stripePromise,
                                         </div>
 
                                     ))}
-                                    <div className='w-full h-[1px] bg-[#ffffff3b] my-4'></div>
+                                    
                                 </div>
 
                             ))}

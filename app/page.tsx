@@ -10,6 +10,7 @@ import FAQ from "./components/FAQ/FAQ"
 import Footer from "./components/Footer/footer"
 import CodeBlocks from "./components/Homepage/CodeBlocks";
 import CodeBlocks2 from "./components/Homepage/CodeBlocks2";
+import RatingSlider from "./components/Review/RatingSlider";
 
 interface Props {
 
@@ -114,6 +115,10 @@ const Home: FC<Props> = (props) => {
           codeColor="text-white"
 
         />
+      </div>
+      <div className=' mb-16 mt-3'>
+        <h2 className='text-center text-2xl md:text-4xl font-semibold mt-8 text-richblack-5 mb-5'>Reviews from other learners</h2>
+        <RatingSlider />
       </div>
       <Reviews />
       <FAQ />
