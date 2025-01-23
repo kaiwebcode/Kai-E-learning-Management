@@ -20,7 +20,6 @@ const Page = ({ }: Props) => {
                 keywords='programing, mern'
             />
             <div className="w-full sticky top-0 z-50 dark:bg-slate-900 bg-white shadow-xl">
-
             <Header
                 open={open}
                 setOpen={setOpen}
