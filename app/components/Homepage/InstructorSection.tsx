@@ -10,13 +10,14 @@ const InstructorSection = () => {
     <div className="mt-32 px-4 lg:mx-20 md:flex-col md:px-12">
       <div className="flex flex-col md:flex-row gap-16 items-center justify-center">
         {/* Image Section */}
-        <div className="w-full md:w-[50%] md:mr-4">
+        <div className="w-full md:w-[50%] md:mr-4 rounded-lg
+            shadow-[0_0_30px_0] shadow-[#67d4fc] text-white overflow-hidden lg:w-[500px] ">
           <Image
             src={Instructor}
             alt="Instructor"
             className="
             rounded-lg"
-            // shadow-white shadow-[-1.3rem_-1rem_0_0] 
+            // shadow-white shadow-[-0.5rem_-0.5rem_0_0]
           />
         </div>
 
