@@ -5,8 +5,8 @@ type Props = {}
 
 const footer = ({ }: Props) => {
     return (
-        <footer className='bg-slate-800 pb-4'>
-            <div className='border border-[#0000000e] dark:border-[#ffffff1e] ' />
+        <footer className='bg-slate-800 pb-4 border border-[#0000000e] dark:border-[#ffffff1e] mt-6'>
+            <div className='pt-11' />
             <br />
             <div className='w-[95%] 800px:w-full 800px:max-w-[85%] mx-auto px-2 sm:px-6 lg:px-8'>
                 <div className='grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4'>
@@ -110,6 +110,7 @@ const footer = ({ }: Props) => {
                     </div>
                 </div>
                 <br />
+                <div className='w-full h-[1px] bg-[#ffffff3b] my-4'></div>
                 <p className='text-center text-white dark:text-white my-6'>
                     Copyright © 2023 Kai-Learning | All Rights Reserved
                 </p>

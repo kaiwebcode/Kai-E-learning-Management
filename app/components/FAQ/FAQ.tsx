@@ -5,7 +5,7 @@ import { HiMinus, HiPlus } from 'react-icons/hi';
 
 type Props = {};
 
-const FAQ = ({}: Props) => {
+const FAQ = ({ }: Props) => {
     const { data, isLoading } = useGetHeroDataQuery('FAQ', {
         refetchOnMountOrArgChange: true,
     });
@@ -25,7 +25,7 @@ const FAQ = ({}: Props) => {
     };
 
     return (
-        <div className=" mx-3 lg:mx-0   py-12">
+        <div className=" mx-3 lg:mx-0 py-20">
             <div className="w-[100%] 800px:w-[80%] max-w-4xl mx-auto ">
                 <h1 className={`${styles.title} text-center text-4xl 800px:text-4xl font-bold mb-8`}>
                     Frequently Asked Questions
@@ -40,9 +40,8 @@ const FAQ = ({}: Props) => {
                             questions.map((q) => (
                                 <div
                                     key={q._id}
-                                    className={`${
-                                        q._id !== questions[0]?._id ? 'border-t' : ''
-                                    } border-gray-200 dark:border-gray-700 pt-4`}
+                                    className={`${q._id !== questions[0]?._id ? 'border-t' : ''
+                                        } border-gray-200 dark:border-gray-700 pt-4`}
                                 >
                                     <dt className="text-lg">
                                         <button

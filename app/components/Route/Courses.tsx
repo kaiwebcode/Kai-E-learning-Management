@@ -28,7 +28,12 @@ function Courses({}: Props) {
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
                 {courses.length > 0 ? (
                     courses.map((item: any, index: number) => (
-                        <CourseCard key={index} item={item} />
+                        <div
+                        key={index}
+                        className="relative transform transition duration-500 hover:scale-105"
+                      >
+                        <CourseCard item={item} />
+                      </div>
                     ))
                 ) : (
                     <p className="col-span-full text-center text-gray-600 dark:text-gray-400">

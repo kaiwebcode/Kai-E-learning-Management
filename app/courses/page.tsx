@@ -56,7 +56,7 @@ const Page = (props: Props) => {
                 <Loader />
             ) : (
                 <>
-                    <div className="w-full sticky top-0 z-50 dark:bg-slate-900 bg-white shadow-xl">
+                    <div className="w-full sticky top-0 z-50 dark:bg-slate-900 bg-white shadow-[0_0_20px_0] shadow-[#67befca7]">
 
                         <Header
                             activeItem={1}
@@ -66,7 +66,7 @@ const Page = (props: Props) => {
                             setRoute={setRoute}
                         />
                     </div>
-                    <div className="w-[90%] m-auto 800px:grid-cols-10 ">
+                    <div className="w-[90%] m-auto 800px:grid-cols-10 mt-4">
                         <Heading
                             title="All courses - ELearning"
                             description="Elearning is a programming community."
@@ -74,7 +74,7 @@ const Page = (props: Props) => {
                         />
                         <br />
                         {/* Categories */}
-                        <div className="w-full flex items-center flex-wrap">
+                        <div className="w-full flex items-center flex-wrap ">
                             <div
                                 className={`h-[35px] ${category === "All" ? "bg-[crimson]" : "bg-[#5050cb]"
                                     } m-3 px-3 rounded-[30px] flex items-center justify-center cursor-pointer`}
@@ -113,7 +113,12 @@ const Page = (props: Props) => {
                         <div className="grid grid-cols-1 gap-[20px] md:grid-cols-2 md:gap-[25px] lg:grid-cols-3 lg:gap-[25px] 1500px:grid-cols-4 1500px:gap-[35px] mb-10 border-0 h-screen">
                             {courses &&
                                 courses.map((item: any, index: number) => (
+                                    <div
+                                    key={index}
+                                    className="relative transform transition duration-500 hover:scale-105"
+                                  >
                                     <CourseCard item={item} key={index} />
+                                  </div>
                                 ))}
                         </div>
                     </div>

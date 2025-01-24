@@ -27,7 +27,7 @@ const Hero: FC<Props> = (props) => {
         isLoading ? (
           <Loader />
         ) : (
-          <div className="flex flex-col 1000px:flex-row items-center justify-between h-screen px-6 1000px:px-10 relative overflow-hidden pb-20 pt-4">
+          <div className="flex flex-col 1000px:flex-row items-center justify-between h-screen px-6 1000px:px-10 relative overflow-hidden pb-20 mt-11 lg:mt-0 lg:pt-4">
             {/* Left Side: Image with Animated Circle */}
             <div className="relative flex justify-center items-center w-full 1000px:w-1/2">
               {/* Main Circle */}
