@@ -115,7 +115,7 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
                 href={"/"}
                 className={`text-[30px] font-Poppins font-[500] text-black dark:text-white`}
               >
-                Kai-ELearning
+                KAI-ELearning
               </Link>
             </div>
             <div className="flex items-center">

@@ -26,8 +26,8 @@ const page: FC<Props> = (props) => {
           description="Elearning is a platform for students to learn and get help from teachers"
           keywords="Programing, MERN, Redux, Machine Learning "
         />
-        <div className="w-full sticky top-0 z-50 dark:bg-slate-900 bg-white shadow-xl">
-
+        
+        <div className="w-full sticky top-0 z-50 dark:bg-slate-900 bg-white shadow-[0_0_20px_0] shadow-[#67befca7]">
         <Header
           open={open}
           setOpen={setOpen}
