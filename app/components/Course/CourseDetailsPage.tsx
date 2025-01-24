@@ -60,12 +60,15 @@ const CourseDetailsPage = ({ id }: Props) => {
                             description={"Elearning is a programming community which is developed by KAI for helping programmers"}
                             keywords={data?.course?.tags}
                         />
+                        <div className="w-full sticky top-0 z-50 dark:bg-slate-900 bg-white shadow-[0_0_20px_0] shadow-[#67befca7]">
+
                         <Header
                             route={route}
                             setRoute={setRoute}
                             open={open}
                             setOpen={setOpen}
                             activeItem={1} />
+                            </div>
                         {/* <div className="my-20 grid items-center justify-center ">
                             <h1>Course Details Page</h1>
                             <p>Course ID: {id}</p>

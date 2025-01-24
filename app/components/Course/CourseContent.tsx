@@ -25,14 +25,17 @@ const CourseContent = ({ id, user }: Props) => {
                     <Loader />
                 ) : (
                     <>
+                    <div className="w-full sticky top-0 z-50 dark:bg-slate-900 bg-white shadow-[0_0_20px_0] shadow-[#67befca7]">
+
                         <Header activeItem={1} open={open} setOpen={setOpen} route={route} setRoute={setRoute} />
+                    </div>
                         <div className="w-full grid 800px:grid-cols-10">
                             <Heading
                                 title={data[activeVideo]?.title}
                                 description="anything"
                                 keywords={data[activeVideo]?.tags}
                             />
-                            <div className="col-span-3  lg:col-span-7">
+                            <div className="col-span-3  lg:col-span-7 mt-4">
                                 <CourseContentMedia
                                     data={data}
                                     id={id}
@@ -42,7 +45,7 @@ const CourseContent = ({ id, user }: Props) => {
                                     refetch={refetch}
                                 />
                             </div>
-                            <div className="pl-12 lg:pl-0 md:pl-12 col-span-3 mb-6 lg:mb-0 md:mb-6">
+                            <div className="pl-12 lg:pl-0 md:pl-12 col-span-3 my-6 lg:mb-0 md:mb-6">
                                 <CourseContentList
                                     setActiveVideo={setActiveVideo}
                                     data={data}

@@ -21,7 +21,7 @@ const footer = ({ }: Props) => {
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/privacy-policy"
+                                <Link href="/policy"
                                     className='text-base text-white dark:text-gray-300 dark:hover:text-white'
                                 >
                                     Privacy Policy
@@ -56,10 +56,10 @@ const footer = ({ }: Props) => {
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/courses-dashboard"
+                                <Link href="/profile"
                                     className='text-base text-white dark:text-gray-300 dark:hover:text-white'
                                 >
-                                    Course Dashboard
+                                    Enrolled Courses
                                 </Link>
                             </li>
                         </ul>
@@ -112,7 +112,7 @@ const footer = ({ }: Props) => {
                 <br />
                 <div className='w-full h-[1px] bg-[#ffffff3b] my-4'></div>
                 <p className='text-center text-white dark:text-white my-6'>
-                    Copyright © 2023 Kai-Learning | All Rights Reserved
+                    Copyright © 2023 Kai-ELearning | All Rights Reserved
                 </p>
             </div>
         </footer>

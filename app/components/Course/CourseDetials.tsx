@@ -206,7 +206,7 @@ const CourseDetails = ({ data, stripePromise,
                     </div>
                     {/* Course Video */}
                     <div className='w-full 800px:w-[35%] relative'>
-                        <div className='sticky top-[100px] left-0 z-50 w-full'>
+                        <div className='sticky top-[100px] left-0 z-30 w-full'>
                             <CoursePlayer
                                 videoUrl={data?.demoUrl}
                                 title={data?.title} />
