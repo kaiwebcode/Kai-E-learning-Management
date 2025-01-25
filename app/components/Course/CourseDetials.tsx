@@ -67,7 +67,7 @@ const CourseDetails = ({ data, stripePromise,
         <div>
             <div className="w-[93%] 800px:w-[90%] m-auto py-12">
                 <div className="w-full flex flex-col-reverse 800px:flex-row">
-                    <div className="w-full 800px:w-[65%] 800px:pr-5 mt-2">
+                    <div className="w-full 800px:w-[65%] 800px:pr-5 lg:mt-2 mt-4">
                         <h1 className="lg:text-[30px] text-[25px] font-bold text-black dark:text-white">
                             {data.name}
                         </h1>
@@ -256,8 +256,8 @@ const CourseDetails = ({ data, stripePromise,
                                 <p className="text-black dark:text-white">• Premium Support</p>
 
                             </div>
-                                <div className='flex items-center justify-center mt-4 cursor-pointer'>
-                                    <Share className=' text-red-500' /> <p onClick={copyUrl} className='text-red-500 font-semibold lg:text-xl pl-1'>Share</p>
+                                <div className='flex items-center justify-center mt-4 mb-1 cursor-pointer'>
+                                    <Share className='text-red-500' /> <p onClick={copyUrl} className='text-red-500 font-semibold lg:text-xl pl-1'>Share</p>
                                 </div>
                         </div>
                     </div>
