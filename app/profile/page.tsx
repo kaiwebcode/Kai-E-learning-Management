@@ -27,7 +27,7 @@ const page: FC<Props> = (props) => {
           keywords="Programing, MERN, Redux, Machine Learning "
         />
         
-        <div className="w-full sticky top-0 z-50 dark:bg-slate-900 bg-white shadow-[0_0_20px_0] shadow-[#67befca7]">
+        <div className="w-full sticky top-0 z-50 dark:bg-slate-900 bg-white shadow-[0_0_30px_0] shadow-[#67befca7]">
         <Header
           open={open}
           setOpen={setOpen}

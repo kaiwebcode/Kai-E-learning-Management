@@ -60,7 +60,7 @@ const CourseDetailsPage = ({ id }: Props) => {
                             description={"Elearning is a programming community which is developed by KAI for helping programmers"}
                             keywords={data?.course?.tags}
                         />
-                        <div className="w-full sticky top-0 z-50 dark:bg-slate-900 bg-white shadow-[0_0_20px_0] shadow-[#67befca7]">
+                        <div className="w-full sticky top-0 z-50 dark:bg-slate-900 bg-white shadow-[0_0_30px_0] shadow-[#67befca7]">
 
                         <Header
                             route={route}

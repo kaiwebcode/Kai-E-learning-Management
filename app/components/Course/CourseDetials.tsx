@@ -13,6 +13,8 @@ import { useLoadUserQuery } from '@/redux/features/api/apiSlice';
 import Image from 'next/image';
 import { VscVerifiedFilled } from 'react-icons/vsc';
 import { redirect } from 'next/navigation';
+import { Share } from '@mui/icons-material';
+import toast from 'react-hot-toast';
 
 type Props = {
     data: any;
@@ -53,12 +55,20 @@ const CourseDetails = ({ data, stripePromise,
         }
     };
 
+    const copyUrl = () => {
+        const currentUrl = window.location.href;
+        navigator.clipboard.writeText(currentUrl).then(() => {
+            toast.success("URL link copied.");
+        });
+        // console.log(window)
+    };
+
     return (
         <div>
-            <div className="w-[90%] 800px:w-[90%] m-auto py-5">
+            <div className="w-[93%] 800px:w-[90%] m-auto py-12">
                 <div className="w-full flex flex-col-reverse 800px:flex-row">
-                    <div className="w-full 800px:w-[65%] 800px:pr-5">
-                        <h1 className="text-[25px] font-[600] text-black dark:text-white">
+                    <div className="w-full 800px:w-[65%] 800px:pr-5 mt-2">
+                        <h1 className="lg:text-[30px] text-[25px] font-bold text-black dark:text-white">
                             {data.name}
                         </h1>
                         <div className="flex items-center justify-between pt-3">
@@ -73,6 +83,8 @@ const CourseDetails = ({ data, stripePromise,
                             </h5>
                         </div>
                         <br />
+                        <br />
+                        {/* <div className='border border-slate-600 rounded-md p-5'> */}
                         <h1 className='text-[25px] font-[600] text-black dark:text-white'>
                             What you will learn from this course?
                         </h1>
@@ -80,13 +92,13 @@ const CourseDetails = ({ data, stripePromise,
                             {data.benefits?.map((item: any, index: number) => (
                                 <div className='w-full flex 800px:items-center py-2' key={index}>
                                     <div className='w-[15px] mr-1'>
-                                        <IoCheckmarkDoneOutline size={20} className='text-black dark:text-white' />
+                                        <IoCheckmarkDoneOutline size={20} className='text-black dark:text-blue-400' />
                                     </div>
                                     <p className='pl-2 text-black dark:text-white'>{item.title}</p>
                                 </div>
                             ))}
                             <br />
-                            <br />
+
                         </div>
                         <h1 className='text-[25px] font-[600] text-black dark:text-white'>
                             What are the prerequisites for starting this course?
@@ -94,15 +106,16 @@ const CourseDetails = ({ data, stripePromise,
                         {data.prerequisites?.map((item: any, index: number) => (
                             <div className='w-full flex 800px:items-center py-2' key={index}>
                                 <div className='w-[15px] mr-1'>
-                                    <IoCheckmarkDoneOutline size={20} className='text-black dark:text-white' />
+                                    <IoCheckmarkDoneOutline size={20} className='text-black dark:text-blue-400' />
                                 </div>
                                 <p className='pl-2 text-black dark:text-white'>{item.title}</p>
                             </div>
                         ))}
+                        {/* </div> */}
                         <br />
                         <br />
-                        <div className='border border-white px-6 py-3'>
-                            <h1 className='text-[25px] font-[600] text-black dark:text-white'>
+                        <div className='border border-slate-600 rounded-md p-5'>
+                            <h1 className='text-[30px] font-bold text-black dark:text-white'>
                                 Course Overview
                             </h1>
                             {/* Course content list */}
@@ -121,7 +134,7 @@ const CourseDetails = ({ data, stripePromise,
                         </div>
                         <br />
                         <br />
-                        <div className='w-full border p-3 md:p-4 lg:p-6 border-solid'>
+                        <div className='w-full border border-slate-600 rounded-md p-3 md:p-4 lg:p-6 border-solid'>
                             <h1 className='text-[40px] font-bold text-black dark:text-white'>Reviews</h1>
                             <div className='800px:flex items-center'>
                                 <Ratings rating={data?.ratings} />
@@ -138,7 +151,7 @@ const CourseDetails = ({ data, stripePromise,
                             {(
                                 data?.reviews && [...data.reviews].reverse()
                             ).map((item: any, index: number) => (
-                                <div className='w-full pb-4' key={index}>
+                                <div className='w-full pb-2' key={index}>
                                     <div className='w-full h-[1px] bg-[#ffffff3b] my-4'></div>
                                     <div className='flex'>
                                         <div className='w-[50px] h-[50px]'>
@@ -169,7 +182,7 @@ const CourseDetails = ({ data, stripePromise,
 
                                     </div>
                                     {item.commentReplies.map((i: any, index: number) => (
-                                        <div className="w-full flex 800px:ml-16 my-5" key={index}>
+                                        <div className="w-full flex 800px:ml-16 mt-5" key={index}>
                                             <div className="w-[50px] h-[50px]">
                                                 <Image
                                                     src={
@@ -196,7 +209,7 @@ const CourseDetails = ({ data, stripePromise,
                                         </div>
 
                                     ))}
-                                    
+
                                 </div>
 
                             ))}
@@ -205,45 +218,47 @@ const CourseDetails = ({ data, stripePromise,
 
                     </div>
                     {/* Course Video */}
-                    <div className='w-full 800px:w-[35%] relative'>
-                        <div className='sticky top-[100px] left-0 z-30 w-full'>
-                            <CoursePlayer
-                                videoUrl={data?.demoUrl}
-                                title={data?.title} />
-                            <div className='flex items-center'>
-                                <h1 className='pt-5 text-[25px] text-black dark:text-white'>
-                                    {data.price === 0 ? "Free" : data.price + "$"}
+                    <div className="w-full 800px:w-[35%] relative">
+                        <div className="sticky top-[100px] left-0 bg-gray-100 dark:bg-gray-800 lg:p-5 p-3  rounded-lg shadow-lg">
+                            <CoursePlayer videoUrl={data?.demoUrl} title={data?.title} />
+                            <div className="flex items-center mt-4">
+                                <h1 className="text-[25px] font-bold text-black dark:text-white">
+                                    {data.price === 0 ? 'Free' : `$${data.price}`}
                                 </h1>
-                                <h6 className='pl-1 text-[20px] mt-2 line-through opacity-80 text-black dark:text-white'>
+                                <h6 className="ml-1 text-[20px] mb-3 line-through text-gray-500">
                                     {data.estimatedPrice}$
                                 </h6>
-                                <h4 className='pl-5 pt-4 text-black dark:text-white'>
+                                <h4 className="ml-5  text-[20px] font-semibold text-green-500">
                                     {discountPercentangePrice}% OFF
                                 </h4>
                             </div>
-                            <div className='flex items-center'>
+                            <div className="mt-4">
                                 {isPurchased ? (
                                     <Link
-                                        className={`${styles.button} !w-[180px] my-3 cursor-pointer !bg-[crimson]`}
-                                        href={`/course-access/${data._id}`}>
+                                        className={`${styles.button} bg-red-500`}
+                                        href={`/course-access/${data._id}`}
+                                    >
                                         Enter to Course
                                     </Link>
                                 ) : (
-                                    <div
-                                        className={`${styles.button} !w-[180px] my-3 cursor-pointer !bg-[crimson]`}
+                                    <button
+                                        className={`${styles.button} bg-red-500`}
                                         onClick={handleOrder}
                                     >
-                                        Buy Now {data.price}$
-                                    </div>
+                                        Buy Now ${data.price}
+                                    </button>
                                 )}
                             </div>
-                            <br />
-                            <div className='pb-3'>
-                                <p className='pb-1 text-black dark:text-white'>• Source code include</p>
-                                <p className='pb-1 text-black dark:text-white'>• Full lifetime access</p>
-                                <p className='pb-1 text-black dark:text-white'>• Certificate of completion</p>
-                                <p className='pb-1 800px:pb-1 text-black dark:text-white'>• Premium Support</p>
+                            <div className="mt-6 space-y-2">
+                                <p className="text-black dark:text-white">• Source code included</p>
+                                <p className="text-black dark:text-white">• Lifetime access</p>
+                                <p className="text-black dark:text-white">• Certificate of completion</p>
+                                <p className="text-black dark:text-white">• Premium Support</p>
+
                             </div>
+                                <div className='flex items-center justify-center mt-4 cursor-pointer'>
+                                    <Share className=' text-red-500' /> <p onClick={copyUrl} className='text-red-500 font-semibold lg:text-xl pl-1'>Share</p>
+                                </div>
                         </div>
                     </div>
                 </div>

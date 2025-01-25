@@ -16,7 +16,7 @@ const CoursePlayer: FC<Props> = ({ videoUrl, title }) => {
     axios
       // When you push the code and deploy in guthub use this url and then push
       // https://kai-e-learning-management-backend.onrender.com/api/v1/getVdoCipherOTP
-      .post("https://kai-e-learning-management-backend.onrender.com/api/v1/getVdoCipherOTP", {
+      .post(" https://kai-e-learning-management-backend.onrender.com/api/v1/getVdoCipherOTP", {
         videoId: videoUrl,
       })
       .then((res) => {
@@ -30,7 +30,7 @@ const CoursePlayer: FC<Props> = ({ videoUrl, title }) => {
   return (
     <div>
       <h1 className="text-2xl font-semibold mb-4 dark:text-gray-200 text-black">{title}</h1>
-      <div className="flex flex-col items-center justify-center p-1 bg-gray-500 rounded-lg shadow-md">
+      <div className="flex flex-col items-center justify-center p-0.5 bg-gray-500 rounded-lg ">
         <div
           style={{
             paddingTop: "56.25%", // 16:9 aspect ratio
@@ -38,7 +38,7 @@ const CoursePlayer: FC<Props> = ({ videoUrl, title }) => {
             width: "100%",
             maxWidth: "1000px",
           }}
-          className="rounded-lg overflow-hidden"
+          className="rounded-lg overflow-hidden shadow-2xl"
         >
           {videoData.otp && videoData.playbackInfo !== "" ? (
             <iframe
