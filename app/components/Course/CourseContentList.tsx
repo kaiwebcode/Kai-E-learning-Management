@@ -54,10 +54,10 @@ const CourseContentList: FC<Props> = ({ data, activeVideo, setActiveVideo, isDem
         return (
           <div
             key={section}
-            className={`${!isDemo && "border-b border-gray-200 dark:border-gray-600 pb-4"}`}
+            className={`${!isDemo && " mb-6 dark:border-gray-600 lg:pb-8 border md:p-6 p-4 border-slate-600 rounded-md lg:px-8"}`}
           >
             {/* Section Header */}
-            <div className="flex justify-between items-center mt-6">
+            <div className="flex justify-between items-center mt-2">
               <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100">{section}</h2>
               <button
                 onClick={() => toggleSection(section)}
@@ -84,7 +84,7 @@ const CourseContentList: FC<Props> = ({ data, activeVideo, setActiveVideo, isDem
                   return (
                     <div
                       key={video._id}
-                      className={`p-4 rounded-lg cursor-pointer transition-all ${
+                      className={`p-4 rounded-lg cursor-pointer transition-all border border-slate-600  ${
                         isActive
                           ? "bg-blue-100 dark:bg-slate-800"
                           : "hover:bg-gray-100 dark:hover:bg-gray-800"

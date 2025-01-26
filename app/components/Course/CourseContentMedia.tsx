@@ -413,16 +413,16 @@ const CourseContentMedia = ({ data, id, user, activeVideo, setActiveVideo, refet
                                         </div>
                                         {user.role === "admin" && item.commentReplies.length === 0 && (
                                             <div className='mb-2'>
-                                            <span
-                                                className={`${styles.label} !ml-10 cursor-pointer`}
-                                                onClick={() => {
-                                                    setIsReviewReply(true);
-                                                    setReviewId(item._id);
-                                                }}
+                                                <span
+                                                    className={`${styles.label} !ml-10 cursor-pointer`}
+                                                    onClick={() => {
+                                                        setIsReviewReply(true);
+                                                        setReviewId(item._id);
+                                                    }}
                                                 >
-                                                Add Reply
-                                            </span>
-                                                </div>
+                                                    Add Reply
+                                                </span>
+                                            </div>
                                         )}
 
                                         {isReviewReply && reviewId === item?._id

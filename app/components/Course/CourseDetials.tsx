@@ -15,6 +15,7 @@ import { VscVerifiedFilled } from 'react-icons/vsc';
 import { redirect } from 'next/navigation';
 import { Share } from '@mui/icons-material';
 import toast from 'react-hot-toast';
+import { Button } from '@/components/ui/button';
 
 type Props = {
     data: any;
@@ -65,7 +66,7 @@ const CourseDetails = ({ data, stripePromise,
 
     return (
         <div>
-            <div className="w-[93%] 800px:w-[90%] m-auto py-12">
+            <div className="w-[93%] 800px:w-[90%] m-auto py-8">
                 <div className="w-full flex flex-col-reverse 800px:flex-row">
                     <div className="w-full 800px:w-[65%] 800px:pr-5 lg:mt-2 mt-4">
                         <h1 className="lg:text-[30px] text-[25px] font-bold text-black dark:text-white">
@@ -219,7 +220,7 @@ const CourseDetails = ({ data, stripePromise,
                     </div>
                     {/* Course Video */}
                     <div className="w-full 800px:w-[35%] relative">
-                        <div className="sticky top-[100px] left-0 bg-gray-100 dark:bg-gray-800 lg:p-5 p-3  rounded-lg shadow-lg">
+                        <div className="sticky top-[100px] left-0 bg-gray-100 dark:bg-gray-800 lg:p-5 p-3  rounded-lg shadow-xl">
                             <CoursePlayer videoUrl={data?.demoUrl} title={data?.title} />
                             <div className="flex items-center mt-4">
                                 <h1 className="text-[25px] font-bold text-black dark:text-white">
@@ -256,9 +257,11 @@ const CourseDetails = ({ data, stripePromise,
                                 <p className="text-black dark:text-white">• Premium Support</p>
 
                             </div>
-                                <div className='flex items-center justify-center mt-4 mb-1 cursor-pointer'>
-                                    <Share className='text-red-500' /> <p onClick={copyUrl} className='text-red-500 font-semibold lg:text-xl pl-1'>Share</p>
-                                </div>
+                            <div className='flex items-center justify-center mt-4 mb-1'>
+                                <button className='flex items-center justify-center cursor-pointer bg-transparent' onClick={copyUrl}>
+                                    <Share className='text-red-500' /> <p className='text-red-500 font-semibold lg:text-xl pl-1'>Share</p>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
