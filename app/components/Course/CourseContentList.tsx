@@ -54,10 +54,10 @@ const CourseContentList: FC<Props> = ({ data, activeVideo, setActiveVideo, isDem
         return (
           <div
             key={section}
-            className={`${!isDemo && " mb-6 dark:border-gray-600 lg:pb-8 border md:p-6 p-4 border-slate-600 rounded-md lg:px-8"}`}
+            className={`${!isDemo && " my-6 dark:border-gray-600 lg:pb-8 border md:p-6 p-5 border-slate-600 rounded-md"}`}
           >
             {/* Section Header */}
-            <div className="flex justify-between items-center mt-2">
+            <div className="flex justify-between items-center mt-1 lg:mt-4">
               <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100">{section}</h2>
               <button
                 onClick={() => toggleSection(section)}

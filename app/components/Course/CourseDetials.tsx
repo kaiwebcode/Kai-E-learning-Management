@@ -258,9 +258,9 @@ const CourseDetails = ({ data, stripePromise,
 
                             </div>
                             <div className='flex items-center justify-center mt-4 mb-1'>
-                                <button className='flex items-center justify-center cursor-pointer bg-transparent' onClick={copyUrl}>
-                                    <Share className='text-red-500' /> <p className='text-red-500 font-semibold lg:text-xl pl-1'>Share</p>
-                                </button>
+                            <button className='flex items-center justify-center cursor-pointer bg-transparent' onClick={copyUrl}>
+                                <Share className='text-red-500' /> <p className='text-red-500 font-semibold lg:text-xl pl-1'>Share</p>
+                            </button>
                             </div>
                         </div>
                     </div>

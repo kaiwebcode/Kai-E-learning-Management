@@ -52,7 +52,6 @@ const Verification: FC<Props> = ({ setRoute }) => {
   });
 
   const verificationHandler = async () => {
-    // setInvalidError(true);
     const verificationNumber = Object.values(verifyNumber).join("");
     if (verificationNumber.length !== 4) {
       setInvalidError(true);
@@ -93,11 +92,10 @@ const Verification: FC<Props> = ({ setRoute }) => {
             type="number"
             key={key}
             ref={inputRefs[index]}
-            className={`w-[65px] h-[65px] bg-transparent border-[3px] rounded-[10px] flex items-center text-black dark:text-white justify-center text-[18px] font-Poppins outline-none text-center ${
-              invalidError
-                ? "shake border-red-500"
-                : "dark:border-white border-[#0000004a]"
-            }`}
+            className={`w-16 h-16 text-center rounded-xl border-2 ${invalidError
+                ? "border-red-500 animate-shake"
+                : "border-gray-400 "
+              } text-xl font-medium dark:bg-gray-700 dark:text-white`}
             placeholder=""
             maxLength={1}
             value={verifyNumber[key as keyof VerifyNumber]}

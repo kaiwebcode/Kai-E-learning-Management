@@ -55,11 +55,11 @@ const Signup: FC<Props> = ({ setRoute }) => {
   const { errors, touched, values, handleChange, handleSubmit } = formik;
 
   return (
-    <div className="w-full p-5">
+    <div className="w-full lg:p-6 p-4">
       <h1 className={`${styles.title}`}>Join to Kai-ELearning</h1>
       <form onSubmit={handleSubmit}>
-        <div className="mb-3 py-2">
-          <label className={`${styles.label}`} htmlFor="email">
+        <div className="mb-3 pt-6">
+          <label className={`${styles.label}`} htmlFor="name">
             Name
           </label>
           <input
@@ -69,16 +69,15 @@ const Signup: FC<Props> = ({ setRoute }) => {
             onChange={handleChange}
             id="name"
             placeholder="Enter your Name"
-            className={`${errors.name && touched.name && "border-red-500"} ${
-              styles.input
-            }`}
+            className={`${errors.name && touched.name && "border-red-500"} ${styles.input
+              }`}
           />
           {errors.name && touched.name && (
             <span className="text-red-500 pt-2 block">{errors.name}</span>
           )}
         </div>
         <label className={`${styles.label}`} htmlFor="email">
-         Email Address
+          Email Address
         </label>
         <input
           type="email"
@@ -87,15 +86,14 @@ const Signup: FC<Props> = ({ setRoute }) => {
           onChange={handleChange}
           id="email"
           placeholder="Enter your Email"
-          className={`${errors.email && touched.email && "border-red-500"} ${
-            styles.input
-          }`}
+          className={`${errors.email && touched.email && "border-red-500"} ${styles.input
+            }`}
         />
         {errors.email && touched.email && (
           <span className="text-red-500 pt-2 block">{errors.email}</span>
         )}
         <div className="w-full py-4 relative">
-          <label className={`${styles.label}`} htmlFor="email">
+          <label className={`${styles.label}`} htmlFor="password">
             Password
           </label>
           <input
@@ -105,9 +103,8 @@ const Signup: FC<Props> = ({ setRoute }) => {
             onChange={handleChange}
             id="password"
             placeholder="Enter your Password"
-            className={`${
-              errors.password && touched.password && "border-red-500"
-            } ${styles.input}`}
+            className={`${errors.password && touched.password && "border-red-500"
+              } ${styles.input}`}
           />
           {!show ? (
             <AiOutlineEyeInvisible

@@ -76,7 +76,7 @@ const Login: FC<Props> = ({ setRoute, setOpen, refetch }) => {
             <span className="text-red-500 pt-2 block">{errors.email}</span>
           )}
           <div className="w-full mt-8 relative mb-1">
-            <label className={`${styles.label}`} htmlFor="email">
+            <label className={`${styles.label}`} htmlFor="password">
               Password
             </label>
             <input
@@ -113,14 +113,14 @@ const Login: FC<Props> = ({ setRoute, setOpen, refetch }) => {
         </div>
       </form>
       <br />
-      <h5 className="flex items-center justify-center mb-3">Or Join with</h5>
+      <h5 className="flex items-center justify-center mb-3">Or login with</h5>
       <div className="flex items-center justify-center my-3 gap-5 pb-3">
         <Button className="w-full dark:bg-white bg-slate-400"
           onClick={() => signIn("google")}>
           <FcGoogle
             size={50}
             className="cursor-pointer"
-
+            onClick={() => signIn("google")}
           />
         </Button>
         <Button className="w-full dark:bg-white bg-slate-400"
@@ -133,7 +133,7 @@ const Login: FC<Props> = ({ setRoute, setOpen, refetch }) => {
         </Button>
       </div>
       <h5>
-        For the first time do sign up{" "}
+        New to Kai-Learning?{" "}
         <span
           className="text-blue-500 cursor-pointer"
           onClick={() => setRoute("Sign-up")}
