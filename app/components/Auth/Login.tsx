@@ -55,7 +55,7 @@ const Login: FC<Props> = ({ setRoute, setOpen, refetch }) => {
   const { errors, touched, values, handleChange, handleSubmit } = formik;
 
   return (
-    <div className="w-full p-6">
+    <div className="w-full p-4 lg:p-6">
       <h1 className={`${styles.title}`}>Login with Kai-Learning</h1>
       <form onSubmit={handleSubmit}>
         <div className="pt-8">
