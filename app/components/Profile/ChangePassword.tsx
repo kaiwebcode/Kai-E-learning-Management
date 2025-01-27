@@ -40,7 +40,7 @@ const ChangePassword: FC<Props> = (Props) => {
   return (
     <div className="w-full 800px:px-5 800px:pl-0">
       <div className="w-full flex flex-col items-center  dark:bg-slate-700 bg-slate-400 py-14 px-5 rounded-lg shadow-lg max-w-4xl mx-auto">
-        <h1 className="block text-[27px] 800px:text-[32px] text-center text-black dark:text-white font-[500] pb-6">
+        <h1 className="block text-2xl 800px:text-[32px] text-center text-black dark:text-white font-[500] mb-6">
           Change Password
         </h1>
         {/* <div className="w-full"> */}
@@ -49,7 +49,7 @@ const ChangePassword: FC<Props> = (Props) => {
           aria-required
           className="w-full mt-4"
         >
-          <div className="flex flex-col gap-4 max-w-md mx-auto">
+          <div className="flex flex-col gap-4 max-w-md mx-auto mt-4">
             {/* Full Name Input */}
             <div className="w-full relative mb-1">
               <label

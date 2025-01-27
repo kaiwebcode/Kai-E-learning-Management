@@ -56,9 +56,9 @@ const Login: FC<Props> = ({ setRoute, setOpen, refetch }) => {
 
   return (
     <div className="w-full p-4 lg:p-6">
-      <h1 className={`${styles.title}`}>Login with Kai-Learning</h1>
+      <h1 className={`${styles.title}`}>Login with Kai-ELearning</h1>
       <form onSubmit={handleSubmit}>
-        <div className="pt-8">
+        <div className="pt-6">
           <label className={`${styles.label}`} htmlFor="email">
             Email Address
           </label>

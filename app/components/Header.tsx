@@ -182,7 +182,7 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
               <br />
               <br />
               <p className="text-[16px] px-2 pl-5 text-black dark:text-white">
-                Copyright &copy; 2024 Kai-Learning
+                Copyright &copy; 2024 Kai-ELearning
               </p>
             </div>
           </div>

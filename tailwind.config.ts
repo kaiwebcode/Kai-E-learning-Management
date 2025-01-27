@@ -10,8 +10,8 @@ export default {
   theme: {
   	extend: {
   		screens: {
-  			'1000px': '1000px',
   			'1100': '1100px',
+  			'1000px': '1000px',
   			'1200px': '1200px',
   			'1300px': '1300px',
   			'1500px': '1500px',
@@ -19,7 +19,9 @@ export default {
   			'400px': '400px'
   		},
   		animation: {
-  			'spin-slow': 'spin 15s linear infinite'
+  			'spin-slow': 'spin 15s linear infinite',
+  			'accordion-down': 'accordion-down 0.2s ease-out',
+  			'accordion-up': 'accordion-up 0.2s ease-out'
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
@@ -66,6 +68,24 @@ export default {
   				'3': 'hsl(var(--chart-3))',
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
+  			}
+  		},
+  		keyframes: {
+  			'accordion-down': {
+  				from: {
+  					height: '0'
+  				},
+  				to: {
+  					height: 'var(--radix-accordion-content-height)'
+  				}
+  			},
+  			'accordion-up': {
+  				from: {
+  					height: 'var(--radix-accordion-content-height)'
+  				},
+  				to: {
+  					height: '0'
+  				}
   			}
   		}
   	}
