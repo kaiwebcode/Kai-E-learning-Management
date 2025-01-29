@@ -19,7 +19,7 @@ const FAQ = ({ }: Props) => {
 
     return (
         <div className="mx-3 lg:mx-0 py-20">
-            <div className="w-full 800px:w-[80%] max-w-4xl mx-auto">
+            <div className="w-full 800px:w-[80%] max-w-6xl mx-auto">
                 <h1 className={`${styles.title} text-center text-4xl 800px:text-4xl font-bold mb-8`}>
                     Frequently Asked Questions
                 </h1>

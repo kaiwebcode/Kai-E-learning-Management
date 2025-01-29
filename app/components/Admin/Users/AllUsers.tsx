@@ -1,5 +1,4 @@
 import React, { FC, useEffect, useState } from "react";
-import { DataGrid } from "@mui/x-data-grid";
 import { Box, Button, Modal } from "@mui/material";
 import { AiOutlineDelete, AiOutlineMail } from "react-icons/ai";
 import { useTheme } from "next-themes";
@@ -12,13 +11,14 @@ import {
 } from "@/redux/features/user/userApi";
 import { styles } from "@/app/styles/style";
 import { toast } from "react-hot-toast";
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 
 type Props = {
   isTeam?: boolean;
 };
 
-const AllCourses: FC<Props> = ({ isTeam }) => {
-  const { theme, setTheme } = useTheme();
+const AllUsers: FC<Props> = ({ isTeam }) => {
+  const { theme } = useTheme();
   const [active, setActive] = useState(false);
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("admin");
@@ -35,12 +35,8 @@ const AllCourses: FC<Props> = ({ isTeam }) => {
 
   useEffect(() => {
     if (updateError) {
-      if ("data" in updateError) {
-        const errorMessage = updateError as any;
-        toast.error(errorMessage.data.message);
-      }
+      toast.error((updateError as any).data.message);
     }
-
     if (isSuccess) {
       refetch();
       toast.success("User role updated successfully");
@@ -48,91 +44,47 @@ const AllCourses: FC<Props> = ({ isTeam }) => {
     }
     if (deleteSuccess) {
       refetch();
-      toast.success("Delete user successfully!");
+      toast.success("User deleted successfully!");
       setOpen(false);
     }
     if (deleteError) {
-      if ("data" in deleteError) {
-        const errorMessage = deleteError as any;
-        toast.error(errorMessage.data.message);
-      }
+      toast.error((deleteError as any).data.message);
     }
   }, [updateError, isSuccess, deleteSuccess, deleteError]);
 
-  const columns = [
-    { field: "id", headerName: "ID", flex: 0.3 },
-    { field: "name", headerName: "Name", flex: 0.5 },
-    { field: "email", headerName: "Email", flex: 0.5 },
-    { field: "role", headerName: "Role", flex: 0.5 },
-    { field: "courses", headerName: "Purchased Courses", flex: 0.5 },
-    { field: "created_at", headerName: "Joined At", flex: 0.5 },
-    {
-      field: " ",
-      headerName: "Delete",
-      flex: 0.2,
-      renderCell: (params: any) => {
-        return (
-          <>
-            <Button
-              onClick={() => {
-                setOpen(!open);
-                setUserId(params.row.id);
-              }}
-            >
-              <AiOutlineDelete
-                className="dark:text-white text-black"
-                size={20}
-              />
-            </Button>
-          </>
-        );
-      },
-    },
-    {
-      field: "  ",
-      headerName: "Email",
-      flex: 0.2,
-      renderCell: (params: any) => {
-        return (
-          <>
-            <a href={`mailto:${params.row.email}`}>
-              <AiOutlineMail className="dark:text-white text-black" size={20} />
-            </a>
-          </>
-        );
-      },
-    },
-  ];
-
-  const rows: any = [];
+  const rows: {
+    id: string;
+    name: string;
+    email: string;
+    role: string;
+    courses: number;
+    created_at: string;
+  }[] = [];
 
   if (isTeam) {
-    const newData =
-      data && data.users.filter((item: any) => item.role === "admin");
-
-    newData &&
-      newData.forEach((item: any) => {
+    data?.users
+      .filter((user: any) => user.role === "admin")
+      .forEach((user: any) => {
         rows.push({
-          id: item._id,
-          name: item.name,
-          email: item.email,
-          role: item.role,
-          courses: item.courses.length,
-          created_at: format(item.createdAt),
+          id: user._id,
+          name: user.name,
+          email: user.email,
+          role: user.role,
+          courses: user.courses.length,
+          created_at: format(user.createdAt),
         });
       });
   } else {
-    data &&
-      data.users.forEach((item: any) => {
-        rows.push({
-          id: item._id,
-          name: item.name,
-          email: item.email,
-          role: item.role,
-          courses: item.courses.length,
-          created_at: format(item.createdAt),
-        });
+    data?.users.forEach((user: any) => {
+      rows.push({
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        courses: user.courses.length,
+        created_at: format(user.createdAt),
       });
+    });
   }
 
   const handleSubmit = async () => {
@@ -140,141 +92,122 @@ const AllCourses: FC<Props> = ({ isTeam }) => {
   };
 
   const handleDelete = async () => {
-    const id = userId;
-    await deleteUser(id);
+    await deleteUser(userId);
   };
 
   return (
-    <div className="mt-[10px] pl-16">
+    <div className="ml-10 p-2 md:px-10">
       {isLoading ? (
         <Loader />
       ) : (
-        <Box m="20px">
+        <Box className="bg-white dark:bg-gray-900 shadow-lg rounded-xl p-4">
           {isTeam && (
-            <div className="min-w-full flex justify-end">
-              <div
-                className={`${styles.button} !w-[200px] !rounded-[10px] dark:bg-[#57c7a3] !h-[35px] dark:border dark:border-[#ffffff6c]`}
+            <div className="flex justify-end mb-4">
+              <button
+                className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
                 onClick={() => setActive(!active)}
               >
                 Add New Member
-              </div>
+              </button>
             </div>
           )}
-          <Box
-            m="40px 0 0 0"
-            height="80vh"
-            sx={{
-              "& .MuiDataGrid-root": {
-                border: "none",
-                outline: "none",
-              },
-              "& .css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon": {
-                color: theme === "dark" ? "#fff" : "#000",
-              },
-              "& .MuiDataGrid-sortIcon": {
-                color: theme === "dark" ? "#fff" : "#000",
-              },
-              "& .MuiDataGrid-row": {
-                color: theme === "dark" ? "#fff" : "#000",
-                borderBottom:
-                  theme === "dark"
-                    ? "1px solid #ffffff30!important"
-                    : "1px solid #ccc!important",
-              },
-              "& .MuiTablePagination-root": {
-                color: theme === "dark" ? "#fff" : "#000",
-              },
-              "& .MuiDataGrid-cell": {
-                borderBottom: "none!important",
-              },
-              "& .name-column--cell": {
-                color: theme === "dark" ? "#fff" : "#000",
-              },
-              "& .MuiDataGrid-columnHeaders": {
-                backgroundColor: theme === "dark" ? "#3e4396" : "#A4A9FC",
-                borderBottom: "none",
-                color: theme === "dark" ? "#fff" : "#000",
-              },
-              "& .MuiDataGrid-virtualScroller": {
-                backgroundColor: theme === "dark" ? "#1F2A40" : "#F2F0F0",
-              },
-              "& .MuiDataGrid-footerContainer": {
-                color: theme === "dark" ? "#fff" : "#000",
-                borderTop: "none",
-                backgroundColor: theme === "dark" ? "#3e4396" : "#A4A9FC",
-              },
-              "& .MuiCheckbox-root": {
-                color:
-                  theme === "dark" ? `#b7ebde !important` : `#000 !important`,
-              },
-              "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
-                color: `#fff !important`,
-              },
-            }}
-          >
-            <DataGrid checkboxSelection rows={rows} columns={columns} />
-          </Box>
+          <div>
+            <Table className="w-full min-w-[600px]">
+              <TableHeader>
+                <TableRow className="bg-gray-100 dark:bg-gray-800">
+                  <TableHead className="p-4">ID</TableHead>
+                  <TableHead>Name</TableHead>
+                  <TableHead>Email</TableHead>
+                  <TableHead>Role</TableHead>
+                  <TableHead>Courses</TableHead>
+                  <TableHead>Joined At</TableHead>
+                  <TableHead>Actions</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {rows.map((row) => (
+                  <TableRow
+                    key={row.id}
+                    className="hover:bg-gray-50 dark:hover:bg-gray-700 transition"
+                  >
+                    <TableCell className="p-4">{row.id}</TableCell>
+                    <TableCell>{row.name}</TableCell>
+                    <TableCell>{row.email}</TableCell>
+                    <TableCell>{row.role}</TableCell>
+                    <TableCell>{row.courses}</TableCell>
+                    <TableCell>{row.created_at}</TableCell>
+                    <TableCell className="flex space-x-2">
+                      <button
+                        onClick={() => {
+                          setOpen(true);
+                          setUserId(row.id);
+                        }}
+                        className="text-red-500 hover:text-red-700"
+                      >
+                        <AiOutlineDelete size={20} />
+                      </button>
+                      <a href={`mailto:${row.email}`} className="text-blue-500 hover:text-blue-700">
+                        <AiOutlineMail size={20} />
+                      </a>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+
+          {/* Add User Modal */}
           {active && (
-            <Modal
-              open={active}
-              onClose={() => setActive(!active)}
-              aria-labelledby="modal-modal-title"
-              aria-describedby="modal-modal-description"
-            >
-              <Box className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[450px] bg-white dark:bg-slate-900 rounded-[8px] shadow p-4 outline-none">
-                <h1 className={`${styles.title}`}>Add New Member</h1>
-                <div className="mt-4">
+            <Modal open={active} onClose={() => setActive(false)}>
+              <Box className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg w-96">
+                  <h2 className="text-lg font-semibold mb-4">Add New Member</h2>
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter email..."
-                    className={`${styles.input}`}
+                    className="w-full p-2 border rounded-md mb-4"
                   />
                   <select
-                    name=""
-                    id=""
-                    className={`${styles.input} !mt-6`}
-                    onChange={(e: any) => setRole(e.target.value)}
+                    className="w-full p-2 border rounded-md mb-4"
+                    onChange={(e) => setRole(e.target.value)}
                   >
                     <option value="admin">Admin</option>
                     <option value="user">User</option>
                   </select>
-                  <br />
-                  <div
-                    className={`${styles.button} my-6 !h-[30px]`}
+                  <button
+                    className="bg-green-500 text-white px-4 py-2 rounded-lg w-full hover:bg-green-600 transition"
                     onClick={handleSubmit}
                   >
                     Submit
-                  </div>
+                  </button>
                 </div>
               </Box>
             </Modal>
           )}
 
+          {/* Delete Confirmation Modal */}
           {open && (
-            <Modal
-              open={open}
-              onClose={() => setOpen(!open)}
-              aria-labelledby="modal-modal-title"
-              aria-describedby="modal-modal-description"
-            >
-              <Box className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[450px] bg-white dark:bg-slate-900 rounded-[8px] shadow p-4 outline-none">
-                <h1 className={`${styles.title}`}>
-                  Are you sure you want to delete this user?
-                </h1>
-                <div className="flex w-full items-center justify-between mb-6 mt-4">
-                  <div
-                    className={`${styles.button} !w-[120px] h-[30px] bg-[#57c7a3]`}
-                    onClick={() => setOpen(!open)}
-                  >
-                    Cancel
-                  </div>
-                  <div
-                    className={`${styles.button} !w-[120px] h-[30px] bg-[#d63f3f]`}
-                    onClick={handleDelete}
-                  >
-                    Delete
+            <Modal open={open} onClose={() => setOpen(false)}>
+              <Box className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                <div className="bg-white dark:bg-gray-900 p-10 rounded-lg shadow-lg w-96">
+                  <h2 className="text-xl font-semibold mb-8">
+                    Are you sure you want to delete this user?
+                  </h2>
+                  <div className="flex justify-between ">
+                    <button
+                      className="bg-gray-300 text-black px-4 py-2 rounded-lg hover:bg-gray-400 transition"
+                      onClick={() => setOpen(false)}
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
+                      onClick={handleDelete}
+                    >
+                      Delete
+                    </button>
                   </div>
                 </div>
               </Box>
@@ -286,4 +219,4 @@ const AllCourses: FC<Props> = ({ isTeam }) => {
   );
 };
 
-export default AllCourses;
+export default AllUsers;
