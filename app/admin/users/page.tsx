@@ -22,7 +22,7 @@ function page({}: Props) {
           <div className="1500px:w-[16%] w-1/5">
             <AdminSidebar />
           </div>
-          <div className="w-[95%] h-screen">
+          <div className="pl-10 lg:pl-0 w-[100%] h-screen">
             <DashboardHero />
             <AllUsers />
           </div>

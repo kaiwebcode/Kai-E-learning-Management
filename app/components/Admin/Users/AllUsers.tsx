@@ -12,6 +12,8 @@ import {
 import { styles } from "@/app/styles/style";
 import { toast } from "react-hot-toast";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { MoreHorizontal, TrashIcon } from "lucide-react";
 
 type Props = {
   isTeam?: boolean;
@@ -137,7 +139,35 @@ const AllUsers: FC<Props> = ({ isTeam }) => {
                     <TableCell>{row.courses}</TableCell>
                     <TableCell>{row.created_at}</TableCell>
                     <TableCell className="flex space-x-2">
-                      <button
+                      <DropdownMenu >
+                        <DropdownMenuTrigger asChild>
+                          <Button className="h-8 w-8 p-0 ">
+                            <span className="sr-only">Open menu</span>
+                            <MoreHorizontal className="h-4 w-4" />
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end" className="bg-gray-100 dark:bg-gray-800">
+                          <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                          <DropdownMenuSeparator className="bg-gray-700 dark:bg-gray-600"/>
+                          <DropdownMenuItem
+                            className="flex items-center gap-2 hover:dark:bg-gray-700"
+                            onClick={() => {
+                              setOpen(true);
+                              setUserId(row.id);
+                            }}
+                          >
+                            <TrashIcon className="h-4 w-4 text-muted-foreground" />
+                            Delete
+                          </DropdownMenuItem>
+                          <DropdownMenuItem className=" hover:dark:bg-gray-700">
+                            <a href={`mailto:${row.email}`} className="flex gap-2">
+                              <AiOutlineMail size={20} />
+                               Email
+                            </a>
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                      {/* <button
                         onClick={() => {
                           setOpen(true);
                           setUserId(row.id);
@@ -148,13 +178,15 @@ const AllUsers: FC<Props> = ({ isTeam }) => {
                       </button>
                       <a href={`mailto:${row.email}`} className="text-blue-500 hover:text-blue-700">
                         <AiOutlineMail size={20} />
-                      </a>
+                      </a> */}
                     </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
           </div>
+
+          
 
           {/* Add User Modal */}
           {active && (
