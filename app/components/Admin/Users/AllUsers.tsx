@@ -102,7 +102,7 @@ const AllUsers: FC<Props> = ({ isTeam }) => {
       {isLoading ? (
         <Loader />
       ) : (
-        <Box className="bg-white dark:bg-gray-900 shadow-lg rounded-xl p-4">
+        <div className="bg-white dark:bg-gray-900 shadow-lg rounded-xl p-4">
           {isTeam && (
             <div className="flex justify-end mb-4">
               <button
@@ -114,7 +114,7 @@ const AllUsers: FC<Props> = ({ isTeam }) => {
             </div>
           )}
           <div>
-            <Table className="w-full min-w-[600px]">
+            <Table >
               <TableHeader>
                 <TableRow className="bg-gray-100 dark:bg-gray-800">
                   <TableHead className="p-4">ID</TableHead>
@@ -245,7 +245,7 @@ const AllUsers: FC<Props> = ({ isTeam }) => {
               </Box>
             </Modal>
           )}
-        </Box>
+        </div>
       )}
     </div>
   );

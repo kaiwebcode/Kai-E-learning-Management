@@ -124,7 +124,14 @@ const AdminSidebar: FC = () => {
                   className="font-bold text-[#4f46e5] uppercase"
                 >
                   <div className="text-3xl font-bold dark:text-white text-black">
+                    <div className="flex items-center justify-center">
+                    <a href="/">
+                     Kai <br />
+                    </a>
+                    </div>
+                    <a href="/">
                     ELearning
+                    </a>
                   </div>
                 </Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
