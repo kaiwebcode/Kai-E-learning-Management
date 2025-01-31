@@ -9,7 +9,7 @@ import AllCourses from "../../components/Admin/Course/AllCourses";
 
 type Props = {};
 
-function page({}: Props) {
+function page({ }: Props) {
   return (
     <div>
       <AdminProtected>
@@ -22,9 +22,9 @@ function page({}: Props) {
           <div className="1500px:w-[16%] w-1/5">
             <AdminSidebar />
           </div>
-          <div className="w-[90%] ">
+          <div className="pl-10 lg:pl-14 md:pl-0 w-[100%] h-screen">
             <DashboardHero />
-            <AllCourses/>
+            <AllCourses />
           </div>
         </div>
       </AdminProtected>

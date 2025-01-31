@@ -27,9 +27,9 @@ const About = ({ }: Props) => {
                         </header>
                         <div className='sm:h-[70px] lg:h-[150px]'></div>
                         <div className='absolute bottom-0 left-[50%] grid w-[100%] translate-x-[-50%] translate-y-[30%] grid-cols-3 gap-3 lg:gap-5'>
-                            <Image src={BannerImage1} width={400} height={400} alt='BannerImage1' />
-                            <Image src={BannerImage2} width={400} height={400} alt='BannerImage1' />
-                            <Image src={BannerImage3} width={400} height={400} alt='BannerImage1' />
+                            <Image src={BannerImage1} width={400} height={400} alt='BannerImage1' className='w-full shadow-[0_0_30px_0] shadow-[#67d4fc]  object-contain rounded-lg  transition-transform hover:scale-105' />
+                            <Image src={BannerImage2} width={400} height={400} alt='BannerImage1' className='w-full shadow-[0_0_30px_0] shadow-[#67d4fc]  object-contain rounded-lg  transition-transform hover:scale-105' />
+                            <Image src={BannerImage3} width={400} height={400} alt='BannerImage1' className='w-full shadow-[0_0_30px_0] shadow-[#67d4fc] object-contain rounded-lg  transition-transform hover:scale-105' />
                         </div>
                     </div>
                 </section>
@@ -59,7 +59,7 @@ const About = ({ }: Props) => {
                             </div>
                             {/* foudning story right box */}
                             <div>
-                                <Image className='shadow-[0_0_20px_0] shadow-[#FC6767] mt-12' src={FoundingStory}
+                                <Image className='shadow-[0_0_20px_0] shadow-[#FC6767] mt-12 w-full  object-contain rounded-lg  transition-transform hover:scale-105' src={FoundingStory}
                                     width={500} height={500} alt='foundingstory' />
                             </div>
                         </div>

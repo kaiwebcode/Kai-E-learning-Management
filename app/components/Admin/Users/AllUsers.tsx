@@ -14,6 +14,7 @@ import { toast } from "react-hot-toast";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { MoreHorizontal, TrashIcon } from "lucide-react";
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 type Props = {
   isTeam?: boolean;
@@ -141,14 +142,14 @@ const AllUsers: FC<Props> = ({ isTeam }) => {
                     <TableCell className="flex space-x-2">
                       <DropdownMenu >
                         <DropdownMenuTrigger asChild>
-                          <Button className="h-8 w-8 p-0 ">
+                          <Button className="h-8 w-8 p-0 bg-transparent hover:text-white text-black dark:text-gray-200 dark:hover:bg-slate-600">
                             <span className="sr-only">Open menu</span>
                             <MoreHorizontal className="h-4 w-4" />
                           </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end" className="bg-gray-100 dark:bg-gray-800">
                           <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                          <DropdownMenuSeparator className="bg-gray-700 dark:bg-gray-600"/>
+                          <DropdownMenuSeparator className="bg-gray-700 dark:bg-gray-600" />
                           <DropdownMenuItem
                             className="flex items-center gap-2 hover:dark:bg-gray-700"
                             onClick={() => {
@@ -162,7 +163,7 @@ const AllUsers: FC<Props> = ({ isTeam }) => {
                           <DropdownMenuItem className=" hover:dark:bg-gray-700">
                             <a href={`mailto:${row.email}`} className="flex gap-2">
                               <AiOutlineMail size={20} />
-                               Email
+                              Email
                             </a>
                           </DropdownMenuItem>
                         </DropdownMenuContent>
@@ -186,7 +187,7 @@ const AllUsers: FC<Props> = ({ isTeam }) => {
             </Table>
           </div>
 
-          
+
 
           {/* Add User Modal */}
           {active && (
@@ -220,7 +221,7 @@ const AllUsers: FC<Props> = ({ isTeam }) => {
           )}
 
           {/* Delete Confirmation Modal */}
-          {open && (
+          {/* {open && (
             <Modal open={open} onClose={() => setOpen(false)}>
               <Box className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
                 <div className="bg-white dark:bg-gray-900 p-10 rounded-lg shadow-lg w-96">
@@ -244,7 +245,29 @@ const AllUsers: FC<Props> = ({ isTeam }) => {
                 </div>
               </Box>
             </Modal>
-          )}
+          )} */}
+          <Dialog open={open} onOpenChange={setOpen}>
+            <DialogContent className="dark:bg-slate-800 ">
+              <DialogHeader>
+                <DialogTitle>Delete User</DialogTitle>
+              </DialogHeader>
+              <p>Are you sure you want to delete this user? This action cannot be undone.</p>
+              <DialogFooter className="flex justify-end space-x-2">
+                <button
+                  className="bg-gray-300 text-black px-4 py-2 rounded-lg hover:bg-gray-400 transition"
+                  onClick={() => setOpen(false)}
+                >
+                  Cancel
+                </button>
+                <button
+                  className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
+                  onClick={handleDelete}
+                >
+                  Delete
+                </button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
         </div>
       )}
     </div>
