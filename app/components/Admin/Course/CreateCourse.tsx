@@ -160,7 +160,7 @@ const CreateCourse = () => {
         )}
       </div>
 
-      {/* Sidebar Options */}
+      {/* Sidebar Options */} 
       <div className="lg:w-[20%] pl-6 h-auto lg:h-screen">
         <CourseOptions active={active} setActive={setActive} />
       </div>

@@ -11,13 +11,14 @@ import { AiOutlineMail } from "react-icons/ai";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Card } from "@/components/ui/card";
 import Loader from "../../Loader/Loader";
+import { Box } from "@mui/material";
 
 type Props = {
   isDashboard?: boolean;
 };
 
 const AllInvoices = ({ isDashboard }: Props) => {
-  const { theme } = useTheme();
+  const { theme, setTheme } = useTheme();
   const { isLoading, data } = useGetAllOrdersQuery({});
   const { data: usersData } = useGetAllUsersQuery({});
   const { data: coursesData } = useGetAllCoursesQuery({});
@@ -42,12 +43,18 @@ const AllInvoices = ({ isDashboard }: Props) => {
   }, [data, usersData, coursesData]);
 
   return (
-    <div className={`p-4 ${isDashboard} "ml-14 p-2 md:px-10"`}>
+    <div className={!isDashboard ? "mt-[10px]" : "mt-[0px]"}>
       {isLoading ? (
         <Loader />
       ) : (
-        <div  className="bg-white dark:bg-gray-900 shadow-lg rounded-xl p-4">
-          <div>
+        <div className="bg-white dark:bg-gray-900 shadow-lg rounded-xl p-4">
+          <Box
+            // m={isDashboard ? "0" : "40px 0 0 0"}
+            height={isDashboard ? "35vh" : "90vh"}
+            component="div"
+            sx={{ overflowY: "auto" }}
+            overflow={"hidden"}
+          >
             <Table className="w-full min-w-[600px]">
               <TableHeader>
                 <TableRow className="bg-gray-100 dark:bg-gray-700 rounded-xl">
@@ -80,7 +87,7 @@ const AllInvoices = ({ isDashboard }: Props) => {
                 ))}
               </TableBody>
             </Table>
-          </div>
+          </Box>
         </div>
       )}
     </div>
