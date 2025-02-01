@@ -76,6 +76,12 @@ const Policy = ({}: Props) => {
           the right to modify these terms at any time, and changes will be communicated on this
           page.
         </p>
+
+        <p className='mt-5 text-[14px] text-gray-500 dark:text-gray-400'>
+          <span className='text-2xl '> Kaif Qureshi..</span>
+          <br />
+          Founder and CEO of Kai-Elearning 
+        </p>
       </div>
     </div>
   );

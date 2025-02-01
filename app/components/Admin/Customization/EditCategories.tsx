@@ -79,7 +79,7 @@ const EditCategories = (props: Props) => {
         <Loader />
       ) : (
         <div className="mt-16 pl-16 pr-1 md:pr-3 lg:pr-4 pb-10">
-          <h1 className="text-3xl font-semibold text-center mb-8">Edit Categories</h1>
+          <h1 className="text-4xl font-bold text-center mb-10">Edit Categories</h1>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {categories.map((item: any, index: number) => (
               <div
