@@ -137,7 +137,7 @@ const SidebarContent: FC<{ user: any; selected: string; setSelected: (value: str
       </div>
 
       <div className="py-4">
-        <h2 className="text-2xl flex pl-4 font-semibold pb-1">Data</h2>
+        <h2 className="text-2xl flex pl-4 font-semibold pb-1">Data Analytics</h2>
         <SidebarItem title="Courses Analytics" to="/admin/courses-analytics" icon={<BarChart3 />} selected={selected} setSelected={setSelected} />
         <SidebarItem title="Orders Analytics" to="/admin/orders-analytics" icon={<BarChart />} selected={selected} setSelected={setSelected} />
         <SidebarItem title="Users Analytics" to="/admin/users-analytics" icon={<BarChart2 />} selected={selected} setSelected={setSelected} />
