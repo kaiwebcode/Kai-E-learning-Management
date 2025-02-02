@@ -78,7 +78,7 @@ const EditFaq = (props: Props) => {
       {isLoading ? (
         <Loader />
       ) : (
-        <div className="w-[90%] max-w-5xl mx-auto lg:mt-[50px] mt-3 px-2">
+        <div className="w-[90%] max-w-5xl mx-auto lg:mt-[50px] mt-3">
           <h1
             className={`${styles.title} text-center text-4xl font-bold mb-8`}
           >

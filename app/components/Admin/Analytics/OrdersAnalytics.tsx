@@ -14,34 +14,34 @@ import {
 import Loader from "../../Loader/Loader";
 
 const analyticsData = [
-  {
-    name: "Page A",
-    Count: 4000,
-  },
-  {
-    name: "Page B",
-    Count: 3000,
-  },
-  {
-    name: "Page C",
-    Count: 5000,
-  },
-  {
-    name: "Page D",
-    Count: 1000,
-  },
-  {
-    name: "Page E",
-    Count: 4000,
-  },
-  {
-    name: "Page F",
-    Count: 800,
-  },
-  {
-    name: "Page G",
-    Count: 200,
-  },
+    {
+        name: "Page A",
+        Count: 4000,
+    },
+    {
+        name: "Page B",
+        Count: 3000,
+    },
+    {
+        name: "Page C",
+        Count: 5000,
+    },
+    {
+        name: "Page D",
+        Count: 1000,
+    },
+    {
+        name: "Page E",
+        Count: 4000,
+    },
+    {
+        name: "Page F",
+        Count: 800,
+    },
+    {
+        name: "Page G",
+        Count: 200,
+    },
 ];
 
 type Props = {
@@ -69,12 +69,12 @@ export default function OrdersAnalytics({ isDashboard }: Props) {
                     >
                         <h1
                             className={`${styles.title} ${isDashboard && "!text-[21px]"
-                                } pl-10 !text-start `}
+                                } lg:pl-10 pl-0 !text-start `}
                         >
                             Orders Analytics
                         </h1>
                         {!isDashboard && (
-                            <p className={`${styles.label} pl-10`}>
+                            <p className={`${styles.label} lg:pl-10 pl-0`}>
                                 Last 12 months analytics data{" "}
                             </p>
                         )}

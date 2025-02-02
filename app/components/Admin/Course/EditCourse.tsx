@@ -148,7 +148,7 @@ const EditCourse: FC<Props> = ({ id }) => {
   };
 
   return (
-    <div className="flex flex-col pl-3 pt-10 pr-1 lg:flex-row w-full min-h-screen ">
+    <div className="flex flex-col pt-10 pr-1 lg:flex-row w-full min-h-screen ">
       {/* Main Content */}
       {/* <div className="lg:w-[20%] p-4 h-auto lg:h-screen">
         <CourseOptions active={active} setActive={setActive} />

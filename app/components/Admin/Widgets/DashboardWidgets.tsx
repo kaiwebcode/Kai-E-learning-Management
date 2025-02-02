@@ -93,7 +93,7 @@ const DashboardWidgets: FC<Props> = ({ open }) => {
     }, [isLoading, ordersLoading, data, ordersData]);
 
     return (
-        <div className=" pl-6 pr-3 w-full">
+        <div className=" pr-3 w-full">
             {/* Top Section */}
             <div className="grid gap-6 lg:grid-cols-3 sm:grid-cols-1">
                 {/* User Analytics */}

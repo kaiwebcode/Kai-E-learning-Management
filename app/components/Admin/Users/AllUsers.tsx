@@ -70,7 +70,7 @@ const AllUsers: FC<Props> = ({ isTeam }) => {
   );
 
   return (
-    <div className="ml-10 p-2 md:px-10">
+    <div className=" p-2 md:px-10">
       {isLoading ? (
         <p>Loading...</p>
       ) : (
@@ -136,12 +136,12 @@ const AllUsers: FC<Props> = ({ isTeam }) => {
                             <TrashIcon className="h-4 w-4 text-muted-foreground" />
                             Delete
                           </DropdownMenuItem>
-                          <DropdownMenuItem className=" hover:dark:bg-gray-700">
-                            <a href={`mailto:${row.email}`} className="flex gap-2">
+                          <a href={`mailto:${row.email}`} className="flex gap-2 hover:dark:bg-gray-700">
+                            <DropdownMenuItem className=" hover:dark:bg-gray-700">
                               <AiOutlineMail size={20} />
                               Email
-                            </a>
-                          </DropdownMenuItem>
+                            </DropdownMenuItem>
+                          </a>
                         </DropdownMenuContent>
                       </DropdownMenu>
                     </TableCell>
@@ -189,7 +189,7 @@ const AllUsers: FC<Props> = ({ isTeam }) => {
             <DialogTitle>Delete User</DialogTitle>
           </DialogHeader>
           <p>Are you sure you want to delete this user? This action cannot be undone.</p>
-          <DialogFooter className="flex justify-end space-x-2">
+          <DialogFooter className="flex justify-end lg:space-x-2 gap-y-3">
             <button
               className="bg-gray-300 text-black px-4 py-2 rounded-lg hover:bg-gray-400 transition"
               onClick={() => setOpen(false)}

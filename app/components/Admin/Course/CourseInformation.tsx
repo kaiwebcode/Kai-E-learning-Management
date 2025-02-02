@@ -69,7 +69,7 @@ const CourseInformation: FC<Props> = ({
   };
 
   return (
-    <div className="w-[85%] lg:w-[100%]  mx-auto my-10 lg:mt-24 md:p-3 md:mr-4 flex items-center justify-center">
+    <div className="w-[90%] lg:w-[100%]  mx-auto my-10 lg:mt-20 md:p-3 md:mr-4 flex items-center justify-center">
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Course Name */}
         <div>

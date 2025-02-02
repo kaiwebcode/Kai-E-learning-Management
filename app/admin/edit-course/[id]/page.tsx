@@ -26,7 +26,7 @@ const Page = ({ params }: Params) => {
         <div className="1500px:w-[16%] w-1/5">
           <AdminSidebar />
         </div>
-        <div className="w-[85%]">
+        <div className="lg:w-[100%] w-[100] lg:pl-12 pl-0">
           <DashboardHeader />
           <EditCourse id={id} />
         </div>

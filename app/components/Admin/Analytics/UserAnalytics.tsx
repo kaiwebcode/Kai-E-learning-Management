@@ -49,12 +49,12 @@ const UserAnalytics = ({ isDashboard }: Props) => {
                 ) : (
                     <div className={`${!isDashboard ? "mt-[50px]" : "mt-[50px] dark:bg-[#111C43] shadow-sm py-5  pr-2 rounded-sm"}`}>
                         <div className={`${isDashboard ? "!ml-8 mb-5" : ''}`}>
-                            <h1 className={`${styles.title} ${isDashboard && '!text-[20px]'} pl-10 !text-start`}>
+                            <h1 className={`${styles.title} ${isDashboard && '!text-[20px]'} lg:pl-10 pl-0 !text-start`}>
                                 Users Analytics
                             </h1>
                             {
                                 !isDashboard && (
-                                    <p className={`${styles.label} pl-10`}>
+                                    <p className={`${styles.label} lg:pl-10 pl-0`}>
                                         Last 12 months analytics data{" "}
                                     </p>
                                 )

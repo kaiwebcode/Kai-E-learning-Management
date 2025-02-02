@@ -1,37 +1,32 @@
 "use client";
 
 import { FC, useEffect, useState } from "react";
-import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
-import "react-pro-sidebar/dist/css/styles.css";
-import { Box, Typography, IconButton } from "@mui/material";
-import {
-  HomeOutlined as HomeIcon,
-  Menu as MenuIcon,
-  PersonOutline as ProfileIcon,
-  ExitToApp as LogoutIcon,
-} from "@mui/icons-material";
-import {
-  HomeOutlinedIcon,
-  GroupsIcon,
-  OndemandVideoIcon,
-  VideoCallIcon,
-  WebIcon,
-  QuizIcon,
-  WysiwygIcon,
-  ManageHistoryIcon,
-  BarChartOutlinedIcon,
-  ReceiptOutlinedIcon,
-  MapOutlinedIcon,
-  PeopleOutlinedIcon,
-  ExitToAppIcon,
-} from "./Icon";
-import avatarDefault from "../../../../public/avatar.png";
-import { useSelector } from "react-redux";
 import Link from "next/link";
 import Image from "next/image";
 import { useTheme } from "next-themes";
+import { useSelector } from "react-redux";
+import {
+  LayoutDashboard,
+  Users,
+  FileText,
+  VideoIcon,
+  Video,
+  Globe,
+  BarChart3,
+  BarChart2,
+  BarChart,
+  HelpCircle,
+  Folder,
+  LogOut,
+  Menu,
+} from "lucide-react";
+import { FaUsersCog } from "react-icons/fa";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { DialogTitle } from "@/components/ui/dialog";
+import avatarDefault from "../../../../public/avatar.png";
 
-interface ItemProps {
+interface SidebarItemProps {
   title: string;
   to: string;
   icon: JSX.Element;
@@ -39,286 +34,125 @@ interface ItemProps {
   setSelected: (value: string) => void;
 }
 
-const Item: FC<ItemProps> = ({ title, to, icon, selected, setSelected }) => (
-  <MenuItem
-    active={selected === title}
-    onClick={() => setSelected(title)}
-    icon={icon}
-    className="hover:!bg-[#f0f0f0] dark:hover:!bg-[#2e3b55]"
-  >
-    <Link href={to}>
-      <Typography className="!text-[13px] font-medium">{title}</Typography>
-    </Link>
-  </MenuItem>
+const SidebarItem: FC<SidebarItemProps> = ({ title, to, icon, selected, setSelected }) => (
+  <Link href={to} onClick={() => setSelected(title)}>
+    <Button
+      variant={selected === title ? "default" : "ghost"}
+      className="w-full flex justify-start gap-2 text-base px-4 py-2"
+    >
+      {icon}
+      {title}
+    </Button>
+  </Link>
 );
 
 const AdminSidebar: FC = () => {
   const { user } = useSelector((state: any) => state.auth);
-  const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
   const [mounted, setMounted] = useState(false);
   const { theme } = useTheme();
 
   useEffect(() => setMounted(true), []);
-
   if (!mounted) return null;
 
   const logoutHandler = async () => {
-    // Cookies.remove("accessToken");
-    // Cookies.remove("refreshToken");
-    // window.location.reload();
+    // Handle logout logic
   };
 
   return (
-    <Box
-      sx={{
-        "& .pro-sidebar-inner": {
-          backgroundColor: theme === "dark" ? "#1f2937" : "#ffffff",
-        },
-        "& .pro-icon-wrapper": {
-          backgroundColor: "transparent !important",
-        },
-        "& .pro-menu-item": {
-          color: theme === "dark" ? "#d1d5db" : "#111827",
-        },
-        "& .pro-menu-item.active": {
-          color: "#4f46e5",
-        },
-      }}
-    >
-      {/* Overlay for smaller screens */}
-      {!isCollapsed && (
-        <div
-          className="fixed inset-0 z-[900] bg-black bg-opacity-50 lg:hidden"
-          onClick={() => setIsCollapsed(true)}
-        />
-      )}
+    <>
+      {/* Mobile Sidebar */}
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button variant="outline" className="fixed top-4 left-4 z-50 md:hidden">
+            <Menu className="h-6 w-6" />
+          </Button>
+        </SheetTrigger>
 
-      <ProSidebar
-        collapsed={isCollapsed}
-        breakPoint="lg"
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          height: "100vh",
-          zIndex: 1000,
-        }}
-      >
-        {/* Sidebar Header */}
-        <Menu>
-          <MenuItem
-            onClick={() => setIsCollapsed(!isCollapsed)}
-            icon={isCollapsed ? <MenuIcon /> : undefined}
-            style={{ margin: "10px 0" }}
-          >
-            {!isCollapsed && (
-              <Box
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
-              >
-                <Typography
-                  variant="h6"
-                  component="div"
-                  className="font-bold text-[#4f46e5] uppercase"
-                >
-                  <div className="text-3xl font-bold dark:text-white text-black">
-                    <div className="flex items-center justify-center">
-                    <a href="/">
-                     Kai <br />
-                    </a>
-                    </div>
-                    <a href="/">
-                    ELearning
-                    </a>
-                  </div>
-                </Typography>
-                <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
-                  <MenuIcon className="text-black dark:text-[#ffffffc1] ml-2" />
-                </IconButton>
-              </Box>
-            )}
-          </MenuItem>
-        </Menu>
+        <SheetContent side="left" className="w-72 p-4">
+          <DialogTitle className="sr-only">Admin Sidebar</DialogTitle>
+          <SidebarContent user={user} selected={selected} setSelected={setSelected} logoutHandler={logoutHandler} />
+        </SheetContent>
+      </Sheet>
 
-        {/* User Info */}
-        {!isCollapsed && (
-          <Box textAlign="center" mb={3}>
-            <Image
-              alt="User Avatar"
-              src={user?.avatar?.url || avatarDefault}
-              width={80}
-              height={80}
-              className="rounded-full mx-auto"
-            />
-            <Typography
-              className="mt-2 text-lg font-medium"
-              component="div" // Fix: Change from default "p" to "div"
-            >
-              <div className="text-xl pt-2">{user?.name || "Admin"}</div>
-            </Typography>
-
-            <Typography
-              variant="caption"
-              className="text-gray-500 capitalize"
-              component="div" // Fix: Change from default "p" to "div"
-            >
-              <div className="text-2xl pt-2">
-                - {user?.role || "Admin Role"}
-              </div>
-            </Typography>
-          </Box>
-        )}
-
-        {/* Sidebar Menu */}
-        <Menu iconShape="circle">
-          {/* Render Items */}
-          <Item
-            title="Dashboard"
-            to="/admin"
-            icon={<HomeIcon className="text-black dark:text-white" />}
-            selected={selected}
-            setSelected={setSelected}
-          />
-
-          <Typography
-            variant="h5"
-            sx={{ m: "15px 0 1px 20px" }}
-            className="!text-[18px] text-black dark:text-[#ffffffc1] capitalize !font-[400]  pt-2"
-          >
-            {!isCollapsed && "Data"}
-          </Typography>
-          <Item
-            title="Users"
-            to="/admin/users"
-            icon={<GroupsIcon className="text-black dark:text-white" />}
-            selected={selected}
-            setSelected={setSelected}
-          />
-
-          <Item
-            title="Invoices"
-            to="/admin/invoices"
-            icon={
-              <ReceiptOutlinedIcon className="text-black dark:text-white" />
-            }
-            selected={selected}
-            setSelected={setSelected}
-          />
-          <Typography
-            variant="h5"
-            className="!text-[18px] text-black dark:text-[#ffffffc1] capitalize !font-[400] pt-2"
-            sx={{ m: "15px 0 5px 20px" }}
-          >
-            {!isCollapsed && "Content"}
-          </Typography>
-          <Item
-            title="Create Course"
-            to="/admin/create-course"
-            icon={<VideoCallIcon className="text-black dark:text-white" />}
-            selected={selected}
-            setSelected={setSelected}
-          />
-          <Item
-            title="Live Courses"
-            to="/admin/courses"
-            icon={<OndemandVideoIcon className="text-black dark:text-white" />}
-            selected={selected}
-            setSelected={setSelected}
-          />
-          <Typography
-            variant="h5"
-            className="!text-[18px] text-black dark:text-[#ffffffc1] capitalize !font-[400] pt-2"
-            sx={{ m: "15px 0 5px 20px" }}
-          >
-            {!isCollapsed && "Customization"}
-          </Typography>
-          <Item
-            title="Hero"
-            to="/admin/hero"
-            icon={<WebIcon className="text-black dark:text-white" />}
-            selected={selected}
-            setSelected={setSelected}
-          />
-          <Item
-            title="FAQ"
-            to="/admin/faq"
-            icon={<QuizIcon className="text-black dark:text-white" />}
-            selected={selected}
-            setSelected={setSelected}
-          />
-          <Item
-            title="Categories"
-            to="/admin/categories"
-            icon={<WysiwygIcon className="text-black dark:text-white" />}
-            selected={selected}
-            setSelected={setSelected}
-          />
-          <Typography
-            variant="h5"
-            className="!text-[18px] text-black dark:text-[#ffffffc1] capitalize !font-[400] pt-2"
-            sx={{ m: "15px 0 5px 20px" }}
-          >
-            {!isCollapsed && "Controllers"}
-          </Typography>
-          <Item
-            title="Manage Team"
-            to="/admin/team"
-            icon={<PeopleOutlinedIcon className="text-black dark:text-white" />}
-            selected={selected}
-            setSelected={setSelected}
-          />
-          <Typography
-            variant="h6"
-            className="!text-[18px] text-black dark:text-[#ffffffc1] capitalize !font-[400] pt-2"
-            sx={{ m: "15px 0 5px 20px" }}
-          >
-            {!isCollapsed && "Analytics"}
-          </Typography>
-          <Item
-            title="Courses Analytics"
-            to="/admin/courses-analytics"
-            icon={
-              <BarChartOutlinedIcon className="text-black dark:text-white" />
-            }
-            selected={selected}
-            setSelected={setSelected}
-          />
-          <Item
-            title="Orders Analytics"
-            to="/admin/orders-analytics"
-            icon={<MapOutlinedIcon className="text-black dark:text-white" />}
-            selected={selected}
-            setSelected={setSelected}
-          />
-          <Item
-            title="Users Analytics"
-            to="/admin/users-analytics"
-            icon={<ManageHistoryIcon className="text-black dark:text-white" />}
-            selected={selected}
-            setSelected={setSelected}
-          />
-          <Typography
-            variant="h6"
-            className="!text-[18px] text-black dark:text-[#ffffffc1] capitalize !font-[400] pt-2"
-            sx={{ m: "15px 0 5px 20px" }}
-          >
-            {!isCollapsed && "Extras"}
-          </Typography>
-          <div onClick={logoutHandler}>
-            <Item
-              title="Logout"
-              to="/"
-              icon={<ExitToAppIcon className="text-black dark:text-white" />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-          </div>
-        </Menu>
-      </ProSidebar>
-    </Box>
+      {/* Desktop Sidebar */}
+      <aside className="hidden md:flex flex-col w-72 h-screen py-4 px-2 border-r shadow-sm">
+        <SidebarContent user={user} selected={selected} setSelected={setSelected} logoutHandler={logoutHandler} />
+      </aside>
+    </>
   );
 };
+
+const SidebarContent: FC<{ user: any; selected: string; setSelected: (value: string) => void; logoutHandler: () => void }> = ({
+  user,
+  selected,
+  setSelected,
+  logoutHandler,
+}) => (
+  <div className="flex flex-col h-full">
+    {/* Logo */}
+    <div className="text-center text-2xl font-bold text-primary">
+      Kai <br /> ELearning
+    </div>
+
+    {/* User Info */}
+    <div className="text-center my-4">
+      <Image
+        alt="User Avatar"
+        src={user?.avatar?.url || avatarDefault}
+        width={80}
+        height={80}
+        className="rounded-full mx-auto"
+      />
+      <div className="mt-2 text-lg font-medium">{user?.name || "Admin"}</div>
+      <div className="text-sm text-muted-foreground">{user?.role || "Admin Role"}</div>
+    </div>
+
+    {/* Sidebar Menu */}
+    <nav className="flex flex-col gap-1 overflow-auto flex-grow">
+      <SidebarItem title="Dashboard" to="/admin" icon={<LayoutDashboard />} selected={selected} setSelected={setSelected} />
+
+      <div className="py-4">
+        <h2 className="text-2xl flex pl-4 font-semibold pb-1">Data</h2>
+        <SidebarItem title="Users" to="/admin/users" icon={<Users />} selected={selected} setSelected={setSelected} />
+        <SidebarItem title="Invoices" to="/admin/invoices" icon={<FileText />} selected={selected} setSelected={setSelected} />
+      </div>
+
+      <div className="py-4">
+        <h2 className="text-2xl flex pl-4 font-semibold pb-1">Content</h2>
+        <SidebarItem title="Create Course" to="/admin/create-course" icon={<VideoIcon />} selected={selected} setSelected={setSelected} />
+        <SidebarItem title="Live Courses" to="/admin/courses" icon={<Video />} selected={selected} setSelected={setSelected} />
+      </div>
+
+      <div className="py-4">
+        <h2 className="text-2xl flex pl-4 font-semibold pb-1">Customization</h2>
+        <SidebarItem title="Hero" to="/admin/hero" icon={<Globe />} selected={selected} setSelected={setSelected} />
+        <SidebarItem title="FAQ" to="/admin/faq" icon={<HelpCircle />} selected={selected} setSelected={setSelected} />
+        <SidebarItem title="Categories" to="/admin/categories" icon={<Folder />} selected={selected} setSelected={setSelected} />
+      </div>
+
+      <div className="py-4">
+        <h2 className="text-2xl flex pl-4 font-semibold pb-1">Controllers</h2>
+        <SidebarItem title="Manage Team" to="/admin/team" icon={<FaUsersCog />} selected={selected} setSelected={setSelected} />
+      </div>
+
+      <div className="py-4">
+        <h2 className="text-2xl flex pl-4 font-semibold pb-1">Data</h2>
+        <SidebarItem title="Courses Analytics" to="/admin/courses-analytics" icon={<BarChart3 />} selected={selected} setSelected={setSelected} />
+        <SidebarItem title="Orders Analytics" to="/admin/orders-analytics" icon={<BarChart />} selected={selected} setSelected={setSelected} />
+        <SidebarItem title="Users Analytics" to="/admin/users-analytics" icon={<BarChart2 />} selected={selected} setSelected={setSelected} />
+      </div>
+
+    </nav>
+
+    {/* Logout */}
+    <div className="mb-auto ">
+      <Button variant="destructive" className="w-full flex justify-start gap-2" onClick={logoutHandler}>
+        <LogOut />
+        Logout
+      </Button>
+    </div>
+  </div>
+);
 
 export default AdminSidebar;

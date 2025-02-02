@@ -18,7 +18,7 @@ const page = (props: Props) => {
         <div className="1500px:w-[16%] w-1/5">
           <AdminSidebar />
         </div>
-        <div className="pl-10 md:pl-0 lg:pl-10 w-[85%]">
+        <div className=" pr-3 md:pl-0 lg:pl-14 lg:pr-3 w-[95%]">
           <DashboardHeader />
           <AllInvoices />
         </div>
