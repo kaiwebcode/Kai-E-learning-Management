@@ -69,12 +69,12 @@ export default function OrdersAnalytics({ isDashboard }: Props) {
                     >
                         <h1
                             className={`${styles.title} ${isDashboard && "!text-[21px]"
-                                } lg:pl-10 pl-0 !text-start `}
+                                } lg:pl-10 pl-6 !text-start `}
                         >
                             Orders Analytics
                         </h1>
                         {!isDashboard && (
-                            <p className={`${styles.label} lg:pl-10 pl-0`}>
+                            <p className={`${styles.label} lg:pl-10 pl-6`}>
                                 Last 12 months analytics data{" "}
                             </p>
                         )}

@@ -160,29 +160,47 @@ const AllUsers: FC<Props> = ({ isTeam }) => {
       )}
 
       {/* Add User Modal */}
-      {active && (
-        <Modal open={active} onClose={() => setActive(false)}>
-          <Box className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg w-96">
-              <h2 className="text-lg font-semibold mb-4">Add New Member</h2>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter email..."
-                className="w-full p-2 border rounded-md mb-4"
-              />
-              <select className="w-full p-2 border rounded-md mb-4" onChange={(e) => setRole(e.target.value)}>
-                <option value="admin">Admin</option>
-                <option value="user">User</option>
-              </select>
-              <button className="bg-green-500 text-white px-4 py-2 rounded-lg w-full hover:bg-green-600 transition" onClick={handleSubmit}>
-                Submit
-              </button>
-            </div>
-          </Box>
-        </Modal>
-      )}
+      <Dialog open={active} onOpenChange={setActive}>
+        <DialogContent className="dark:bg-slate-800 bg-white p-6 rounded-2xl shadow-xl max-w-md mx-auto w-full">
+          <DialogHeader className="text-center">
+            <DialogTitle className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+              Add New Member
+            </DialogTitle>
+          </DialogHeader>
+          <div className="space-y-5">
+            <Input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter email..."
+              className="w-full px-3 py-5 border rounded-lg dark:bg-gray-900 dark:border-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500"
+            />
+            <select
+              className="w-full p-2 border rounded-lg dark:bg-gray-900 dark:border-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500"
+              onChange={(e) => setRole(e.target.value)}
+            >
+              <option value="admin">Admin</option>
+              <option value="user">User</option>
+            </select>
+          </div>
+          <DialogFooter className="flex flex-col sm:flex-row sm:justify-end gap-3 mt-4">
+            <Button
+              variant="outline"
+              onClick={() => setActive(false)}
+              className="w-full sm:w-auto bg-gray-200 dark:bg-gray-700 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-600 transition"
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={handleSubmit}
+              className="w-full sm:w-auto bg-blue-500 text-white hover:bg-blue-600 transition"
+            >
+              Submit
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="dark:bg-slate-800 ">
           <DialogHeader>

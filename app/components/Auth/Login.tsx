@@ -40,6 +40,7 @@ const Login: FC<Props> = ({ setRoute, setOpen, refetch }) => {
 
   useEffect(() => {
     if (isSuccess) {
+      window.location.reload();
       toast.success("Login Successfully!");
       setOpen(false);
       refetch();

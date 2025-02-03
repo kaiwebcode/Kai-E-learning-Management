@@ -19,10 +19,10 @@ function page({}: Props) {
           keywords="Prograaming,MERN,Redux,Machine Learning"
         />
         <div className="flex ">
-          <div className="1500px:w-[16%] w-1/5">
+          <div className="1500px:w-[16%] ">
             <AdminSidebar />
           </div>
-          <div className="pl-0 lg:pl-4 w-[100%] h-screen"> 
+          <div className="pl-0 lg:pl-12 w-[100%] h-screen"> 
             <DashboardHero />
             <AllUsers isTeam={true} />
           </div>

@@ -23,10 +23,10 @@ const Page = ({ params }: Params) => {
         keywords="Programming, MERN, Redux, Machine Learning"
       />
       <div className="flex">
-        <div className="1500px:w-[16%] w-1/5">
+        <div className="1500px:w-[16%] ">
           <AdminSidebar />
         </div>
-        <div className="lg:w-[100%] w-[100] lg:pl-12 pl-0">
+        <div className="lg:w-[100%] w-[100] lg:pl-20 pl-3 pr-2">
           <DashboardHeader />
           <EditCourse id={id} />
         </div>

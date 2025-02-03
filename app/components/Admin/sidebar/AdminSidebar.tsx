@@ -25,6 +25,10 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { DialogTitle } from "@/components/ui/dialog";
 import avatarDefault from "../../../../public/avatar.png";
+import Cookies from "js-cookie";
+import { redirect } from "next/navigation";
+import { signOut } from "next-auth/react";
+import { useLogOutQuery } from "@/redux/features/auth/authApi";
 
 interface SidebarItemProps {
   title: string;
@@ -50,13 +54,23 @@ const AdminSidebar: FC = () => {
   const { user } = useSelector((state: any) => state.auth);
   const [selected, setSelected] = useState("Dashboard");
   const [mounted, setMounted] = useState(false);
+  const [logout, setLogout] = useState(false);
   const { theme } = useTheme();
+  const { } = useLogOutQuery(undefined, {
+    skip: !logout ? true : false,
+  });
 
   useEffect(() => setMounted(true), []);
   if (!mounted) return null;
 
   const logoutHandler = async () => {
     // Handle logout logic
+    setLogout(true);
+    await signOut();
+    // Cookies.remove("accessToken");
+    // Cookies.remove("refreshToken");
+    // window.location.reload();
+    // redirect("/")
   };
 
   return (
@@ -64,19 +78,19 @@ const AdminSidebar: FC = () => {
       {/* Mobile Sidebar */}
       <Sheet>
         <SheetTrigger asChild>
-          <Button variant="outline" className="fixed top-4 left-4 z-50 md:hidden">
+          <Button variant="outline" className="fixed top-4 left-4 z-50 lg:hidden ">
             <Menu className="h-6 w-6" />
           </Button>
         </SheetTrigger>
 
-        <SheetContent side="left" className="w-72 p-4">
+        <SheetContent side="left" className="w-72 p-4 bg-white dark:bg-gray-900">
           <DialogTitle className="sr-only">Admin Sidebar</DialogTitle>
           <SidebarContent user={user} selected={selected} setSelected={setSelected} logoutHandler={logoutHandler} />
         </SheetContent>
       </Sheet>
 
       {/* Desktop Sidebar */}
-      <aside className="hidden md:flex flex-col w-72 h-screen py-4 px-2 border-r shadow-sm">
+      <aside className="hidden lg:flex flex-col w-72 h-screen py-4 px-3 border-r shadow-sm fixed top-0 left-0 bg-white dark:bg-gray-900 lg:overflow-y-auto sm:overflow-y-hidden">
         <SidebarContent user={user} selected={selected} setSelected={setSelected} logoutHandler={logoutHandler} />
       </aside>
     </>
@@ -92,7 +106,9 @@ const SidebarContent: FC<{ user: any; selected: string; setSelected: (value: str
   <div className="flex flex-col h-full">
     {/* Logo */}
     <div className="text-center text-2xl font-bold text-primary">
-      Kai <br /> ELearning
+      <a href="/">
+        Kai <br /> ELearning
+      </a>
     </div>
 
     {/* User Info */}
@@ -109,7 +125,7 @@ const SidebarContent: FC<{ user: any; selected: string; setSelected: (value: str
     </div>
 
     {/* Sidebar Menu */}
-    <nav className="flex flex-col gap-1 overflow-auto flex-grow">
+    <nav className="flex flex-col overflow-y-auto lg:overflow-y-visible gap-1 flex-grow">
       <SidebarItem title="Dashboard" to="/admin" icon={<LayoutDashboard />} selected={selected} setSelected={setSelected} />
 
       <div className="py-4">
@@ -146,7 +162,7 @@ const SidebarContent: FC<{ user: any; selected: string; setSelected: (value: str
     </nav>
 
     {/* Logout */}
-    <div className="mb-auto ">
+    <div className="pb-6 ">
       <Button variant="destructive" className="w-full flex justify-start gap-2" onClick={logoutHandler}>
         <LogOut />
         Logout
