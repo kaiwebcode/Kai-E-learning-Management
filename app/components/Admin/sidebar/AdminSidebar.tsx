@@ -78,12 +78,12 @@ const AdminSidebar: FC = () => {
       {/* Mobile Sidebar */}
       <Sheet>
         <SheetTrigger asChild>
-          <Button variant="outline" className="fixed top-4 left-4 z-50 lg:hidden ">
-            <Menu className="h-6 w-6" />
+          <Button variant="outline" className="fixed top-4 left-4 z-50 lg:hidden bg-slate-800">
+            <Menu className="h-6 w-6 " />
           </Button>
         </SheetTrigger>
 
-        <SheetContent side="left" className="w-72 p-4 bg-white dark:bg-gray-900">
+        <SheetContent side="left" className="w-72 p-4 overflow-y-auto bg-white dark:bg-gray-900">
           <DialogTitle className="sr-only">Admin Sidebar</DialogTitle>
           <SidebarContent user={user} selected={selected} setSelected={setSelected} logoutHandler={logoutHandler} />
         </SheetContent>
@@ -125,7 +125,7 @@ const SidebarContent: FC<{ user: any; selected: string; setSelected: (value: str
     </div>
 
     {/* Sidebar Menu */}
-    <nav className="flex flex-col overflow-y-auto lg:overflow-y-visible gap-1 flex-grow">
+    <nav className="flex flex-col  gap-1 flex-grow">
       <SidebarItem title="Dashboard" to="/admin" icon={<LayoutDashboard />} selected={selected} setSelected={setSelected} />
 
       <div className="py-4">
