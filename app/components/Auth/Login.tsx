@@ -113,9 +113,13 @@ const Login: FC<Props> = ({ setRoute, setOpen, refetch }) => {
           <br />
         </div>
       </form>
-      <br />
-      <h5 className="flex items-center justify-center mb-3">Or login with</h5>
-      <div className="flex items-center justify-center my-3 gap-5 pb-3">
+   
+      <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-slate-400 after:border-t after:border-border">
+        <span className="relative z-10 bg-background px-2 text-muted-foreground dark:bg-slate-900">
+          Or Login with
+        </span>
+      </div>
+      <div className="flex items-center justify-center my-4 gap-5 pb-4">
         <Button className="w-full dark:bg-white bg-slate-400"
           onClick={() => signIn("google")}>
           <FcGoogle
@@ -134,7 +138,7 @@ const Login: FC<Props> = ({ setRoute, setOpen, refetch }) => {
         </Button>
       </div>
       <h5>
-        New to Kai-Learning?{" "}
+        New to Kai-ELearning?{" "}
         <span
           className="text-blue-500 cursor-pointer"
           onClick={() => setRoute("Sign-up")}

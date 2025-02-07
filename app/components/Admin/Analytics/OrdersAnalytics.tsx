@@ -1,114 +1,135 @@
+"use client";
+
+import { TrendingUp } from "lucide-react";
+import { Line, LineChart, CartesianGrid, XAxis, YAxis } from "recharts";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  ChartConfig,
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart";
 import { styles } from "@/app/styles/style";
 import { useGetOrdersAnalyticsQuery } from "@/redux/features/analytics/analyticsApi";
-import React, { useEffect } from "react";
-import {
-    LineChart,
-    Line,
-    XAxis,
-    YAxis,
-    CartesianGrid,
-    Tooltip,
-    Legend,
-    ResponsiveContainer,
-} from "recharts";
+import React from "react";
 import Loader from "../../Loader/Loader";
 
-const analyticsData = [
-    {
-        name: "Page A",
-        Count: 4000,
-    },
-    {
-        name: "Page B",
-        Count: 3000,
-    },
-    {
-        name: "Page C",
-        Count: 5000,
-    },
-    {
-        name: "Page D",
-        Count: 1000,
-    },
-    {
-        name: "Page E",
-        Count: 4000,
-    },
-    {
-        name: "Page F",
-        Count: 800,
-    },
-    {
-        name: "Page G",
-        Count: 200,
-    },
-];
-
 type Props = {
-    isDashboard?: boolean;
+  isDashboard?: boolean;
 };
 
 export default function OrdersAnalytics({ isDashboard }: Props) {
-    const { data, isLoading } = useGetOrdersAnalyticsQuery({});
+  const { data, isLoading } = useGetOrdersAnalyticsQuery({});
 
-    const analyticsData: any = [];
+  const analyticsData: any = [];
 
-    data &&
-        data.orders.last12Months.forEach((item: any) => {
-            analyticsData.push({ name: item.name, Count: item.count });
-        });
+  data &&
+    data.orders.last12Months.forEach((item: any) => {
+      analyticsData.push({ month: item.name, orders: item.count });
+    });
 
-    return (
-        <>
-            {isLoading ? (
-                <Loader />
-            ) : (
-                <div className={isDashboard ? "h-[30vh]" : "h-screen"}>
-                    <div
-                        className={isDashboard ? "mt-[0px] pl-[40px] mb-1" : "mt-[50px]"}
-                    >
-                        <h1
-                            className={`${styles.title} ${isDashboard && "!text-[21px]"
-                                } lg:pl-10 pl-6 !text-start `}
-                        >
-                            Orders Analytics
-                        </h1>
-                        {!isDashboard && (
-                            <p className={`${styles.label} lg:pl-10 pl-6`}>
-                                Last 12 months analytics data{" "}
-                            </p>
-                        )}
-                    </div>
-                    <div
-                        className={`w-full ${!isDashboard ? "h-[80%]" : "h-full"
-                            } flex items-center justify-center`}
-                    >
-                        <ResponsiveContainer
-                            width={isDashboard ? "100%" : "100%"}
-                            height={isDashboard ? "100%" : "50%"}
-                        >
-                            <LineChart
-                                width={500}
-                                height={300}
-                                data={analyticsData}
-                                margin={{
-                                    top: 5,
-                                    right: 30,
-                                    left: 0,
-                                    bottom: 5,
-                                }}
-                            >
-                                <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="name" />
-                                <YAxis />
-                                <Tooltip />
-                                {!isDashboard && <Legend />}
-                                <Line type="monotone" dataKey="Count" stroke="#82ca9d" />
-                            </LineChart>
-                        </ResponsiveContainer>
-                    </div>
+  const chartConfig = {
+    orders: {
+      label: "Orders",
+      color: "hsl(var(--chart-1))",
+    },
+  } satisfies ChartConfig;
+
+  return (
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <div
+          className={`${!isDashboard
+            ? "mt-[30px] flex justify-center h-screen"
+            : " rounded-xl"
+            }`}
+        >
+          <div className="w-full max-w-5xl px-1 lg:mt-4 mt-20">
+            {/* <h1
+              className={`text-2xl font-semibold ${
+                isDashboard ? "!text-[21px]" : ""
+              } lg:pl-4 pl-2 text-gray-900 dark:text-white`}
+            >
+              Orders Analytics
+            </h1>
+            {!isDashboard && (
+              <p className="text-sm text-gray-600 dark:text-gray-400 lg:pl-4 pl-2">
+                Last 12 months analytics data
+              </p>
+            )} */}
+            {/* Title Section */}
+            <h1 className={`${isDashboard ? "!text-[20px] hidden" : ""
+              } ${styles.title} text-2xl font-semibold text-gray-900 dark:text-white pl-4`}>
+              Orders Analytics
+            </h1>
+            <p className={`${isDashboard ? "!text-[20px] hidden" : ""
+              } text-base text-gray-600 dark:text-gray-400 pl-4 pt-4`}>
+              Last 12 months analytics data
+            </p>
+
+            <Card className="w-full mt-2 rounded-xl shadow-xl bg-white dark:bg-slate-900">
+              <CardHeader>
+                <CardTitle className="text-lg">Orders Growth</CardTitle>
+                <CardDescription>Tracking orders over the past 12 months</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ChartContainer config={chartConfig}>
+                  <LineChart
+                    accessibilityLayer
+                    data={analyticsData}
+                    margin={{
+                      left: 16,
+                      right: 16,
+                      top: 10,
+                      bottom: 10,
+                    }}
+                    className="w-full"
+                  >
+                    <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.2} />
+                    <XAxis
+                      dataKey="month"
+                      tickLine={false}
+                      axisLine={false}
+                      tickMargin={8}
+                      tickFormatter={(value) => value} // ✅ Displays full month names
+                      className="text-gray-600 dark:text-gray-400"
+                    />
+                    <YAxis className="text-gray-600 dark:text-gray-400" />
+                    <ChartTooltip
+                      cursor={false}
+                      content={<ChartTooltipContent hideLabel />}
+                    />
+                    <Line
+                      dataKey="orders"
+                      type="monotone"
+                      stroke="hsl(var(--chart-1))"
+                      strokeWidth={2}
+                      dot={false}
+                    />
+                  </LineChart>
+                </ChartContainer>
+              </CardContent>
+              <CardFooter className="flex-col items-start gap-2 text-sm px-6 py-4 border-t border-gray-200 dark:border-gray-700">
+                <div className="flex gap-2 font-medium text-gray-700 dark:text-gray-300">
+                  Trending up by 5.2% this month <TrendingUp className="h-4 w-4 text-green-500" />
                 </div>
-            )}
-        </>
-    );
+                <div className="text-sm text-gray-500 dark:text-gray-400">
+                  Showing total orders for the last 12 months
+                </div>
+              </CardFooter>
+            </Card>
+          </div>
+        </div>
+      )}
+    </>
+  );
 }

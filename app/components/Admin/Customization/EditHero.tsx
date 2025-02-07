@@ -59,7 +59,7 @@ const EditHero: FC<Props> = (props: Props) => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row pl-8 lg:ml-0 items-center w-full p-4 lg:mt-20 mt-5 md:p-8 lg:space-x-8">
+    <div className="flex flex-col lg:flex-row pl-8 lg:ml-0 items-center w-full p-4 lg:mt-40 mt-5 md:p-8 lg:space-x-8">
       {/* Background Animation */}
       {/* <div className="absolute top-20 lg:top-auto h-[30vh] sm:h-[40vh] lg:h-[500px] lg:w-[500px] xl:h-[700px] xl:w-[700px] hero_animation rounded-full left-1/2 transform -translate-x-1/2 lg:left-48 lg:translate-x-0"></div> */}
 

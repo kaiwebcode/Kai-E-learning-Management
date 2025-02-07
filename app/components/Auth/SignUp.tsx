@@ -2,10 +2,13 @@
 import React, { FC, useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { AiFillGithub, AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { styles } from "../../../app/styles/style";
 import { useRegisterMutation } from "@/redux/features/auth/authApi";
 import { toast } from "react-hot-toast";
+import { signIn } from "next-auth/react";
+import { FcGoogle } from "react-icons/fc";
+import { Button } from "@/components/ui/button";
 
 type Props = {
   setRoute: (route: string) => void;
@@ -58,7 +61,7 @@ const Signup: FC<Props> = ({ setRoute }) => {
     <div className="w-full lg:p-6 p-4">
       <h1 className={`${styles.title}`}>Join to Kai-ELearning</h1>
       <form onSubmit={handleSubmit}>
-        <div className="mb-3 pt-6">
+        <div className="mb-3 pt-4">
           <label className={`${styles.label}`} htmlFor="name">
             Name
           </label>
@@ -123,11 +126,34 @@ const Signup: FC<Props> = ({ setRoute }) => {
         {errors.password && touched.password && (
           <span className="text-red-500 pt-2 block">{errors.password}</span>
         )}
-        <div className="w-full mt-5">
+        <div className="w-full mt-3">
           <input type="submit" value="Sign Up" className={`${styles.button}`} />
         </div>
         <br />
       </form>
+      <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-slate-400 after:border-t after:border-border">
+        <span className="relative z-10 bg-background px-2 text-muted-foreground dark:bg-slate-900">
+          Or Continue with
+        </span>
+      </div>
+      <div className="flex items-center justify-center mt-3 gap-5 pb-2">
+        <Button className="w-full dark:bg-white bg-slate-400"
+          onClick={() => signIn("google")}>
+          <FcGoogle
+            size={50}
+            className="cursor-pointer"
+            onClick={() => signIn("google")}
+          />
+        </Button>
+        <Button className="w-full dark:bg-white bg-slate-400"
+          onClick={() => signIn("github")}>
+          <AiFillGithub
+            size={50}
+            className="cursor-pointer"
+            onClick={() => signIn("github")}
+          />
+        </Button>
+      </div>
       <br />
       <h5>
         Already have an Account?

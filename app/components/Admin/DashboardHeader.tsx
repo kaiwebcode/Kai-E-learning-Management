@@ -1,6 +1,8 @@
 "use client";
 
 import { ThemeSwitcher } from "@/app/utils/ThemeSwitcher";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   useGetAllNotificationsQuery,
   useUpdateNotificationStatusMutation,
@@ -27,9 +29,9 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
   const [notifications, setNotifications] = useState<any[]>([]);
   const [audio] = useState<any>(
     typeof window !== "undefined" &&
-      new Audio(
-        "https://res.cloudinary.com/dkg6jv4l0/video/upload/v1716750964/notification_jvwqd0.mp3"
-      )
+    new Audio(
+      "https://res.cloudinary.com/dkg6jv4l0/video/upload/v1716750964/notification_jvwqd0.mp3"
+    )
   );
 
   const playNotificationSound = () => {
@@ -61,51 +63,63 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
 
   return (
     <div className="w-full flex items-center justify-end md:justify-end p-4 md:px-6 lg:px-8">
-      <div className="flex items-center">
-        <ThemeSwitcher />
-        <div
-          className="relative cursor-pointer ml-4"
-          onClick={() => setOpen?.(!open)}
-        >
-          <IoMdNotificationsOutline className="text-2xl cursor-pointer dark:text-white text-black" />
-          <span className="absolute -top-2 -right-2 bg-[#3ccba0] rounded-full w-[20px] h-[20px] text-[12px] flex items-center justify-center text-white">
-            {notifications && notifications.length}
-          </span>
-        </div>
-      </div>
+      <ThemeSwitcher />
+      <DropdownMenu>
 
-      {open && (
-        <div className="absolute top-14 right-4 md:right-8 w-[70%] md:w-[350px] max-h-[60vh] overflow-y-scroll py-2 px-1 md:px-2 lg:px-2 border dark:border-[#ffffff0c] border-[#0000001a] dark:bg-[#111C43] bg-white shadow-lg rounded-lg z-50">
-          <h5 className="text-center text-lg font-bold text-black dark:text-white">
+        <DropdownMenuTrigger asChild className="flex items-center">
+          <div
+            className="relative cursor-pointer ml-4"
+            onClick={() => setOpen?.(!open)}
+          >
+            <IoMdNotificationsOutline className="text-2xl cursor-pointer dark:text-white text-black" />
+            <span className="absolute -top-2 -right-2 bg-[#3ccba0] rounded-full w-[20px] h-[20px] text-[12px] flex items-center justify-center text-white">
+              {notifications && notifications.length}
+            </span>
+          </div>
+        </DropdownMenuTrigger>
+
+        {/* {open && ( */}
+
+        <DropdownMenuContent className="absolute lg:right-1 top-0 right-0 overflow-y-scroll   md:right-3 w-[270px] md:w-[350px] max-h-[60vh] shadow-lg rounded-lg bg-white dark:bg-gray-900 border dark:border-gray-700">
+          <h5 className="text-center text-lg font-semibold py-2.5 border-b dark:border-gray-700">
             Notifications
           </h5>
-          {notifications &&
-            notifications.map((item: any, index: number) => (
-              <div
-                key={index}
-                className="dark:bg-[#2d3a4e] bg-[#f1f1f1] font-Poppins border-b dark:border-b-[#ffffff47] border-b-[#e0e0e0] p-3 rounded-md my-2"
-              >
-                <div className="flex justify-between">
-                  <p className="text-xs md:text-sm lg:text-sm text-black dark:text-white">
-                    {item.title}
-                  </p>
-                  <span
-                    className="text-xs md:text-sm lg:text-sm text-blue-500 cursor-pointer"
-                    onClick={() => handleNotificationStatusChange(item._id)}
+          <ScrollArea  >
+            {notifications.length > 0 ? (
+              notifications.map((item: any, index: number) => (
+                <DropdownMenuItem key={index} className="dark:bg-slate-900 ">
+
+                  <div
+                    key={index}
+                    className="w-full gap-2 p-2.5 bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-all duration-200"
                   >
-                    Mark as read
-                  </span>
-                </div>
-                <p className="text-xs md:text-sm lg:text-sm text-black dark:text-white">
-                  {item.message}
-                </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                  {format(item.createdAt)}
-                </p>
-              </div>
-            ))}
-        </div>
-      )}
+                    <div className="flex justify-between">
+                      <p className="text-xs md:text-sm lg:text-base text-black dark:text-white">
+                        {item.title}
+                      </p>
+                      <span
+                        className="text-xs md:text-sm lg:text-sm text-blue-500 cursor-pointer"
+                        onClick={() => handleNotificationStatusChange(item._id)}
+                      >
+                        Mark as read
+                      </span>
+                    </div>
+                    <p className="text-xs md:text-sm lg:text-sm text-black dark:text-slate-400">
+                      {item.message}
+                    </p>
+                    <p className="text-xs text-gray-500 dark:text-gray-100 mt-1">
+                      {format(item.createdAt)}
+                    </p>
+                  </div>
+                </DropdownMenuItem>
+              ))
+            ) : (
+              <p className="text-center text-gray-500 py-6">No new notifications</p>
+            )}
+          </ScrollArea>
+        </DropdownMenuContent>
+        {/* )} */}
+      </DropdownMenu>
     </div>
   );
 };

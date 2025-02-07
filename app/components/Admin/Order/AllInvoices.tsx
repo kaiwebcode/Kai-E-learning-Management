@@ -60,14 +60,14 @@ const AllInvoices = ({ isDashboard }: Props) => {
       {isLoading ? (
         <Loader />
       ) : (
-        <div className="bg-white dark:bg-gray-900 shadow-lg rounded-xl p-4">
-          <Box height={isDashboard ? "35vh" : "90vh"} component="div" sx={{ overflowY: "auto" }} overflow={"hidden"}>
+        <div className="bg-white dark:bg-gray-900 shadow-2xl rounded-xl p-4">
+          <Box height={isDashboard ? "46vh" : "80vh"} component="div" sx={{ overflowY: "auto" }} overflow={"hidden"}>
             <div className="flex items-center py-3">
               <Input
                 placeholder="Email Search..."
                 value={filterValue}
                 onChange={(e) => setFilterValue(e.target.value)}
-                className="max-w-xs border border-gray-500"
+                className="max-w-xs border border-gray-500 w-[95%]"
               />
             </div>
             <Table className="w-full min-w-[600px]">
