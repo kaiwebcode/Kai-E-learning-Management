@@ -55,7 +55,7 @@ const AllCourses = () => {
   };
 
   return (
-    <div className="mt-10 w-full p-4">
+    <div className=" w-full p-4">
       {isLoading ? (
         <Loader />
       ) : (

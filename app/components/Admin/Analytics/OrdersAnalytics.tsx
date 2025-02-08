@@ -53,7 +53,7 @@ export default function OrdersAnalytics({ isDashboard }: Props) {
             : " rounded-xl"
             }`}
         >
-          <div className="w-full max-w-5xl px-1 lg:mt-4 mt-20">
+          <div className="w-full max-w-5xl px-1 lg:mt-4 mt-14">
             {/* <h1
               className={`text-2xl font-semibold ${
                 isDashboard ? "!text-[21px]" : ""

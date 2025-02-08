@@ -9,7 +9,7 @@ import Header from "../components/Header";
 import Heading from "../utils/Heading";
 import { styles } from "../styles/style";
 import CourseCard from "../components/Course/CourseCard";
-import Footer from '../components/Footer/footer'
+import Footer from "../components/Footer/footer";
 
 type Props = {};
 
@@ -51,12 +51,12 @@ const Page = (props: Props) => {
     const categories = categoriesData?.layout.categories;
 
     return (
-        <div>
+        <div className="min-h-screen flex flex-col">
             {isLoading ? (
                 <Loader />
             ) : (
                 <>
-                    <div className="w-full sticky top-0 z-50 dark:bg-slate-900 bg-white shadow-[0_0_30px_0] shadow-[#67befca7]">
+                    <div className="w-full sticky top-0 z-50 dark:bg-slate-900 bg-white shadow-md">
                         <Header
                             activeItem={1}
                             open={open}
@@ -65,7 +65,7 @@ const Page = (props: Props) => {
                             setRoute={setRoute}
                         />
                     </div>
-                    <div className="w-[90%] m-auto 800px:grid-cols-10 mt-4">
+                    <div className="w-[90%] mx-auto mt-4 flex-grow">
                         <Heading
                             title="All courses - ELearning"
                             description="Elearning is a programming community."
@@ -73,7 +73,7 @@ const Page = (props: Props) => {
                         />
                         <br />
                         {/* Categories */}
-                        <div className="w-full flex items-center flex-wrap ">
+                        <div className="w-full flex items-center flex-wrap">
                             <div
                                 className={`h-[35px] ${category === "All" ? "bg-[crimson]" : "bg-[#5050cb]"
                                     } m-3 px-3 rounded-[30px] flex items-center justify-center cursor-pointer`}
@@ -85,9 +85,7 @@ const Page = (props: Props) => {
                                 categories.map((item: any, index: number) => (
                                     <div key={index}>
                                         <div
-                                            className={`h-[35px] ${category === item.title
-                                                ? "bg-[crimson]"
-                                                : "bg-[#5050cb]"
+                                            className={`h-[35px] ${category === item.title ? "bg-[crimson]" : "bg-[#5050cb]"
                                                 } m-3 px-3 rounded-[30px] flex items-center justify-center cursor-pointer`}
                                             onClick={() => setCategory(item.title)}
                                         >
@@ -98,9 +96,7 @@ const Page = (props: Props) => {
                         </div>
                         {/* No courses found */}
                         {courses && courses.length === 0 && (
-                            <p
-                                className={`${styles.label} justify-center h-screen flex items-center `}
-                            >
+                            <p className={`${styles.label} justify-center flex items-center mt-20`}>
                                 {search
                                     ? "No courses found!"
                                     : "No courses found in this category. Please try another one!"}
@@ -109,15 +105,12 @@ const Page = (props: Props) => {
                         <br />
                         <br />
                         {/* Display Courses */}
-                        <div className="grid grid-cols-1 gap-[20px] md:grid-cols-2 md:gap-[25px] lg:grid-cols-3 lg:gap-[25px] 1500px:grid-cols-4 1500px:gap-[35px] mb-10 border-0 h-screen">
+                        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mb-10">
                             {courses &&
                                 courses.map((item: any, index: number) => (
-                                    <div
-                                    key={index}
-                                    className="relative transform transition duration-500 hover:scale-105"
-                                  >
-                                    <CourseCard item={item} key={index} />
-                                  </div>
+                                    <div key={index} className="relative transform transition duration-500 hover:scale-105">
+                                        <CourseCard item={item} key={index} />
+                                    </div>
                                 ))}
                         </div>
                     </div>

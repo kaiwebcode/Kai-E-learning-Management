@@ -24,6 +24,7 @@ const schema = Yup.object().shape({
 
 const Signup: FC<Props> = ({ setRoute }) => {
   const [show, setShow] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [register, { data, error, isSuccess }] = useRegisterMutation();
 
   useEffect(() => {
@@ -38,6 +39,7 @@ const Signup: FC<Props> = ({ setRoute }) => {
         toast.error(errorData.data.message);
       }
     }
+    setIsLoading(false);
   }, [isSuccess, error]);
 
   const formik = useFormik({
@@ -45,6 +47,7 @@ const Signup: FC<Props> = ({ setRoute }) => {
     validationSchema: schema,
     onSubmit: async ({ name, email, password }) => {
       // setRoute("Verification")
+      setIsLoading(true);
       const data = {
         name,
         email,
@@ -127,7 +130,18 @@ const Signup: FC<Props> = ({ setRoute }) => {
           <span className="text-red-500 pt-2 block">{errors.password}</span>
         )}
         <div className="w-full mt-3">
-          <input type="submit" value="Sign Up" className={`${styles.button}`} />
+          <button
+            type="submit"
+            className={`w-full py-2 px-4 rounded-lg font-semibold text-white bg-blue-500 hover:bg-blue-600 transition duration-200 ${isLoading ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <div className="spinner border-2 border-t-transparent border-white rounded-full w-5 h-5 mx-auto animate-spin"></div>
+            ) : (
+              "Sign Up"
+            )}
+          </button>
         </div>
         <br />
       </form>

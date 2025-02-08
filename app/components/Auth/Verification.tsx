@@ -18,7 +18,7 @@ type VerifyNumber = {
 
 const Verification: FC<Props> = ({ setRoute }) => {
   const { token } = useSelector((state: any) => state.auth);
-  const [activation, { isSuccess, error }] = useActivationMutation();
+  const [activation, { isSuccess, error, isLoading }] = useActivationMutation();
   const [invalidError, setInvalidError] = useState<boolean>(false);
 
   useEffect(() => {
@@ -93,8 +93,8 @@ const Verification: FC<Props> = ({ setRoute }) => {
             key={key}
             ref={inputRefs[index]}
             className={`w-16 h-16 text-center rounded-xl border-2 ${invalidError
-                ? "border-red-500 animate-shake"
-                : "border-gray-400 "
+              ? "border-red-500 animate-shake"
+              : "border-gray-400 "
               } text-xl font-medium dark:bg-gray-700 dark:text-white`}
             placeholder=""
             maxLength={1}
@@ -104,10 +104,18 @@ const Verification: FC<Props> = ({ setRoute }) => {
         ))}
       </div>
       <br />
-      <br />
-      <div className="w-full flex justify-center">
-        <button className={`${styles.button}`} onClick={verificationHandler}>
-          Verify OTP
+
+      <div className="w-full flex justify-center mt-6">
+        <button
+          className={`${styles.button} flex justify-center items-center`}
+          onClick={verificationHandler}
+          disabled={isLoading}
+        >
+          {isLoading ? (
+            <div className="w-5 h-5 border-2 border-t-transparent border-white rounded-full animate-spin"></div>
+          ) : (
+            "Verify OTP"
+          )}
         </button>
       </div>
       <br />

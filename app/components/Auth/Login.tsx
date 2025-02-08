@@ -29,21 +29,23 @@ const schema = Yup.object().shape({
 
 const Login: FC<Props> = ({ setRoute, setOpen, refetch }) => {
   const [show, setShow] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [login, { isSuccess, error }] = useLoginMutation();
   const formik = useFormik({
     initialValues: { email: "", password: "" },
     validationSchema: schema,
     onSubmit: async ({ email, password }) => {
+      setIsLoading(true);
       await login({ email, password });
     },
   });
 
   useEffect(() => {
     if (isSuccess) {
-      window.location.reload();
       toast.success("Login Successfully!");
       setOpen(false);
       refetch();
+      window.location.reload();
     }
     if (error) {
       if ("data" in error) {
@@ -51,6 +53,7 @@ const Login: FC<Props> = ({ setRoute, setOpen, refetch }) => {
         toast.error(errorData.data.message);
       }
     }
+    setIsLoading(false);
   }, [isSuccess, error]);
 
   const { errors, touched, values, handleChange, handleSubmit } = formik;
@@ -108,12 +111,23 @@ const Login: FC<Props> = ({ setRoute, setOpen, refetch }) => {
             <span className="text-red-500 pt-2 block">{errors.password}</span>
           )}
           <div className="w-full mt-8">
-            <input type="submit" value="Login" className={`${styles.button}`} />
+            <button
+              type="submit"
+              className={`w-full py-2 px-4 rounded-lg font-semibold text-white bg-blue-500 hover:bg-blue-600 transition duration-200 ${isLoading ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <div className="spinner border-2 border-t-transparent border-white rounded-full w-5 h-5 mx-auto animate-spin"></div>
+              ) : (
+                "Login"
+              )}
+            </button>
           </div>
           <br />
         </div>
       </form>
-   
+
       <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-slate-400 after:border-t after:border-border">
         <span className="relative z-10 bg-background px-2 text-muted-foreground dark:bg-slate-900">
           Or Login with
