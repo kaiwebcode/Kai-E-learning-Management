@@ -64,7 +64,7 @@ const CourseAnalytics = (props: Props) => {
               <CardContent>
                 <ChartContainer config={chartConfig}>
                   <ResponsiveContainer width="100%" height={300}>
-                    <BarChart data={analyticsData} margin={{ top: 20, left: 16, right: 16 }}>
+                    <BarChart data={analyticsData} margin={{ top: 20, left: 1, right: 1 }}>
                       <CartesianGrid vertical={false} strokeOpacity={0.2} />
                       <XAxis
                         dataKey="month"

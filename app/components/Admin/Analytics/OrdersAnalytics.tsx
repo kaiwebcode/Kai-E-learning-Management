@@ -87,10 +87,10 @@ export default function OrdersAnalytics({ isDashboard }: Props) {
                     accessibilityLayer
                     data={analyticsData}
                     margin={{
-                      left: 16,
-                      right: 16,
+                      left: 1,
+                      right: 5,
                       top: 10,
-                      bottom: 10,
+                      bottom: 1,
                     }}
                     className="w-full"
                   >
