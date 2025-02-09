@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, Suspense } from "react";
+import React, { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useGetUsersAllCoursesQuery } from "@/redux/features/courses/coursesApi";
 import { useGetHeroDataQuery } from "@/redux/features/layout/layoutApi";
@@ -14,8 +14,8 @@ import Footer from "../components/Footer/footer";
 type Props = {};
 
 const Page = (props: Props) => {
-    const searchParams = useSearchParams(); // Used for dynamic filtering
-    const search = searchParams?.get("title"); // Extract search query
+    const searchParams = useSearchParams();
+    const search = searchParams?.get("title");
 
     const { data, isLoading } = useGetUsersAllCoursesQuery(undefined, {});
     const { data: categoriesData } = useGetHeroDataQuery("Categories", {});
@@ -25,20 +25,17 @@ const Page = (props: Props) => {
     const [courses, setCourses] = useState([]);
     const [category, setCategory] = useState("All");
 
-    // Handle filtering of courses
     useEffect(() => {
         if (!data) return;
 
         let filteredCourses = data.courses;
 
-        // Filter by category
         if (category !== "All") {
             filteredCourses = filteredCourses.filter(
                 (item: any) => item.categories === category
             );
         }
 
-        // Filter by search
         if (search) {
             filteredCourses = filteredCourses.filter((item: any) =>
                 item.name.toLowerCase().includes(search.toLowerCase())
@@ -52,50 +49,53 @@ const Page = (props: Props) => {
 
     return (
         <div className="min-h-screen flex flex-col">
-            {isLoading ? (
-                <Loader />
-            ) : (
-                <>
-                    <div className="w-full sticky top-0 z-50 dark:bg-slate-900 bg-white shadow-md">
-                        <Header
-                            activeItem={1}
-                            open={open}
-                            setOpen={setOpen}
-                            route={route}
-                            setRoute={setRoute}
-                        />
+            <div className="w-full sticky top-0 z-50 dark:bg-slate-900 bg-white shadow-md">
+                <Header
+                    activeItem={1}
+                    open={open}
+                    setOpen={setOpen}
+                    route={route}
+                    setRoute={setRoute}
+                />
+            </div>
+            <div className="w-[90%] mx-auto mt-4 flex-grow">
+                <Heading
+                    title="All courses - ELearning"
+                    description="Elearning is a programming community."
+                    keywords="programming community, coding skills, insights, collaboration, growth"
+                />
+                <br />
+                <div className="w-full flex items-center flex-wrap">
+                    <div
+                        className={`h-[35px] ${category === "All" ? "bg-[crimson]" : "bg-[#5050cb]"
+                            } m-3 px-3 rounded-[30px] flex items-center justify-center cursor-pointer`}
+                        onClick={() => setCategory("All")}
+                    >
+                        All
                     </div>
-                    <div className="w-[90%] mx-auto mt-4 flex-grow">
-                        <Heading
-                            title="All courses - ELearning"
-                            description="Elearning is a programming community."
-                            keywords="programming community, coding skills, insights, collaboration, growth"
-                        />
-                        <br />
-                        {/* Categories */}
-                        <div className="w-full flex items-center flex-wrap">
-                            <div
-                                className={`h-[35px] ${category === "All" ? "bg-[crimson]" : "bg-[#5050cb]"
-                                    } m-3 px-3 rounded-[30px] flex items-center justify-center cursor-pointer`}
-                                onClick={() => setCategory("All")}
-                            >
-                                All
+                    {categories &&
+                        categories.map((item: any, index: number) => (
+                            <div key={index}>
+                                <div
+                                    className={`h-[35px] ${category === item.title ? "bg-[crimson]" : "bg-[#5050cb]"
+                                        } m-3 px-3 rounded-[30px] flex items-center justify-center cursor-pointer`}
+                                    onClick={() => setCategory(item.title)}
+                                >
+                                    {item.title}
+                                </div>
                             </div>
-                            {categories &&
-                                categories.map((item: any, index: number) => (
-                                    <div key={index}>
-                                        <div
-                                            className={`h-[35px] ${category === item.title ? "bg-[crimson]" : "bg-[#5050cb]"
-                                                } m-3 px-3 rounded-[30px] flex items-center justify-center cursor-pointer`}
-                                            onClick={() => setCategory(item.title)}
-                                        >
-                                            {item.title}
-                                        </div>
-                                    </div>
-                                ))}
-                        </div>
-                        {/* No courses found */}
-                        {courses && courses.length === 0 && (
+                        ))}
+                </div>
+                {isLoading ? (
+                    <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mb-10">
+                        <SkeletonCourseCard />
+                        <SkeletonCourseCard />
+                        <SkeletonCourseCard />
+                        <SkeletonCourseCard />
+                    </div>
+                ) : (
+                    <>
+                        {courses.length === 0 && (
                             <p className={`${styles.label} justify-center flex items-center mt-20`}>
                                 {search
                                     ? "No courses found!"
@@ -104,24 +104,32 @@ const Page = (props: Props) => {
                         )}
                         <br />
                         <br />
-                        {/* Display Courses */}
                         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mb-10">
-                            {courses &&
-                                courses.map((item: any, index: number) => (
-                                    <div key={index} className="relative transform transition duration-500 hover:scale-105">
-                                        <CourseCard item={item} key={index} />
-                                    </div>
-                                ))}
+                            {courses.map((item: any, index: number) => (
+                                <div key={index} className="relative transform transition duration-500 hover:scale-105">
+                                    <CourseCard item={item} key={index} />
+                                </div>
+                            ))}
                         </div>
-                    </div>
-                    <Footer />
-                </>
-            )}
+                    </>
+                )}
+            </div>
+            <Footer />
         </div>
     );
 };
 
-// Force dynamic rendering
+// Skeleton Loader for Course Card
+function SkeletonCourseCard() {
+    return (
+        <div className="bg-gray-200 dark:bg-gray-700 p-4 rounded-lg animate-pulse">
+            <div className="h-40 bg-gray-300 dark:bg-gray-600 rounded-md"></div>
+            <div className="mt-4 h-6 w-3/4 bg-gray-300 dark:bg-gray-600 rounded-md"></div>
+            <div className="mt-2 h-4 w-1/2 bg-gray-300 dark:bg-gray-600 rounded-md"></div>
+        </div>
+    );
+}
+
 export const dynamic = "force-dynamic";
 
 export default Page;

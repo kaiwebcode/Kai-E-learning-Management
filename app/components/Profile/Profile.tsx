@@ -87,21 +87,22 @@ const Profile: FC<Props> = ({ user }) => {
 
       {
         active === 3 && (
-          <div className="w-full pl-1 md:pl-20 lg:pl-20 px-2 800px:px-10 800px:pl-8">
-            <div className="grid grid-cols-1 gap-[20px] md:grid-cols-2 md:gap-[25px] lg:grid-cols-2 lg:gap-[25px] xl:grid-cols-3 xl:gap-[35px] mt-20">
-              {courses &&
+          <div className="w-full pl-1 md:pl-20 lg:pl-20 px-2 800px:px-10 800px:pl-8 min-h-screen pb-40 lg:overflow-hidden  overflow-y-auto">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 xl:gap-6 mt-20">
+              {courses && courses.length > 0 ? (
                 courses.map((item: any, index: number) => (
                   <CourseCard item={item} key={index} isProfile={true} />
-                ))}
+                ))
+              ) : (
+                <h1 className="text-center text-[18px] w-full col-span-full">
+                  You don't have any courses...
+                </h1>
+              )}
             </div>
-            {courses.length === 0 && (
-              <h1 className="text-center text-[18px]">
-                You don't have any courses...
-              </h1>
-            )}
           </div>
         )
       }
+
     </div>
   );
 };
