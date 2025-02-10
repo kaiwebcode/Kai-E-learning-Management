@@ -62,7 +62,7 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
   };
 
   return (
-    <div className="w-full flex items-center justify-end md:justify-end p-4 md:px-6 lg:px-8">
+    <div className="w-full flex items-center justify-end md:justify-end p-4 md:px-6 lg:px-4">
       <ThemeSwitcher />
       <DropdownMenu>
 
@@ -81,9 +81,11 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
         {/* {open && ( */}
 
         <DropdownMenuContent className="absolute lg:right-1 top-0 right-0 overflow-y-scroll   md:right-3 w-[270px] md:w-[350px] max-h-[60vh] shadow-lg rounded-lg bg-white dark:bg-gray-900 border dark:border-gray-700">
+        <div className="w-full sticky top-0 z-50 dark:bg-slate-900 bg-white ">
           <h5 className="text-center text-lg font-semibold py-2.5 border-b dark:border-gray-700">
             Notifications
           </h5>
+        </div>
           <ScrollArea  >
             {notifications.length > 0 ? (
               notifications.map((item: any, index: number) => (
