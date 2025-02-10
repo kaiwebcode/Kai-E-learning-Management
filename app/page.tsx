@@ -35,7 +35,7 @@ const Home: FC<Props> = (props) => {
       <motion.nav
         initial={{ opacity: 0, y: -100 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.0, ease: "easeOut" }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
         className="w-full sticky top-0 z-50 dark:bg-slate-900 bg-white shadow-[0_0_30px_0] shadow-[#67befca7]"
       >
         <div>
