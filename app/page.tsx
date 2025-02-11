@@ -79,7 +79,9 @@ const Home: FC<Props> = (props) => {
                 <h1><a href="/">Welcome to My Website</a></h1>
                 <p>This is a simple HTML example with inline CSS.</p>
               </body> </html>`}
-          backgroudGradient="bg-gradient-to-r from-blue-500 to-purple-600"
+          backgroudGradient="
+              // * { bg-slate-to-r from-slate-600 to-slate-800 } *
+              "
           codeColor="text-white"
 
         />
@@ -120,7 +122,9 @@ const Home: FC<Props> = (props) => {
                 <h1><a href="/">Welcome to My Website</a></h1>
                 <p>This is a simple HTML example with inline CSS.</p>
               </body> </html>`}
-          backgroudGradient="bg-gradient-to-r from-blue-500 to-purple-600"
+          backgroudGradient="
+              // * { bg-slate-to-r from-slate-600 to-slate-800 } *
+              "
           codeColor="text-white"
 
         />
