@@ -50,11 +50,11 @@ const NavItems: React.FC<Props> = ({ activeItem, isMobile }) => {
       {isMobile && (
         <div className="800px:hidden mt-5">
           <div className="w-full text-center py-6">
-            <Link href={"/"} passHref>
-              <span
-                className={`text-[25px] font-Poppins font-[500] text-black dark:text-white`}
-              >Kai-Learning</span>
-            </Link>
+            <div className="text-center text-3xl font-[700] text-primary">
+              <a href="/">
+                Kai-ELearning
+              </a>
+            </div>
           </div>
           {navItemsData &&
             navItemsData.map((i, index) => (
