@@ -93,7 +93,7 @@ const footer = ({ }: Props) => {
                             </li>
                         </ul>
                     </div>
-                    <div>
+                    <div className='space-y-1'>
                         <h3 className='text-[20px] font-[600] text-white dark:text-white pb-2'>
                             Contact Info
                         </h3>
@@ -101,11 +101,11 @@ const footer = ({ }: Props) => {
                             Call Us:- 911-911-911-911
                         </p>
                         <p className=' text-white dark:text-gray-300 dark:hover:text-white pb-2'>
-                            Address: +91 India, Maharashtra, Mumbai
+                            Address: India, Maharashtra, Mumbai
                         </p>
                         <p className=' text-white dark:text-gray-300 dark:hover:text-white pb-2'>
                             Mail Us:
-                            kq97705@gmail.com
+                            kaifqureshi.pr@gmail.com
                         </p>
                     </div>
                 </div>

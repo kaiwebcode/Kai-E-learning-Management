@@ -85,19 +85,34 @@ const Hero: FC<Props> = (props) => {
                   </p>
                 </motion.div>
 
-                <div className="w-[70%] h-[50px] bg-transparent relative mt-4">
+                {/* Improved Search Bar */}
+                <div className="relative w-full max-w-lg mt-4">
                   <input
                     type="search"
-                    placeholder="Search Courses..."
+                    placeholder="Search..."
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    className="bg-transparent border dark:border-none dark:bg-[#575757] dark:placeholder:text-[#ffffff] rounded-[5px] p-2 w-full h-full outline-none "
+                    onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+                    className="w-full h-[50px] bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-full pl-5 pr-14 text-gray-900 dark:text-white outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
                   />
-                  <div className="absolute flex items-center justify-center w-[50px] cursor-pointer h-[50px] right-0 top-0 bg-[#39c1f3] rounded-r-[5px]"
-                    onClick={handleSearch}>
-                    <BiSearch className="text-white " size={25} />
-                  </div>
+                  {search && (
+                    <button
+                      onClick={() => setSearch("")}
+                      className="absolute top-1/2 transform -translate-y-1/2 right-12 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-all duration-300"
+                      aria-label="Clear search"
+                    >
+
+                    </button>
+                  )}
+                  <button
+                    onClick={handleSearch}
+                    className="absolute flex items-center justify-center w-[50px] h-[50px] right-0 top-0 bg-blue-600 hover:bg-blue-700 rounded-full transition-all duration-300"
+                    aria-label="Search"
+                  >
+                    <BiSearch className="text-white" size={22} />
+                  </button>
                 </div>
+
                 <button className="mt-6 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-md text-lg transition-all duration-300">
                   Get Started
                 </button>

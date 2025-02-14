@@ -32,7 +32,7 @@ const InstructorSection = () => {
 
         {/* Text Content */}
         <motion.div
-          initial={{ opacity: 0, x: 20 }}
+          initial={{ opacity: 0, x: 10 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="md:w-[50%] flex flex-col gap-10 text-center md:text-left"
