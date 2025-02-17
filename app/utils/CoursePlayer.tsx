@@ -16,7 +16,7 @@ const CoursePlayer: FC<Props> = ({ videoUrl, title }) => {
     axios
       // When you push the code and deploy in guthub use this url and then push
       // https://kai-e-learning-management-backend.onrender.com/api/v1/getVdoCipherOTP
-      .post("https://kai-e-learning-management-backend.onrender.com/api/v1/getVdoCipherOTP", {
+      .post("http://localhost:8000/api/v1/getVdoCipherOTP", {
         videoId: videoUrl,
       })
       .then((res) => {
@@ -42,7 +42,7 @@ const CoursePlayer: FC<Props> = ({ videoUrl, title }) => {
         >
           {videoData.otp && videoData.playbackInfo !== "" ? (
             <iframe
-              src={`https://player.vdocipher.com/v2/?otp=${videoData?.otp}&playbackInfo=${videoData.playbackInfo}&player=6UqKsC8JxqFe7hGN`}
+              src={`https://player.vdocipher.com/v2/?otp=${videoData?.otp}&playbackInfo=${videoData.playbackInfo}&player=Tc0rfbWabY1OAh6x`}
               style={{
                 border: 0,
                 width: "100%",
