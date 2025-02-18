@@ -1,8 +1,9 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import CoursePlayer from "../../../utils/CoursePlayer";
 import { styles } from "../../../../app/styles/style";
 import Ratings from "../../../../app/utils/Ratings";
 import { IoCheckmarkDoneOutline } from "react-icons/io5";
+import { Loader2 } from "lucide-react";
 
 type Props = {
   active: number;
@@ -19,6 +20,7 @@ const CoursePreview: FC<Props> = ({
   active,
   isEdit,
 }) => {
+  const [loading, setLoading] = useState(false);
   const dicountPercentenge =
     ((courseData?.estimatedPrice - courseData?.price) / courseData?.estimatedPrice) *
     100;
@@ -29,9 +31,12 @@ const CoursePreview: FC<Props> = ({
     setActive(active - 1);
   };
 
-  const createCourse = () => {
-    handleCourseCreate();
+  const createCourse = async () => {
+    setLoading(true);
+    await handleCourseCreate(); // Wait for the course creation process
+    setLoading(false);
   };
+
 
   return (
     <div className="w-[84%] m-auto py-1 mb-5">
@@ -128,10 +133,11 @@ const CoursePreview: FC<Props> = ({
           Prev
         </div>
         <div
-          className="w-full 800px:w-[180px] flex items-center justify-center h-[40px] bg-[#37a39a] text-[#fff] rounded cursor-pointer"
-          onClick={() => createCourse()}
+          className={`w-full 800px:w-[180px] flex items-center justify-center h-[40px] bg-[#37a39a] text-[#fff] rounded cursor-pointer ${loading ? "opacity-50 cursor-not-allowed" : ''
+            }`}
+          onClick={!loading ? createCourse : undefined}
         >
-          {isEdit ? "Update" : "Create"}
+          {loading ? <Loader2 className="animate-spin" size={20} /> : isEdit ? "Update" : "Create"}
         </div>
       </div>
     </div>

@@ -16,7 +16,7 @@ const CoursePlayer: FC<Props> = ({ videoUrl, title }) => {
     axios
       // When you push the code and deploy in guthub use this url and then push
       // https://kai-e-learning-management-backend.onrender.com/api/v1/getVdoCipherOTP
-      .post("https://kai-e-learning-management-backend.onrender.com/api/v1/getVdoCipherOTP", {
+      .post(" https://kai-e-learning-management-backend.onrender.com/api/v1/getVdoCipherOTP", {
         videoId: videoUrl,
       })
       .then((res) => {
