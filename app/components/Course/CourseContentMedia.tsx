@@ -158,7 +158,7 @@ const CourseContentMedia = ({ data, id, user, activeVideo, setActiveVideo, refet
             contentId: data[activeVideo]._id,
             questionId: questionId,
         });
-        console.log('fff')
+        // console.log('fff')
     };
 
     const handleReviewSubmit = async () => {

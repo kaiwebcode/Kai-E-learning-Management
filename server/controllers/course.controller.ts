@@ -95,7 +95,7 @@ export const getSingleCourse = CatchAsyncError(
 
       const isCacheExist = await redis.get(courseId);
 
-      console.log("hitting redis");
+      // console.log("hitting redis");
 
       if (isCacheExist) {
         const course = JSON.parse(isCacheExist);

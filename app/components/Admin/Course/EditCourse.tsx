@@ -94,7 +94,7 @@ const EditCourse: FC<Props> = ({ id }) => {
 
   const [courseData, setCourseData] = useState({});
 
-  console.log(courseData);
+  // console.log(courseData);
 
   const handleSubmit = async () => {
     // Format benefits array

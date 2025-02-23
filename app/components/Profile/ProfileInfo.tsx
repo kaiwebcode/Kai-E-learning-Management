@@ -59,11 +59,9 @@ const ProfileInfo: FC<Props> = ({ avatar, user }) => {
     <div className="w-full flex flex-col items-center bg-slate-700 py-20 px-5 rounded-lg shadow-lg max-w-4xl mx-auto">
       {/* Avatar Section */}
       <div className="relative w-36 h-36">
-        <Image
+        <img
           src={user.avatar || avatar ? user.avatar.url || avatar : avatarIcons}
           alt="User Avatar"
-          width={128}
-          height={128}
           className="w-full h-full object-cover border-4 border-[#37a39a] rounded-full"
         />
         <input

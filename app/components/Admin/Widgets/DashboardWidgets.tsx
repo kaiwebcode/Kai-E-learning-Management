@@ -133,7 +133,7 @@ const DashboardWidgets: FC<Props> = ({ open }) => {
                                 </p>
                                 <p className="text-lg text-gray-500 dark:text-gray-400 py-1">Sales Obtained</p>
                                 <p className="text-sm text-muted-foreground">
-                                    Total Sales on Kai-Elearning
+                                    Total Sales on Kai-Elearning last month
                                 </p>
                             </CardTitle>
                             <ShoppingBag className="h-6 w-6 text-green-500" />
@@ -166,7 +166,7 @@ const DashboardWidgets: FC<Props> = ({ open }) => {
                                 </p>
                                 <p className="text-lg text-gray-500 dark:text-gray-400 py-1">New Users</p>
                                 <p className="text-sm text-muted-foreground">
-                                    Total Users Signed Up on Kai-Elearning
+                                    Total Users Signed Up last month
                                 </p>
                             </CardTitle>
                             <User2 className="text-5xl text-blue-500" />

@@ -87,7 +87,7 @@ const Profile: FC<Props> = ({ user }) => {
 
       {
         active === 3 && (
-          <div className="w-full pl-1 md:pl-20 lg:pl-20 px-2 800px:px-10 800px:pl-8 min-h-screen pb-40 lg:overflow-hidden  overflow-y-auto">
+          <div className="w-full pl-1 md:pl-20 lg:pl-20 px-2 800px:px-10 800px:pl-8 min-h-screen pb-40 overflow-y-auto">
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 xl:gap-6 mt-20">
               {courses && courses.length > 0 ? (
                 courses.map((item: any, index: number) => (

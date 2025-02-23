@@ -423,7 +423,7 @@ export const updateProfilePicture = CatchAsyncError(
         user,
       });
     } catch (error: any) {
-      console.log(error);
+      // console.log(error);
       return next(new ErrorHandler(error.message, 400));
     }
   }

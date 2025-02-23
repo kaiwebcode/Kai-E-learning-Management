@@ -113,12 +113,10 @@ const SidebarContent: FC<{ user: any; selected: string; setSelected: (value: str
 
     {/* User Info */}
     <div className="text-center my-4">
-      <Image
+      <img
         alt="User Avatar"
         src={user?.avatar?.url || avatarDefault}
-        width={80}
-        height={80}
-        className="rounded-full mx-auto"
+        className="w-[80px] h-[80px] rounded-full mx-auto object-cover"
       />
       <div className="mt-2 text-lg font-medium">{user?.name || "Admin"}</div>
       <div className="text-sm text-muted-foreground">{user?.role || "Admin Role"}</div>

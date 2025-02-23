@@ -59,7 +59,7 @@ cron.schedule("0 0 0 * * *", async () => {
     status: "read",
     createdAt: { $lt: thirtyDaysAgo },
   });
-  console.log("Deleted read notifications");
+  // console.log("Deleted read notifications");
   // console.log("___________")
   // console.log('running cron');
 });

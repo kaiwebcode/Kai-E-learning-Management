@@ -14,15 +14,12 @@ import RatingSlider from "./components/Review/RatingSlider";
 import InstructorSection from "./components/Homepage/InstructorSection";
 import { motion } from "framer-motion";
 
-interface Props {
-
-}
+interface Props {}
 
 const Home: FC<Props> = (props) => {
   const [open, setOpen] = useState(false);
   const [activeItem, setActiveItem] = useState(0);
   const [route, setRoute] = useState("Login");
-  // const { user } = useSelector((state: any) => state.auth);
 
   return (
     <div>

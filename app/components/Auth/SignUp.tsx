@@ -53,7 +53,7 @@ const Signup: FC<Props> = ({ setRoute }) => {
         email,
         password,
       };
-      console.log(data);
+      // console.log(data);
       await register(data);
     },
   });
