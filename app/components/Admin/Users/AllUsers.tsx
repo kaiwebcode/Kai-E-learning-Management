@@ -172,7 +172,8 @@ const AllUsers: FC<Props> = ({ isTeam }) => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter email..."
+              id="email"
+              placeholder="Enter a email..."
               className="w-full px-3 py-5 border rounded-lg dark:bg-gray-900 dark:border-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500"
             />
             <select

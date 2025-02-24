@@ -21,7 +21,7 @@ const Page = (props: Props) => {
           <div className="1500px:w-[16%]">
           <AdminSidebar />
           </div>
-          <div className="lg:w-[95%] w-[100] md:w-[100%] lg:pl-20 pl-2 ">
+          <div className="lg:w-[95%] w-[100] md:w-[100%] lg:pl-20 lg:pr-2.5 px-1">
             <DashboardHero isDashboard={true}/>
           </div>
         </div>
