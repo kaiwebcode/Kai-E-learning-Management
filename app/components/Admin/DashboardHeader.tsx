@@ -62,7 +62,7 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
   };
 
   return (
-    <div className="w-full flex items-center justify-end md:justify-end p-4 md:px-6 lg:pr-3 border-b border-gray-200 dark:border-gray-700">
+    <div className="w-full flex items-center justify-end md:justify-end p-4 md:px-6 lg:pr-3 border-b border-gray-300 dark:border-gray-700">
       <ThemeSwitcher />
       <DropdownMenu>
 

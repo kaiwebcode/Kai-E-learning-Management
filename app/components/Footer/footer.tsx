@@ -11,7 +11,7 @@ const footer = ({ }: Props) => {
             <div className='w-[95%] 800px:w-full 800px:max-w-[85%] mx-auto px-2 sm:px-6 lg:px-8'>
                 <div className='grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4'>
                     <div className='space-y-3'>
-                        <h3 className='text-[20px] font-[600] text-white dark:text-white'>About</h3>
+                        <h3 className='text-[25px] font-[700] text-white dark:text-white'>About</h3>
                         <ul className='space-y-4'>
                             <li>
                                 <Link href="/about"
@@ -37,7 +37,7 @@ const footer = ({ }: Props) => {
                         </ul>
                     </div>
                     <div className='space-y-3'>
-                        <h3 className='text-[20px] font-[600] text-white dark:text-white'>
+                        <h3 className='text-[25px] font-[700] text-white dark:text-white'>
                             Quick Links
                         </h3>
                         <ul className='space-y-3'>
@@ -65,7 +65,7 @@ const footer = ({ }: Props) => {
                         </ul>
                     </div>
                     <div className='space-y-3'>
-                        <h3 className='text-[20px] font-[600] text-white dark:text-white'>
+                        <h3 className='text-[25px] font-[700] text-white dark:text-white'>
                             Social Links
                         </h3>
                         <ul className='space-y-4'>
@@ -94,7 +94,7 @@ const footer = ({ }: Props) => {
                         </ul>
                     </div>
                     <div className='space-y-1'>
-                        <h3 className='text-[20px] font-[600] text-white dark:text-white pb-2'>
+                        <h3 className='text-[25px] font-[700] text-white dark:text-white pb-2'>
                             Contact Info
                         </h3>
                         <p className=' text-white dark:text-gray-300 dark:hover:text-white pb-2'>

@@ -258,9 +258,9 @@ const CourseDetails = ({ data, stripePromise,
 
                             </div>
                             <div className='flex items-center justify-center mt-4 mb-1'>
-                            <button className='flex items-center justify-center cursor-pointer bg-transparent' onClick={copyUrl}>
-                                <Share className='text-red-500' /> <p className='text-red-500 font-semibold lg:text-xl pl-1'>Share</p>
-                            </button>
+                                <button className='flex items-center justify-center cursor-pointer bg-transparent' onClick={copyUrl}>
+                                    <Share className='text-red-500' /> <p className='text-red-500 font-semibold lg:text-xl pl-1'>Share</p>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -271,16 +271,22 @@ const CourseDetails = ({ data, stripePromise,
 
             <>
                 {open && (
-                    <div className="w-full h-screen  bg-[#00000036] fixed top-0 left-0 z-50 flex items-center justify-center">
-                        <div className="w-[500px] min-h-[500px] dark:bg-slate-600 bg-slate-200 rounded-xl shadow p-3">
-                            <div className="w-full flex justify-end ">
-                                <IoCloseOutline
-                                    size={40}
-                                    className="text-black dark:text-white cursor-pointer"
-                                    onClick={() => setOpen(false)}
-                                />
-                            </div>
-                            <div className="w-full ">
+                    <div className="w-full h-screen bg-black bg-opacity-40 fixed top-0 left-0 z-50 flex items-center justify-center">
+                        <div className="w-[450px] min-h-[500px] dark:bg-gray-800 bg-white rounded-2xl shadow-xl p-6 relative">
+                            {/* Close Button */}
+                            <button
+                                onClick={() => setOpen(false)}
+                                className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 dark:hover:text-white"
+                            >
+                                <IoCloseOutline size={32} />
+                            </button>
+
+                            <h2 className="text-2xl font-semibold text-center text-gray-800 dark:text-white mb-3">
+                                Secure Checkout
+                            </h2>
+
+                            {/* Payment Form */}
+                            <div className="w-full">
                                 {stripePromise && clientSecret && (
                                     <Elements stripe={stripePromise} options={{ clientSecret }}>
                                         <CheckOutForm setOpen={setOpen} data={data} user={user} refetch={refetch} />
@@ -290,6 +296,7 @@ const CourseDetails = ({ data, stripePromise,
                         </div>
                     </div>
                 )}
+
             </>
 
         </div>
