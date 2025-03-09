@@ -54,7 +54,7 @@ npm install
 Create a .env.local file in the root directory and update it with your credentials:
 
 #### env
-NEXTAUTH_URL=https://kai-e-learning-management.vercel.app
+NEXTAUTH_URL=your_next_auth_url
 DATABASE_URL=your_mongodb_connection_string
 CLOUDINARY_URL=your_cloudinary_api_url
 REDIS_URL=your_redis_url
