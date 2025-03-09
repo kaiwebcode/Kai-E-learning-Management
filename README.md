@@ -53,13 +53,55 @@ npm install
 3️⃣ Set up environment variables:
 Create a .env.local file in the root directory and update it with your credentials:
 
-#### env
-NEXTAUTH_URL=your_next_auth_url
+#### backend .env
+PORT=8000
+
+ORIGIN=http://localhost:3000
+
+NODE_ENV=development
+
 DATABASE_URL=your_mongodb_connection_string
-CLOUDINARY_URL=your_cloudinary_api_url
-REDIS_URL=your_redis_url
-STRIPE_SECRET_KEY=your_stripe_key
-VDO_CIPHER_KEY=your_vdocipher_key
+
+CLOUD_NAME=your_cloudinary_cloud_name
+CLOUD_API_KEY=your_cloudinary_api_key
+CLOUD_SECRET_KEY=your_cloudinary_secret_key
+
+REDIS_URL=your_redis_connection_string
+
+ACTIVATION_SECRET=your_activation_secret
+
+ACCESS_TOKEN=your_access_token
+REFRESH_TOKEN=your_refresh_token
+
+ACCESS_TOKEN_EXPIRE=5
+REFRESH_TOKEN_EXPIRE=3
+
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=465
+SMTP_SERVICE=gmail
+SMTP_MAIL=your_smtp_email
+SMTP_PASSWORD=your_smtp_password
+
+VDOCIPHER_API_SECRET=your_vdocipher_api_secret
+
+STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
+STRIPE_SECRET_KEY=your_stripe_secret_key
+
+#### frontend .env 
+NEXT_PUBLIC_SERVER_URI=http://localhost:8000/api/v1
+<!-- change the url and add backend deploy url after deploy backend  -->
+
+NEXT_PUBLIC_SOCKET_SERVER_URI=http://localhost:8000
+<!-- change the url and add backend deploy url after deploy backend  -->
+
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+
+GITHUB_CLIENT_ID=your_github_client_id
+GITHUB_CLIENT_SECRET=your_github_client_secret
+
+SECRET=your_random_secret
+
 
 4️⃣ Start the development server:
 npm run dev
